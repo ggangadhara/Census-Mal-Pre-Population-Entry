@@ -4,162 +4,277 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Census 2027 — Malavalli Taluk</title>
-
-<!-- Production React (no Babel needed — pure createElement below) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin></script>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet"/>
-
 <style>
+/* ── Google Fonts inline fallback — loaded async so blank page never happens ── */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Serif:wght@700&display=swap');
+
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Mukta',sans-serif;background:#eef2f7;min-height:100vh}
-::-webkit-scrollbar{width:6px;height:6px}
-::-webkit-scrollbar-track{background:#f1f5f9}
-::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:3px}
+html,body{min-height:100vh}
+body{font-family:'Mukta',Arial,sans-serif;background:#eef2f7;color:#1e293b}
 
-/* ── HEADER ── */
-.hdr{background:linear-gradient(90deg,#1b3d6e 0%,#0f2548 100%);border-bottom:3px solid #c9a227;position:sticky;top:0;z-index:50}
-.hdr-in{max-width:1220px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:13px}
-.hdr-seal{width:46px;height:46px;background:radial-gradient(circle,#d4aa30 0%,#a07818 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;box-shadow:0 0 0 3px rgba(212,170,48,.25)}
-.hdr-text h1{font-family:'Noto Serif',serif;color:#fff;font-size:16px;font-weight:700;line-height:1.2}
-.hdr-text p{color:#8aadd4;font-size:11px;margin-top:2px}
-.hdr-meta{margin-left:auto;text-align:right;flex-shrink:0}
-.hdr-badge{background:rgba(201,162,39,.18);border:1px solid #c9a227;color:#e8c84a;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block}
-.hdr-user{color:#8aadd4;font-size:11px;margin-top:3px}
+/* ════ HEADER ════ */
+.hdr{background:linear-gradient(90deg,#1b3d6e,#0f2548);border-bottom:3px solid #c9a227;position:sticky;top:0;z-index:100}
+.hdr-in{max-width:1200px;margin:0 auto;padding:11px 18px;display:flex;align-items:center;gap:12px}
+.hdr-seal{width:44px;height:44px;background:radial-gradient(circle,#d4aa30,#a07818);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 0 0 3px rgba(212,170,48,.25)}
+.hdr-txt h1{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:15px;font-weight:700;line-height:1.3}
+.hdr-txt p{color:#8aadd4;font-size:11px;margin-top:1px}
+.hdr-badge-wrap{margin-left:auto;text-align:right;flex-shrink:0}
+.hdr-badge{background:rgba(201,162,39,.18);border:1px solid #c9a227;color:#e8c84a;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block}
+.hdr-uname{color:#8aadd4;font-size:11px;margin-top:3px}
 
-/* ── MAIN ── */
-.main{max-width:1220px;margin:0 auto;padding:22px 18px}
+/* ════ PAGE WRAPPER ════ */
+.page{max-width:1200px;margin:0 auto;padding:20px 16px}
 
-/* ── LOGIN ── */
-.login-wrap{max-width:430px;margin:50px auto}
+/* ════ LOGIN ════ */
+.login-wrap{max-width:420px;margin:50px auto}
 .login-card{background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,37,72,.22);overflow:hidden}
 .login-top{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:26px;text-align:center;border-bottom:3px solid #c9a227}
-.login-ico{font-size:34px;margin-bottom:8px}
-.login-top h2{font-family:'Noto Serif',serif;color:#fff;font-size:17px}
+.login-ico{font-size:36px;margin-bottom:8px}
+.login-top h2{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:18px;font-weight:700}
 .login-top p{color:#8aadd4;font-size:12px;margin-top:3px}
-.login-body{padding:26px}
-.rtabs{display:flex;gap:5px;margin-bottom:20px;background:#f1f5f9;border-radius:8px;padding:4px}
-.rtab{flex:1;padding:9px;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#64748b}
-.rtab.on{background:#1b3d6e;color:#fff;box-shadow:0 2px 8px rgba(27,61,110,.28)}
+.login-body{padding:24px}
+.rtabs{display:flex;gap:5px;background:#f1f5f9;border-radius:8px;padding:4px;margin-bottom:20px}
+.rtab{flex:1;padding:9px;border:none;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:#64748b;transition:all .2s}
+.rtab.on{background:#1b3d6e;color:#fff;box-shadow:0 2px 8px rgba(27,61,110,.3)}
 .flbl{display:block;font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
 .fgrp{margin-bottom:15px}
-.fsel,.finp{width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:'Mukta',sans-serif;font-size:14px;color:#1e293b;outline:none;transition:border-color .2s,box-shadow .2s;background:#fff;-webkit-appearance:auto;appearance:auto}
+.fsel,.finp{width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:inherit;font-size:14px;color:#1e293b;outline:none;background:#fff;transition:border-color .2s,box-shadow .2s}
 .fsel:focus,.finp:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
-.err-msg{background:#fee2e2;border:1px solid #fca5a5;color:#dc2626;padding:8px 12px;border-radius:7px;font-size:13px;margin-bottom:13px}
-.btn-login{width:100%;padding:11px;background:linear-gradient(135deg,#1b3d6e,#0d4a8c);color:#fff;border:none;border-radius:8px;font-family:'Mukta',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:4px;letter-spacing:.3px}
-.btn-login:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,61,110,.33)}
+.err-box{background:#fee2e2;border:1px solid #fca5a5;color:#dc2626;padding:9px 12px;border-radius:7px;font-size:13px;margin-bottom:14px;display:none}
+.err-box.show{display:block}
+.btn-login{width:100%;padding:11px;background:linear-gradient(135deg,#1b3d6e,#0d4a8c);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-top:4px;transition:all .2s}
+.btn-login:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,61,110,.32)}
+.btn-login:active{transform:translateY(0)}
 
-/* ── LAYOUT ── */
-.layout{display:grid;grid-template-columns:258px 1fr;gap:18px;align-items:start}
-@media(max-width:760px){.layout{grid-template-columns:1fr}}
+/* ════ LAYOUT ════ */
+.layout{display:grid;grid-template-columns:255px 1fr;gap:18px;align-items:start}
+@media(max-width:700px){.layout{grid-template-columns:1fr}}
 
-/* ── SIDEBAR ── */
-.sb{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden;position:sticky;top:75px}
-.sb-hd{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:14px 17px;border-bottom:2px solid #c9a227}
-.sb-hd h3{font-family:'Noto Serif',serif;color:#fff;font-size:14px}
-.sb-hd p{color:#8aadd4;font-size:11px;margin-top:1px}
-.sb-bd{padding:13px 15px}
+/* ════ SIDEBAR ════ */
+.sb{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden;position:sticky;top:72px}
+.sb-hd{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:14px 16px;border-bottom:2px solid #c9a227}
+.sb-hd h3{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:14px;font-weight:700}
+.sb-hd p{color:#8aadd4;font-size:11px;margin-top:2px}
+.sb-bd{padding:14px 15px}
 .irow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:12px}
 .irow:last-child{border-bottom:none}
 .ilbl{color:#64748b}
 .ival{color:#1e293b;font-weight:700}
 .ival.done{color:#15803d}
 .ival.pend{color:#d97706}
-.pbar-info{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin:11px 0 4px}
+.pb-info{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin:11px 0 4px}
 .pbar{height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .6s ease}
+.pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .5s ease;width:0%}
 .sbt{margin-top:13px;padding-top:12px;border-top:1px solid #e8edf3}
-.sbt-title{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
-.url-inp{display:none} /* removed — URL now hardcoded */
-.btn-link{display:none} /* removed */
-.sheet-status{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:7px;margin-top:2px}
+.sbt-title{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.sheet-status{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;padding:9px 11px;border-radius:7px}
 .sheet-status.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
-.sheet-status.err{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
-.linked-tag{font-size:11px;color:#16a34a;margin-top:5px;display:flex;align-items:center;gap:4px}
-.btn-out{width:100%;padding:9px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-family:'Mukta',sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
-.btn-out:hover{background:#dc2626;color:#fff}
-
-/* ── SYNC DOTS ── */
-.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.sheet-status.no{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 .dot-ok{background:#16a34a}
 .dot-err{background:#dc2626}
-.dot-spin{background:#eab308;animation:blink .7s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.dot-spin{background:#eab308;animation:spin .7s infinite}
+@keyframes spin{0%,100%{opacity:1}50%{opacity:.25}}
+.btn-out{width:100%;padding:9px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
+.btn-out:hover{background:#dc2626;color:#fff}
 
-/* ── CONTENT AREA ── */
-.content{display:flex;flex-direction:column;gap:13px}
-.ctop{background:#fff;border-radius:12px;padding:17px 21px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.ctop h2{font-family:'Noto Serif',serif;color:#1b3d6e;font-size:16px}
+/* ════ CONTENT ════ */
+.content{display:flex;flex-direction:column;gap:14px}
+.ctop{background:#fff;border-radius:12px;padding:17px 20px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.ctop h2{font-family:'Noto Serif',Georgia,serif;color:#1b3d6e;font-size:16px;font-weight:700}
 .ctop p{color:#64748b;font-size:12px;margin-top:3px}
-.stag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;margin-top:8px;display:inline-flex;align-items:center;gap:5px}
-.stag-ok{background:#dcfce7;color:#15803d}
-.stag-no{background:#fee2e2;color:#dc2626}
+.stag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:8px;display:inline-flex;align-items:center;gap:5px}
+.stag.ok{background:#dcfce7;color:#15803d}
+.stag.no{background:#fee2e2;color:#dc2626}
 
-/* ── TABLE ── */
-.tbl-wrap{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:auto;max-height:calc(100vh - 210px)}
-.tbl{width:100%;border-collapse:collapse;min-width:760px}
-.tbl thead{background:linear-gradient(135deg,#1b3d6e,#0f2548);position:sticky;top:0;z-index:5}
-.tbl thead th{padding:11px 12px;text-align:left;font-size:10px;font-weight:700;color:#8aadd4;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap}
-.tbl thead th:last-child{border-right:none}
-.tbl td{padding:9px 12px;font-size:13px;color:#334155;vertical-align:middle}
+/* ════ TABLE ════ */
+.tbl-wrap{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:auto;max-height:calc(100vh - 220px)}
+table{width:100%;border-collapse:collapse;min-width:740px}
+thead{background:linear-gradient(135deg,#1b3d6e,#0f2548);position:sticky;top:0;z-index:5}
+thead th{padding:11px 11px;text-align:left;font-size:10px;font-weight:700;color:#8aadd4;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap}
+thead th:last-child{border-right:none}
+tbody td{padding:9px 11px;font-size:13px;color:#334155;vertical-align:middle}
 
 /* Village rows */
-.vrow{background:#fff;border-bottom:1px solid #e8edf3;transition:background .1s}
-.vrow:hover{background:#f8fafc}
-.vrow.sv{background:#f0fdf4}
+tr.vrow{background:#fff;border-bottom:1px solid #e8edf3;transition:background .1s}
+tr.vrow:hover{background:#f8fafc}
+tr.vrow.sv{background:#f0fdf4}
+/* Dakale rows */
+tr.drow{background:#faf7ff;border-bottom:1px solid #ede9fe;transition:background .1s}
+tr.drow:hover{background:#f3eeff}
+tr.drow.sv{background:#f0fdf4}
 
-/* Dakale rows — purple tint */
-.drow{background:#faf7ff;border-bottom:1px solid #ede9fe;transition:background .1s}
-.drow:hover{background:#f3eeff}
-.drow.sv{background:#f0fdf4}
-
-/* Cell styles */
-.sno-b{background:#e2e8f0;color:#475569;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+/* Cells */
+.sno-b{background:#e2e8f0;color:#475569;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.arr{color:#a78bfa;font-size:16px;font-weight:700}
 .vname{font-weight:700;color:#1e293b;font-size:13px}
 .dk-sub{font-size:10px;color:#a78bfa;margin-top:2px}
 .dk-row{display:flex;align-items:center;gap:7px}
 .dk-dash{border-top:2px dashed #a78bfa;width:16px;flex-shrink:0}
-.dk-label{font-weight:700;color:#5b21b6;font-size:13px}
-.dk-tag{background:#ede9fe;color:#5b21b6;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.3px;margin-left:3px;white-space:nowrap}
-.gp-b{background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.dk-lbl{font-weight:700;color:#5b21b6;font-size:13px}
+.dk-tag{background:#ede9fe;color:#5b21b6;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.3px;margin-left:3px}
+.gp-b{background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
 .code-txt{font-family:'Courier New',monospace;font-size:11px;color:#94a3b8}
 
-/* Number input — no spinners */
-.ni{width:130px;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:'Mukta',sans-serif;font-size:13px;color:#1e293b;outline:none;transition:all .2s;text-align:right;-moz-appearance:textfield;appearance:textfield}
+/* Number input */
+.ni{width:128px;padding:7px 9px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:inherit;font-size:13px;color:#1e293b;outline:none;text-align:right;transition:border-color .2s,box-shadow .2s;-moz-appearance:textfield;appearance:textfield}
 .ni::-webkit-outer-spin-button,.ni::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .ni:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
 .ni.hv{border-color:#16a34a;background:#f0fdf4}
 
-/* Save button */
-.sv-btn{padding:5px 14px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+/* Save cell */
+.sc{display:flex;align-items:center;gap:6px}
+.sv-btn{padding:5px 13px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
 .sv-btn:hover{background:#0d4a8c}
-.sv-btn.dim{opacity:.32;cursor:default}
+.sv-btn:active{background:#0a3a7a}
+.sv-btn.dim{opacity:.3;cursor:default}
 .sv-btn.dim:hover{background:#1b3d6e}
-.tick{color:#16a34a;font-size:18px;line-height:1}
-.sync-cell{display:flex;align-items:center;gap:6px}
+.tick{color:#16a34a;font-size:18px}
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:20px;right:20px;padding:10px 18px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.22);z-index:999;display:flex;align-items:center;gap:8px;animation:si .22s ease;pointer-events:none}
-@keyframes si{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
-.t-ok{background:#15803d;color:#fff}
-.t-err{background:#dc2626;color:#fff}
-.t-info{background:#1b3d6e;color:#fff}
+/* ════ FOOTER ════ */
+.footer{text-align:center;padding:22px 16px;margin-top:8px;border-top:1px solid #e2e8f0;color:#64748b;font-size:11px;line-height:1.7}
+.footer strong{color:#1b3d6e;font-weight:700}
+.footer .copy{color:#94a3b8;font-size:10px;margin-top:2px}
+
+/* ════ TOAST ════ */
+#toast{position:fixed;bottom:20px;right:20px;padding:11px 18px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 28px rgba(0,0,0,.22);z-index:9999;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(12px);transition:all .25s ease;pointer-events:none;max-width:320px}
+#toast.show{opacity:1;transform:translateY(0)}
+#toast.ok{background:#15803d;color:#fff}
+#toast.err{background:#dc2626;color:#fff}
+#toast.info{background:#1b3d6e;color:#fff}
+
+/* ════ HIDDEN ════ */
+.hidden{display:none!important}
 </style>
 </head>
 <body>
-<div id="root"></div>
+
+<!-- ════ HEADER ════ -->
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="hdr-seal">🏛️</div>
+    <div class="hdr-txt">
+      <h1>Census 2027 — Village Population Data Entry</h1>
+      <p>Malavalli Taluk · Mandya District · Karnataka Government</p>
+    </div>
+    <div class="hdr-badge-wrap hidden" id="hdr-meta">
+      <div class="hdr-badge" id="hdr-role-badge"></div>
+      <div class="hdr-uname" id="hdr-uname"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ════ LOGIN PAGE ════ -->
+<div class="page" id="login-page">
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-top">
+        <div class="login-ico">🔐</div>
+        <h2>Secure Login Portal</h2>
+        <p>Authorized Personnel Only · Census 2027</p>
+      </div>
+      <div class="login-body">
+        <div class="rtabs">
+          <button class="rtab on" id="tab-vao" onclick="switchTab('vao')">👤 VAO</button>
+          <button class="rtab" id="tab-sec" onclick="switchTab('secretary')">🏢 GP Secretary</button>
+        </div>
+        <div class="err-box" id="login-err"></div>
+        <div class="fgrp">
+          <label class="flbl" id="sel-label">VAO Name</label>
+          <select class="fsel" id="name-sel"><option value="">-- Select --</option></select>
+        </div>
+        <div class="fgrp">
+          <label class="flbl">Password</label>
+          <input class="finp" type="password" id="pwd-inp" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+        </div>
+        <button class="btn-login" onclick="doLogin()">Login →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ ENTRY PAGE ════ -->
+<div class="page hidden" id="entry-page">
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sb">
+      <div class="sb-hd">
+        <h3 id="sb-title">👤 VAO Panel</h3>
+        <p id="sb-name"></p>
+      </div>
+      <div class="sb-bd">
+        <div class="irow"><span class="ilbl">Role</span><span class="ival" id="sb-role"></span></div>
+        <div class="irow"><span class="ilbl">Villages</span><span class="ival" id="sb-villages"></span></div>
+        <div class="irow"><span class="ilbl">Total Rows</span><span class="ival" id="sb-total"></span></div>
+        <div class="irow"><span class="ilbl">Completed</span><span class="ival" id="sb-done"></span></div>
+        <div class="pb-info"><span>Progress</span><span id="pb-pct">0%</span></div>
+        <div class="pbar"><div class="pfill" id="pfill"></div></div>
+        <div class="sbt">
+          <div class="sbt-title">☁️ Google Sheets</div>
+          <div class="sheet-status ok hidden" id="sheet-ok">
+            <span class="dot dot-ok"></span>Connected — auto-saving
+          </div>
+          <div class="sheet-status no" id="sheet-no">
+            <span class="dot dot-err"></span>Not configured yet
+          </div>
+        </div>
+        <button class="btn-out" onclick="doLogout()">← Logout</button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="ctop">
+        <h2 id="ctop-title"></h2>
+        <p id="ctop-sub"></p>
+        <span class="stag ok hidden" id="stag-ok"><span class="dot dot-ok"></span>Auto-saving to Google Sheets on every Save</span>
+        <span class="stag no" id="stag-no"><span class="dot dot-err"></span>Google Sheets not configured — contact admin</span>
+      </div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:36px">#</th>
+              <th>Code</th>
+              <th>Village / Dakale Grama</th>
+              <th id="th-gp">GP Name</th>
+              <th id="th-pop">Present Population</th>
+              <th id="th-hh">Total House Holds</th>
+              <th style="width:90px">Save</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div><strong>© 2027 Census Data Entry System</strong></div>
+    <div>Designed and Developed by <strong>Gangadhar</strong> · Statistical Inspector</div>
+    <div>Taluk Office Malavalli, Mandya District · Karnataka Government</div>
+    <div class="copy">All rights reserved · For official use only</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
 
 <script>
-// ─── No Babel — pure React.createElement, instant load ───────────────────────
-const {useState, useEffect, useRef} = React;
-const h = React.createElement;
+// ════════════════════════════════════════════════════════════════
+// ▼▼▼  ADMIN: PASTE YOUR GOOGLE APPS SCRIPT URL BELOW  ▼▼▼
+const SHEET_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+// ▲▲▲  Only change the above line — nothing else needed  ▲▲▲
+// ════════════════════════════════════════════════════════════════
 
-// ─── Village Data ────────────────────────────────────────────────────────────
+const PASSWORD     = "Mal@1234";
+const SHEET_READY  = SHEET_URL && SHEET_URL !== "https://script.google.com/macros/s/AKfycbx6ABy75mSbz9bd8bzVK7SgaL7SfyfcgYMlrMhAe5DXAK4R9k623UyC3UHIN9iir2wvMA/exec";
+
+// ── Village data ──────────────────────────────────────────────
 const RAW = [
   {sno:1,code:614654,name:"Chikkamulagudu",dk:"Vaddara Kaloni",vao:"SHAFI",gp:"Chikkamulagudu"},
   {sno:2,code:649474,name:"Kurubanapura",dk:"",vao:"SHAFI",gp:"Chikkamulagudu"},
@@ -365,399 +480,357 @@ const RAW = [
   {sno:202,code:651342,name:"Honaganahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
 ];
 
-// ─── Build flat row list (village rows + dakale sub-rows) ─────────────────────
-const parseDk = s => {
+// ── Build flat rows (village + dakale sub-rows) ───────────────
+function parseDk(s) {
   if (!s || !s.trim()) return [];
-  const m = s.match(/\d+\)\s*([^0-9)]+)/g);
-  if (m && m.length > 1) return m.map(x => x.replace(/^\d+\)\s*/,"").trim()).filter(Boolean);
+  var m = s.match(/\d+\)\s*([^0-9)]+)/g);
+  if (m && m.length > 1) return m.map(function(x){ return x.replace(/^\d+\)\s*/,"").trim(); }).filter(Boolean);
   return [s.trim()];
-};
-
-const ALL_ROWS = (() => {
-  const rows = [];
-  RAW.forEach(v => {
-    const dks = parseDk(v.dk);
-    rows.push({...v, type:"village", rid:"V_"+v.code, dkNames:dks});
-    dks.forEach((d,i) => rows.push({...v, type:"dakale", rid:"D_"+v.code+"_"+i, dkName:d}));
-  });
-  return rows;
-})();
-
-const VAOS = [...new Set(RAW.map(v=>v.vao))].sort();
-const GPS  = [...new Set(RAW.map(v=>v.gp.trim()))].sort();
-
-// ─── Persistence (localStorage — works on GitHub Pages) ───────────────────────
-const lsGet = k => { try { const v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch { return null; } };
-const lsSet = (k,v) => { try { localStorage.setItem(k,JSON.stringify(v)); } catch {} };
-
-// ════════════════════════════════════════════════════════════════════════════
-// ▼▼▼  ADMIN: PASTE YOUR GOOGLE APPS SCRIPT URL BELOW (between the quotes)  ▼▼▼
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbx6ABy75mSbz9bd8bzVK7SgaL7SfyfcgYMlrMhAe5DXAK4R9k623UyC3UHIN9iir2wvMA/exec";
-// ▲▲▲  That's all you need to change — save the file and re-upload to GitHub ▲▲▲
-// ════════════════════════════════════════════════════════════════════════════
-
-const SHEET_CONFIGURED = SHEET_URL && SHEET_URL !== "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
-
-// ─── App ──────────────────────────────────────────────────────────────────────
-function App() {
-  const [role,    setRole]    = useState(null);
-  const [lr,      setLr]      = useState("vao");
-  const [uname,   setUname]   = useState("");
-  const [pwd,     setPwd]     = useState("");
-  const [loginErr,setLoginErr]= useState("");
-  const [entries, setEntries] = useState({});
-  const [pend,    setPend]    = useState({});
-  const [toast,   setToast]   = useState(null);
-  const [sync,    setSync]    = useState({});
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    const e = lsGet("c27_e"); if (e) setEntries(e);
-  }, []);
-
-  // ── Toast helper
-  const flash = (msg, type) => {
-    setToast({msg, type: type||"ok"});
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setToast(null), 3000);
-  };
-
-  // ── Auth
-  const doLogin = () => {
-    if (!uname) { setLoginErr("Please select a name."); return; }
-    if (pwd !== "Mal@1234") { setLoginErr("Incorrect password."); return; }
-    setRole(lr); setLoginErr("");
-  };
-  const doLogout = () => { setRole(null); setUname(""); setPwd(""); setPend({}); };
-
-  // ── Push to Sheets (fire-and-forget, uses hardcoded SHEET_URL)
-  const pushSheet = async (rid, payload) => {
-    if (!SHEET_CONFIGURED) return;
-    setSync(p => ({...p, [rid]:"syncing"}));
-    try {
-      await fetch(SHEET_URL, {
-        method:"POST", mode:"no-cors",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify(payload)
-      });
-      // no-cors always resolves — treat as success
-      setSync(p => ({...p, [rid]:"ok"}));
-    } catch {
-      setSync(p => ({...p, [rid]:"err"}));
-    }
-  };
-
-  // ── Derived state
-  const vis = role === "vao"
-    ? ALL_ROWS.filter(r => r.vao === uname)
-    : ALL_ROWS.filter(r => r.gp.trim() === uname);
-
-  const vCount = vis.filter(r => r.type === "village").length;
-  const total  = vis.length;
-  const done   = vis.filter(r => {
-    const e = entries[r.rid] || {};
-    return role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
-  }).length;
-  const pct = Math.round(done / Math.max(total, 1) * 100);
-
-  // ── Field helpers
-  const getVal = (rid, f) => {
-    if (pend[rid] && pend[rid][f] !== undefined) return pend[rid][f];
-    const e = entries[rid] || {};
-    if (role === "vao") return f === "p" ? (e.pV !== undefined ? e.pV : "") : (e.hV !== undefined ? e.hV : "");
-    return f === "p" ? (e.pS !== undefined ? e.pS : "") : (e.hS !== undefined ? e.hS : "");
-  };
-
-  const isSaved = rid => {
-    const e = entries[rid] || {};
-    return role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
-  };
-
-  const hasPend = rid => pend[rid] && Object.keys(pend[rid]).length > 0;
-
-  const upd = (rid, f, v) => {
-    const c = v.replace(/[^0-9]/g, "");
-    setPend(p => ({...p, [rid]: {...(p[rid]||{}), [f]:c}}));
-  };
-
-  const saveRow = async row => {
-    const {rid, code, name, type, dkName, vao, gp} = row;
-    const ed = pend[rid] || {};
-    const ex = entries[rid] || {};
-    const up = {...ex};
-    const now = new Date().toLocaleString("en-IN");
-    if (role === "vao") {
-      if (ed.p !== undefined) up.pV = ed.p;
-      if (ed.h !== undefined) up.hV = ed.h;
-      up.byV = uname; up.atV = now;
-    } else {
-      if (ed.p !== undefined) up.pS = ed.p;
-      if (ed.h !== undefined) up.hS = ed.h;
-      up.byS = uname; up.atS = now;
-    }
-    const ne = {...entries, [rid]: up};
-    setEntries(ne);
-    setPend(p => { const n={...p}; delete n[rid]; return n; });
-    lsSet("c27_e", ne);
-    flash("✓ Saved: " + (type === "dakale" ? dkName : name));
-    pushSheet(rid, {
-      action:"upsertRow", rowId:rid, code, villageName:name, rowType:type,
-      dakaleGrama: type === "dakale" ? dkName : "",
-      vao, gp,
-      popVAO:   up.pV  !== undefined ? up.pV  : "",
-      hhVAO:    up.hV  !== undefined ? up.hV  : "",
-      savedByVAO: up.byV || "",
-      vaoAt:    up.atV || "",
-      popSec:   up.pS  !== undefined ? up.pS  : "",
-      hhSec:    up.hS  !== undefined ? up.hS  : "",
-      savedBySec: up.byS || "",
-      secAt:    up.atS || ""
-    });
-  };
-
-  // ── Render helpers (avoid re-creating components — use inline functions)
-  const renderInput = (rid, f) => {
-    const v   = getVal(rid, f);
-    const ex  = entries[rid] || {};
-    const saved = role === "vao"
-      ? (f === "p" ? ex.pV : ex.hV)
-      : (f === "p" ? ex.pS : ex.hS);
-    const hasSaved = saved !== undefined && saved !== "";
-    return h("input", {
-      className: "ni" + (hasSaved ? " hv" : ""),
-      type: "text",
-      inputMode: "numeric",
-      pattern: "[0-9]*",
-      placeholder: "Enter",
-      value: v,
-      onChange: ev => upd(rid, f, ev.target.value)
-    });
-  };
-
-  const renderSyncDot = rid => {
-    if (!sheetUrl) return null;
-    const s = sync[rid];
-    if (s === "syncing") return h("span", {className:"dot dot-spin", title:"Syncing…"});
-    if (s === "ok")      return h("span", {className:"dot dot-ok",   title:"Synced ✓"});
-    if (s === "err")     return h("span", {className:"dot dot-err",  title:"Sync failed — re-save to retry"});
-    return null;
-  };
-
-  // ── Header (shared)
-  const header = h("header", {className:"hdr"},
-    h("div", {className:"hdr-in"},
-      h("div", {className:"hdr-seal"}, "🏛️"),
-      h("div", {className:"hdr-text"},
-        h("h1", null, "Census 2027 — Village Population Data Entry"),
-        h("p",  null, "Malavalli Taluk · Mandya District · Karnataka Government")
-      ),
-      role ? h("div", {className:"hdr-meta"},
-        h("div", {className:"hdr-badge"}, role === "vao" ? "👤 VAO" : "🏢 Secretary"),
-        h("div", {className:"hdr-user"},  uname)
-      ) : null
-    )
-  );
-
-  // ── LOGIN ──
-  if (!role) {
-    return h("div", {className:"app"},
-      header,
-      h("div", {className:"main"},
-        h("div", {className:"login-wrap"},
-          h("div", {className:"login-card"},
-            h("div", {className:"login-top"},
-              h("div", {className:"login-ico"}, "🔐"),
-              h("h2", null, "Secure Login Portal"),
-              h("p",  null, "Authorized Personnel Only · Census 2027")
-            ),
-            h("div", {className:"login-body"},
-              h("div", {className:"rtabs"},
-                h("button", {
-                  className: "rtab" + (lr === "vao" ? " on" : ""),
-                  onClick: () => { setLr("vao"); setUname(""); setLoginErr(""); }
-                }, "👤 VAO"),
-                h("button", {
-                  className: "rtab" + (lr === "secretary" ? " on" : ""),
-                  onClick: () => { setLr("secretary"); setUname(""); setLoginErr(""); }
-                }, "🏢 GP Secretary")
-              ),
-              loginErr ? h("div", {className:"err-msg"}, loginErr) : null,
-              h("div", {className:"fgrp"},
-                h("label", {className:"flbl"}, lr === "vao" ? "VAO Name" : "GP Name"),
-                h("select", {
-                  className: "fsel",
-                  value: uname,
-                  onChange: e => setUname(e.target.value)
-                },
-                  h("option", {value:""}, "-- Select --"),
-                  ...(lr === "vao" ? VAOS : GPS).map(x =>
-                    h("option", {key:x, value:x}, x)
-                  )
-                )
-              ),
-              h("div", {className:"fgrp"},
-                h("label", {className:"flbl"}, "Password"),
-                h("input", {
-                  className: "finp",
-                  type: "password",
-                  placeholder: "Enter password",
-                  value: pwd,
-                  onChange: e => setPwd(e.target.value),
-                  onKeyDown: e => e.key === "Enter" && doLogin()
-                })
-              ),
-              h("button", {className:"btn-login", onClick: doLogin}, "Login →")
-            )
-          )
-        )
-      )
-    );
-  }
-
-  // ── MAIN ENTRY VIEW ──
-  const colPop = role === "vao" ? "Present Population (VAO)" : "Present Population (Sec)";
-  const colHH  = role === "vao" ? "Total House Holds (VAO)"  : "Total House Holds (Sec)";
-
-  return h("div", {className:"app"},
-    header,
-    h("div", {className:"main"},
-      h("div", {className:"layout"},
-
-        // ─── Sidebar ───
-        h("div", {className:"sb"},
-          h("div", {className:"sb-hd"},
-            h("h3", null, role === "vao" ? "👤 VAO Panel" : "🏢 Secretary Panel"),
-            h("p",  null, uname)
-          ),
-          h("div", {className:"sb-bd"},
-            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Role"),      h("span",{className:"ival"}, role === "vao" ? "VAO" : "GP Secretary")),
-            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Villages"),  h("span",{className:"ival"}, vCount)),
-            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Total Rows"),h("span",{className:"ival"}, total)),
-            h("div", {className:"irow"},
-              h("span",{className:"ilbl"},"Completed"),
-              h("span",{className:"ival "+(done===total?"done":"pend")}, done+"/"+total)
-            ),
-            h("div", {className:"pbar-info"}, h("span",null,"Progress"), h("span",null,pct+"%")),
-            h("div", {className:"pbar"}, h("div",{className:"pfill",style:{width:pct+"%"}})),
-
-            // Google Sheets status — auto-configured, no input needed
-            h("div", {className:"sbt"},
-              h("div", {className:"sbt-title"}, "☁️ Google Sheets"),
-              SHEET_CONFIGURED
-                ? h("div", {className:"sheet-status ok"},
-                    h("span", {className:"dot dot-ok"}),
-                    "Connected — auto-saving"
-                  )
-                : h("div", {className:"sheet-status err"},
-                    h("span", {className:"dot dot-err"}),
-                    "Not configured yet"
-                  )
-            ),
-
-            h("button", {className:"btn-out", onClick: doLogout}, "← Logout")
-          )
-        ),
-
-        // ─── Content ───
-        h("div", {className:"content"},
-          h("div", {className:"ctop"},
-            h("h2", null, uname + " — Data Entry"),
-            h("p",  null, vCount+" villages · Dakale Gramas shown as indented ↳ sub-rows with same village code"),
-            SHEET_CONFIGURED
-              ? h("span", {className:"stag stag-ok"}, h("span",{className:"dot dot-ok"}), "Auto-saving to Google Sheets on every Save")
-              : h("span", {className:"stag stag-no"}, h("span",{className:"dot dot-err"}), "Google Sheets not configured — contact admin")
-          ),
-
-          h("div", {className:"tbl-wrap"},
-            h("table", {className:"tbl"},
-              h("thead", null,
-                h("tr", null,
-                  h("th", {style:{width:36}}, "#"),
-                  h("th", null, "Code"),
-                  h("th", null, "Village / Dakale Grama"),
-                  h("th", null, role === "vao" ? "GP Name" : "VAO"),
-                  h("th", null, colPop),
-                  h("th", null, colHH),
-                  h("th", {style:{width:90}}, "Save")
-                )
-              ),
-              h("tbody", null,
-                ...vis.map(row => {
-                  const {rid, type, code, name, dkName, dkNames, vao, gp} = row;
-                  const sv  = isSaved(rid);
-                  const hp  = hasPend(rid);
-                  const isDk = type === "dakale";
-                  const rowClass = (isDk ? "drow" : "vrow") + (sv ? " sv" : "");
-
-                  return h("tr", {key: rid, className: rowClass},
-
-                    // # column
-                    h("td", null,
-                      !isDk
-                        ? h("div", {className:"sno-b"}, row.sno)
-                        : h("div", {style:{textAlign:"center", color:"#a78bfa", fontSize:16, lineHeight:1}}, "↳")
-                    ),
-
-                    // Code
-                    h("td", null, h("span", {className:"code-txt"}, code)),
-
-                    // Name
-                    h("td", null,
-                      isDk
-                        ? h("div", {className:"dk-row"},
-                            h("div",  {className:"dk-dash"}),
-                            h("span", {className:"dk-label"}, dkName),
-                            h("span", {className:"dk-tag"},   "DAKALE")
-                          )
-                        : h("div", null,
-                            h("div", {className:"vname"}, name),
-                            dkNames && dkNames.length > 0
-                              ? h("div", {className:"dk-sub"}, dkNames.length + " dakale grama" + (dkNames.length > 1 ? "s" : "") + " ↓")
-                              : null
-                          )
-                    ),
-
-                    // GP / VAO
-                    h("td", null,
-                      role === "vao"
-                        ? h("span", {className:"gp-b"}, gp.trim())
-                        : h("span", {style:{fontSize:12, color:"#475569"}}, vao)
-                    ),
-
-                    // Population
-                    h("td", null, renderInput(rid, "p")),
-
-                    // House Holds
-                    h("td", null, renderInput(rid, "h")),
-
-                    // Save
-                    h("td", null,
-                      h("div", {className:"sync-cell"},
-                        renderSyncDot(rid),
-                        hp
-                          ? h("button", {className:"sv-btn",     onClick: () => saveRow(row)}, "Save")
-                          : sv
-                            ? h("span", {className:"tick"}, "✅")
-                            : h("button", {className:"sv-btn dim", onClick: () => saveRow(row)}, "Save")
-                      )
-                    )
-                  );
-                })
-              )
-            )
-          )
-        )
-      )
-    ),
-
-    // Toast
-    toast ? h("div", {className:"toast t-"+toast.type}, toast.msg) : null
-  );
 }
 
-// ─── Mount ────────────────────────────────────────────────────────────────────
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(h(App, null));
+var ALL_ROWS = [];
+RAW.forEach(function(v) {
+  var dks = parseDk(v.dk);
+  ALL_ROWS.push(Object.assign({}, v, {type:"village", rid:"V_"+v.code, dkNames:dks}));
+  dks.forEach(function(d, i) {
+    ALL_ROWS.push(Object.assign({}, v, {type:"dakale", rid:"D_"+v.code+"_"+i, dkName:d}));
+  });
+});
+
+var VAOS = Array.from(new Set(RAW.map(function(v){return v.vao;}))).sort();
+var GPS  = Array.from(new Set(RAW.map(function(v){return v.gp.trim();}))).sort();
+
+// ── State ─────────────────────────────────────────────────────
+var STATE = {
+  role: null,       // 'vao' | 'secretary'
+  loginRole: "vao",
+  uname: "",
+  entries: {},      // rid → {pV,hV,byV,atV, pS,hS,byS,atS}
+  vis: [],          // filtered ALL_ROWS for current user
+  toastTimer: null
+};
+
+// ── LocalStorage ──────────────────────────────────────────────
+function lsGet(k) { try { var v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch(e){ return null; } }
+function lsSet(k,v) { try { localStorage.setItem(k,JSON.stringify(v)); } catch(e){} }
+
+// Load persisted entries
+var saved = lsGet("c27_entries");
+if (saved) STATE.entries = saved;
+
+// ── Helpers ───────────────────────────────────────────────────
+function $(id){ return document.getElementById(id); }
+function show(id){ $(id).classList.remove("hidden"); }
+function hide(id){ $(id).classList.add("hidden"); }
+
+function flash(msg, type) {
+  var t = $("toast");
+  t.textContent = msg;
+  t.className = "show " + (type||"ok");
+  if (STATE.toastTimer) clearTimeout(STATE.toastTimer);
+  STATE.toastTimer = setTimeout(function(){ t.className = ""; }, 3000);
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+}
+
+// ── Login tab switch ──────────────────────────────────────────
+function switchTab(role) {
+  STATE.loginRole = role;
+  $("tab-vao").className = "rtab" + (role==="vao" ? " on" : "");
+  $("tab-sec").className = "rtab" + (role==="secretary" ? " on" : "");
+  $("sel-label").textContent = role === "vao" ? "VAO Name" : "GP Name";
+  var sel = $("name-sel");
+  sel.innerHTML = '<option value="">-- Select --</option>';
+  var list = role === "vao" ? VAOS : GPS;
+  list.forEach(function(x){
+    var o = document.createElement("option");
+    o.value = x; o.textContent = x;
+    sel.appendChild(o);
+  });
+  $("login-err").className = "err-box";
+}
+
+// ── Login ─────────────────────────────────────────────────────
+function doLogin() {
+  var uname = $("name-sel").value;
+  var pwd   = $("pwd-inp").value;
+  var err   = $("login-err");
+  if (!uname) { err.textContent="Please select a name."; err.className="err-box show"; return; }
+  if (pwd !== PASSWORD) { err.textContent="Incorrect password."; err.className="err-box show"; return; }
+
+  STATE.role  = STATE.loginRole;
+  STATE.uname = uname;
+
+  // Filter rows for this user
+  STATE.vis = STATE.role === "vao"
+    ? ALL_ROWS.filter(function(r){ return r.vao === uname; })
+    : ALL_ROWS.filter(function(r){ return r.gp.trim() === uname; });
+
+  // Update header
+  $("hdr-role-badge").textContent = STATE.role === "vao" ? "👤 VAO" : "🏢 Secretary";
+  $("hdr-uname").textContent = uname;
+  show("hdr-meta");
+
+  // Update sidebar
+  $("sb-title").textContent = STATE.role === "vao" ? "👤 VAO Panel" : "🏢 Secretary Panel";
+  $("sb-name").textContent  = uname;
+  $("sb-role").textContent  = STATE.role === "vao" ? "VAO" : "GP Secretary";
+
+  // Column headers
+  var isVao = STATE.role === "vao";
+  $("th-gp").textContent  = isVao ? "GP Name" : "VAO";
+  $("th-pop").textContent = isVao ? "Present Population (VAO)" : "Present Population (Sec)";
+  $("th-hh").textContent  = isVao ? "Total House Holds (VAO)"  : "Total House Holds (Sec)";
+
+  // Sheet status
+  if (SHEET_READY) {
+    show("sheet-ok"); hide("sheet-no");
+    show("stag-ok");  hide("stag-no");
+  } else {
+    hide("sheet-ok"); show("sheet-no");
+    hide("stag-ok");  show("stag-no");
+  }
+
+  $("ctop-title").textContent = uname + " — Data Entry";
+  $("ctop-sub").textContent   = STATE.vis.filter(function(r){return r.type==="village";}).length +
+    " villages · Dakale Gramas shown as indented ↳ sub-rows";
+
+  renderTable();
+  updateProgress();
+
+  hide("login-page");
+  show("entry-page");
+  $("pwd-inp").value = "";
+}
+
+// ── Logout ────────────────────────────────────────────────────
+function doLogout() {
+  STATE.role = null; STATE.uname = "";
+  hide("entry-page"); show("login-page");
+  hide("hdr-meta");
+  $("name-sel").value = ""; $("pwd-inp").value = "";
+  $("login-err").className = "err-box";
+}
+
+// ── Progress ──────────────────────────────────────────────────
+function updateProgress() {
+  var total = STATE.vis.length;
+  var vCount= STATE.vis.filter(function(r){return r.type==="village";}).length;
+  var done  = STATE.vis.filter(function(r){
+    var e = STATE.entries[r.rid] || {};
+    return STATE.role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
+  }).length;
+  var pct = Math.round(done / Math.max(total,1) * 100);
+  $("sb-villages").textContent = vCount;
+  $("sb-total").textContent    = total;
+  $("sb-done").textContent     = done + "/" + total;
+  $("sb-done").className       = "ival " + (done === total ? "done" : "pend");
+  $("pb-pct").textContent      = pct + "%";
+  $("pfill").style.width       = pct + "%";
+}
+
+// ── Render Table ──────────────────────────────────────────────
+function renderTable() {
+  var tbody = $("tbl-body");
+  var rows  = STATE.vis;
+  var html  = "";
+
+  rows.forEach(function(row) {
+    var e    = STATE.entries[row.rid] || {};
+    var isDk = row.type === "dakale";
+    var isVao= STATE.role === "vao";
+
+    // Saved values
+    var pVal = isVao ? (e.pV !== undefined ? e.pV : "") : (e.pS !== undefined ? e.pS : "");
+    var hVal = isVao ? (e.hV !== undefined ? e.hV : "") : (e.hS !== undefined ? e.hS : "");
+    var pSaved = pVal !== "";
+    var sv   = pSaved;
+
+    var rowCls  = (isDk ? "drow" : "vrow") + (sv ? " sv" : "");
+    var rid_esc = escHtml(row.rid);
+
+    // ── # cell
+    var snoCell = isDk
+      ? '<td><span class="arr">↳</span></td>'
+      : '<td><span class="sno-b">' + row.sno + '</span></td>';
+
+    // ── Name cell
+    var nameCell;
+    if (isDk) {
+      nameCell = '<td><div class="dk-row"><div class="dk-dash"></div>' +
+        '<span class="dk-lbl">' + escHtml(row.dkName) + '</span>' +
+        '<span class="dk-tag">DAKALE</span></div></td>';
+    } else {
+      var sub = row.dkNames && row.dkNames.length > 0
+        ? '<div class="dk-sub">' + row.dkNames.length + ' dakale grama' + (row.dkNames.length>1?'s':'') + ' ↓</div>'
+        : '';
+      nameCell = '<td><div class="vname">' + escHtml(row.name) + '</div>' + sub + '</td>';
+    }
+
+    // ── GP/VAO cell
+    var gpCell = isVao
+      ? '<td><span class="gp-b">' + escHtml(row.gp.trim()) + '</span></td>'
+      : '<td><span style="font-size:12px;color:#475569">' + escHtml(row.vao) + '</span></td>';
+
+    // ── Input classes
+    var pCls = "ni" + (pSaved ? " hv" : "");
+    var hSaved = isVao ? (e.hV !== undefined && e.hV !== "") : (e.hS !== undefined && e.hS !== "");
+    var hCls = "ni" + (hSaved ? " hv" : "");
+
+    // ── Save button
+    var saveBtn = sv
+      ? '<span class="tick">✅</span>'
+      : '<button class="sv-btn dim" onclick="saveRow(\'' + rid_esc + '\')">Save</button>';
+
+    html += '<tr class="' + rowCls + '" id="tr-' + rid_esc + '">' +
+      snoCell +
+      '<td><span class="code-txt">' + row.code + '</span></td>' +
+      nameCell +
+      gpCell +
+      '<td><input class="' + pCls + '" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter" ' +
+        'value="' + escHtml(pVal) + '" ' +
+        'id="p-' + rid_esc + '" ' +
+        'oninput="onInput(\'' + rid_esc + '\',\'p\',this.value)" /></td>' +
+      '<td><input class="' + hCls + '" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter" ' +
+        'value="' + escHtml(hVal) + '" ' +
+        'id="h-' + rid_esc + '" ' +
+        'oninput="onInput(\'' + rid_esc + '\',\'h\',this.value)" /></td>' +
+      '<td><div class="sc" id="sc-' + rid_esc + '">' +
+        '<span class="dot hidden" id="dot-' + rid_esc + '"></span>' +
+        saveBtn +
+      '</div></td>' +
+    '</tr>\n';
+  });
+
+  tbody.innerHTML = html;
+}
+
+// ── Input handler ─────────────────────────────────────────────
+function onInput(rid, field, raw) {
+  var clean = raw.replace(/[^0-9]/g, "");
+  var inp = $(field + "-" + rid);
+  if (inp && inp.value !== clean) inp.value = clean;
+
+  // Update save button to active
+  var sc = $("sc-" + rid);
+  if (sc) {
+    var btn = sc.querySelector(".sv-btn");
+    if (btn) btn.className = "sv-btn";
+  }
+  // Update input border
+  if (inp) {
+    var e = STATE.entries[rid] || {};
+    var isVao = STATE.role === "vao";
+    var existingVal = field === "p"
+      ? (isVao ? e.pV : e.pS)
+      : (isVao ? e.hV : e.hS);
+    inp.className = "ni" + (clean !== "" || existingVal ? " hv" : "");
+  }
+}
+
+// ── Save row ──────────────────────────────────────────────────
+function saveRow(rid) {
+  var pInp = $("p-" + rid);
+  var hInp = $("h-" + rid);
+  if (!pInp) return;
+
+  var pVal = pInp.value.replace(/[^0-9]/g,"");
+  var hVal = hInp ? hInp.value.replace(/[^0-9]/g,"") : "";
+
+  if (pVal === "" && hVal === "") {
+    flash("⚠ Please enter Population or House Holds before saving", "err");
+    return;
+  }
+
+  var e   = STATE.entries[rid] || {};
+  var up  = Object.assign({}, e);
+  var now = new Date().toLocaleString("en-IN");
+
+  if (STATE.role === "vao") {
+    if (pVal !== "") up.pV = pVal;
+    if (hVal !== "") up.hV = hVal;
+    up.byV = STATE.uname; up.atV = now;
+  } else {
+    if (pVal !== "") up.pS = pVal;
+    if (hVal !== "") up.hS = hVal;
+    up.byS = STATE.uname; up.atS = now;
+  }
+
+  STATE.entries[rid] = up;
+  lsSet("c27_entries", STATE.entries);
+
+  // Find row data for label + push
+  var row = ALL_ROWS.find(function(r){ return r.rid === rid; });
+  var label = row ? (row.type === "dakale" ? row.dkName : row.name) : rid;
+  flash("✓ Saved: " + label);
+
+  // Update row UI
+  var tr = $("tr-" + rid);
+  if (tr) {
+    tr.className = (row && row.type==="dakale" ? "drow" : "vrow") + " sv";
+  }
+  // Inputs go green
+  if (pInp) pInp.className = "ni hv";
+  if (hInp) hInp.className = "ni hv";
+  // Replace button with tick
+  var sc = $("sc-" + rid);
+  if (sc) sc.innerHTML = '<span class="dot hidden" id="dot-'+rid+'"></span><span class="tick">✅</span>';
+
+  updateProgress();
+
+  // Push to Google Sheets
+  if (row) pushToSheet(rid, row, up);
+}
+
+// ── Push to Sheets ────────────────────────────────────────────
+function pushToSheet(rid, row, up) {
+  if (!SHEET_READY) return;
+  var dotEl = $("dot-" + rid);
+  if (dotEl) { dotEl.className = "dot dot-spin"; dotEl.classList.remove("hidden"); }
+
+  var payload = JSON.stringify({
+    action:      "upsertRow",
+    rowId:       rid,
+    code:        row.code,
+    villageName: row.name,
+    rowType:     row.type,
+    dakaleGrama: row.type === "dakale" ? row.dkName : "",
+    vao:         row.vao,
+    gp:          row.gp,
+    popVAO:      up.pV  !== undefined ? up.pV  : "",
+    hhVAO:       up.hV  !== undefined ? up.hV  : "",
+    savedByVAO:  up.byV || "",
+    vaoAt:       up.atV || "",
+    popSec:      up.pS  !== undefined ? up.pS  : "",
+    hhSec:       up.hS  !== undefined ? up.hS  : "",
+    savedBySec:  up.byS || "",
+    secAt:       up.atS || ""
+  });
+
+  fetch(SHEET_URL, {
+    method:  "POST",
+    mode:    "no-cors",
+    headers: {"Content-Type":"application/json"},
+    body:    payload
+  }).then(function() {
+    var d = $("dot-" + rid);
+    if (d) { d.className = "dot dot-ok"; }
+  }).catch(function() {
+    var d = $("dot-" + rid);
+    if (d) { d.className = "dot dot-err"; }
+    flash("⚠ Sheet sync failed — data saved locally", "err");
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────
+// Populate VAO dropdown on load
+switchTab("vao");
 </script>
 </body>
 </html>
