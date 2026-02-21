@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Census 2027 — Malavalli Taluk</title>
+
+<!-- Production React (no Babel needed — pure createElement below) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet"/>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Mukta',sans-serif;background:#eef2f7;min-height:100vh}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:3px}
+
+/* ── HEADER ── */
+.hdr{background:linear-gradient(90deg,#1b3d6e 0%,#0f2548 100%);border-bottom:3px solid #c9a227;position:sticky;top:0;z-index:50}
+.hdr-in{max-width:1220px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:13px}
+.hdr-seal{width:46px;height:46px;background:radial-gradient(circle,#d4aa30 0%,#a07818 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;box-shadow:0 0 0 3px rgba(212,170,48,.25)}
+.hdr-text h1{font-family:'Noto Serif',serif;color:#fff;font-size:16px;font-weight:700;line-height:1.2}
+.hdr-text p{color:#8aadd4;font-size:11px;margin-top:2px}
+.hdr-meta{margin-left:auto;text-align:right;flex-shrink:0}
+.hdr-badge{background:rgba(201,162,39,.18);border:1px solid #c9a227;color:#e8c84a;padding:3px 11px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block}
+.hdr-user{color:#8aadd4;font-size:11px;margin-top:3px}
+
+/* ── MAIN ── */
+.main{max-width:1220px;margin:0 auto;padding:22px 18px}
+
+/* ── LOGIN ── */
+.login-wrap{max-width:430px;margin:50px auto}
+.login-card{background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,37,72,.22);overflow:hidden}
+.login-top{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:26px;text-align:center;border-bottom:3px solid #c9a227}
+.login-ico{font-size:34px;margin-bottom:8px}
+.login-top h2{font-family:'Noto Serif',serif;color:#fff;font-size:17px}
+.login-top p{color:#8aadd4;font-size:12px;margin-top:3px}
+.login-body{padding:26px}
+.rtabs{display:flex;gap:5px;margin-bottom:20px;background:#f1f5f9;border-radius:8px;padding:4px}
+.rtab{flex:1;padding:9px;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;background:transparent;color:#64748b}
+.rtab.on{background:#1b3d6e;color:#fff;box-shadow:0 2px 8px rgba(27,61,110,.28)}
+.flbl{display:block;font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.fgrp{margin-bottom:15px}
+.fsel,.finp{width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:'Mukta',sans-serif;font-size:14px;color:#1e293b;outline:none;transition:border-color .2s,box-shadow .2s;background:#fff;-webkit-appearance:auto;appearance:auto}
+.fsel:focus,.finp:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
+.err-msg{background:#fee2e2;border:1px solid #fca5a5;color:#dc2626;padding:8px 12px;border-radius:7px;font-size:13px;margin-bottom:13px}
+.btn-login{width:100%;padding:11px;background:linear-gradient(135deg,#1b3d6e,#0d4a8c);color:#fff;border:none;border-radius:8px;font-family:'Mukta',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:4px;letter-spacing:.3px}
+.btn-login:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,61,110,.33)}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:258px 1fr;gap:18px;align-items:start}
+@media(max-width:760px){.layout{grid-template-columns:1fr}}
+
+/* ── SIDEBAR ── */
+.sb{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden;position:sticky;top:75px}
+.sb-hd{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:14px 17px;border-bottom:2px solid #c9a227}
+.sb-hd h3{font-family:'Noto Serif',serif;color:#fff;font-size:14px}
+.sb-hd p{color:#8aadd4;font-size:11px;margin-top:1px}
+.sb-bd{padding:13px 15px}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:12px}
+.irow:last-child{border-bottom:none}
+.ilbl{color:#64748b}
+.ival{color:#1e293b;font-weight:700}
+.ival.done{color:#15803d}
+.ival.pend{color:#d97706}
+.pbar-info{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin:11px 0 4px}
+.pbar{height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .6s ease}
+.sbt{margin-top:13px;padding-top:12px;border-top:1px solid #e8edf3}
+.sbt-title{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.url-inp{width:100%;padding:7px 9px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:'Mukta',sans-serif;font-size:11px;color:#1e293b;outline:none;transition:border-color .2s}
+.url-inp:focus{border-color:#1b3d6e}
+.url-inp.ok{border-color:#16a34a;background:#f0fdf4}
+.btn-link{width:100%;padding:7px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:5px;transition:background .2s}
+.btn-link:hover{background:#0d4a8c}
+.linked-tag{font-size:11px;color:#16a34a;margin-top:5px;display:flex;align-items:center;gap:4px}
+.btn-out{width:100%;padding:9px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-family:'Mukta',sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
+.btn-out:hover{background:#dc2626;color:#fff}
+
+/* ── SYNC DOTS ── */
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot-ok{background:#16a34a}
+.dot-err{background:#dc2626}
+.dot-spin{background:#eab308;animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── CONTENT AREA ── */
+.content{display:flex;flex-direction:column;gap:13px}
+.ctop{background:#fff;border-radius:12px;padding:17px 21px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.ctop h2{font-family:'Noto Serif',serif;color:#1b3d6e;font-size:16px}
+.ctop p{color:#64748b;font-size:12px;margin-top:3px}
+.stag{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;margin-top:8px;display:inline-flex;align-items:center;gap:5px}
+.stag-ok{background:#dcfce7;color:#15803d}
+.stag-no{background:#fee2e2;color:#dc2626}
+
+/* ── TABLE ── */
+.tbl-wrap{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:auto;max-height:calc(100vh - 210px)}
+.tbl{width:100%;border-collapse:collapse;min-width:760px}
+.tbl thead{background:linear-gradient(135deg,#1b3d6e,#0f2548);position:sticky;top:0;z-index:5}
+.tbl thead th{padding:11px 12px;text-align:left;font-size:10px;font-weight:700;color:#8aadd4;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap}
+.tbl thead th:last-child{border-right:none}
+.tbl td{padding:9px 12px;font-size:13px;color:#334155;vertical-align:middle}
+
+/* Village rows */
+.vrow{background:#fff;border-bottom:1px solid #e8edf3;transition:background .1s}
+.vrow:hover{background:#f8fafc}
+.vrow.sv{background:#f0fdf4}
+
+/* Dakale rows — purple tint */
+.drow{background:#faf7ff;border-bottom:1px solid #ede9fe;transition:background .1s}
+.drow:hover{background:#f3eeff}
+.drow.sv{background:#f0fdf4}
+
+/* Cell styles */
+.sno-b{background:#e2e8f0;color:#475569;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.vname{font-weight:700;color:#1e293b;font-size:13px}
+.dk-sub{font-size:10px;color:#a78bfa;margin-top:2px}
+.dk-row{display:flex;align-items:center;gap:7px}
+.dk-dash{border-top:2px dashed #a78bfa;width:16px;flex-shrink:0}
+.dk-label{font-weight:700;color:#5b21b6;font-size:13px}
+.dk-tag{background:#ede9fe;color:#5b21b6;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.3px;margin-left:3px;white-space:nowrap}
+.gp-b{background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.code-txt{font-family:'Courier New',monospace;font-size:11px;color:#94a3b8}
+
+/* Number input — no spinners */
+.ni{width:130px;padding:7px 10px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:'Mukta',sans-serif;font-size:13px;color:#1e293b;outline:none;transition:all .2s;text-align:right;-moz-appearance:textfield;appearance:textfield}
+.ni::-webkit-outer-spin-button,.ni::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.ni:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
+.ni.hv{border-color:#16a34a;background:#f0fdf4}
+
+/* Save button */
+.sv-btn{padding:5px 14px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.sv-btn:hover{background:#0d4a8c}
+.sv-btn.dim{opacity:.32;cursor:default}
+.sv-btn.dim:hover{background:#1b3d6e}
+.tick{color:#16a34a;font-size:18px;line-height:1}
+.sync-cell{display:flex;align-items:center;gap:6px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;right:20px;padding:10px 18px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.22);z-index:999;display:flex;align-items:center;gap:8px;animation:si .22s ease;pointer-events:none}
+@keyframes si{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.t-ok{background:#15803d;color:#fff}
+.t-err{background:#dc2626;color:#fff}
+.t-info{background:#1b3d6e;color:#fff}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+// ─── No Babel — pure React.createElement, instant load ───────────────────────
+const {useState, useEffect, useRef} = React;
+const h = React.createElement;
+
+// ─── Village Data ────────────────────────────────────────────────────────────
+const RAW = [
+  {sno:1,code:614654,name:"Chikkamulagudu",dk:"Vaddara Kaloni",vao:"SHAFI",gp:"Chikkamulagudu"},
+  {sno:2,code:649474,name:"Kurubanapura",dk:"",vao:"SHAFI",gp:"Chikkamulagudu"},
+  {sno:3,code:614655,name:"Veerajipura",dk:"",vao:"MANJUNATH M V",gp:"Mikkere"},
+  {sno:4,code:614656,name:"Maganahalli",dk:"",vao:"KAVYA",gp:"Mikkere"},
+  {sno:5,code:614657,name:"Mikkere",dk:"",vao:"MANJUNATH M V",gp:"Mikkere"},
+  {sno:6,code:614658,name:"Ramandur",dk:"Chunchagowdanakoppalu",vao:"MANJUNATH M V",gp:"Mikkere"},
+  {sno:7,code:614659,name:"Anasale",dk:"Ramanathamole",vao:"SHAFI",gp:"Chikkamulagudu"},
+  {sno:8,code:649529,name:"Halladakoppalu",dk:"",vao:"SHAFI",gp:"Chikkamulagudu"},
+  {sno:9,code:614660,name:"Bheemanahalli",dk:"",vao:"GURURAJ",gp:"Chikkamulagudu"},
+  {sno:10,code:614661,name:"Hittanahalli",dk:"1)Hittanahalli Koppalu 2)Budukegowdanadoddi",vao:"GURURAJ",gp:"Hittanahalli"},
+  {sno:11,code:614662,name:"Dugganahalli",dk:"1)Hanchipura 2)Muddegowdanadoddi",vao:"KAVADI DHANANJAYA",gp:"Dugganahalli"},
+  {sno:12,code:614663,name:"Devipura",dk:"Jayachamarajapura",vao:"PRAKASHA",gp:"Talagavadi"},
+  {sno:13,code:614664,name:"Thalagavadi",dk:"",vao:"PRAKASHA",gp:"Talagavadi"},
+  {sno:14,code:614665,name:"Kagepura",dk:"",vao:"PRAKASHA",gp:"Talagavadi"},
+  {sno:15,code:614666,name:"Koregala",dk:"",vao:"AKSHAY KUMAR",gp:"Settihalli"},
+  {sno:16,code:614667,name:"Maganur",dk:"Maganuru Kaloni",vao:"AKSHAY KUMAR",gp:"Settihalli"},
+  {sno:17,code:614668,name:"Settahalli",dk:"",vao:"AKSHAY KUMAR",gp:"Settihalli"},
+  {sno:18,code:614669,name:"Muganakoppalu",dk:"",vao:"HANAMANTARAYA BOGONDI",gp:"Lingapatna"},
+  {sno:19,code:614670,name:"Ganiganapura",dk:"",vao:"JAYANTH B N",gp:"Bandur"},
+  {sno:20,code:614671,name:"Sasiyalapura",dk:"Gattikoppalu",vao:"JAYANTH B N",gp:"Bandur"},
+  {sno:21,code:614672,name:"Madahalli",dk:"",vao:"KAVADI DHANANJAYA",gp:"Dugganahalli"},
+  {sno:22,code:614673,name:"Hullegala",dk:"",vao:"KAVADI DHANANJAYA",gp:"Dugganahalli"},
+  {sno:23,code:614674,name:"Bandurukaval",dk:"",vao:"AKSHAY KUMAR",gp:"Settihalli"},
+  {sno:24,code:614675,name:"Banduru",dk:"Dadadapura",vao:"JAYANTH B N",gp:"Bandur"},
+  {sno:25,code:614676,name:"Kallarepura",dk:"",vao:"HANAMANTARAYA BOGONDI",gp:"Bandur"},
+  {sno:26,code:614677,name:"Nenanuru",dk:"",vao:"PRATHIMA SM",gp:"Sujjalur"},
+  {sno:27,code:614678,name:"Markalu",dk:"1)Kodenakoppalu 2)Aladahalli",vao:"PRATHIMA SM",gp:"Hittanahalli"},
+  {sno:28,code:651553,name:"Jadaganapura",dk:"",vao:"PRATHIMA SM",gp:"Hittanahalli"},
+  {sno:29,code:614679,name:"Doranahalli",dk:"",vao:"GURURAJ",gp:"Mikkere"},
+  {sno:30,code:614680,name:"Kirugavalu",dk:"Chikkegowdanadoddi",vao:"SHAFI",gp:"Kirugavalu"},
+  {sno:31,code:614681,name:"Deshavalli",dk:"",vao:"KAVYA",gp:"Bendaravadi"},
+  {sno:32,code:614682,name:"Bendaravadi",dk:"",vao:"KAVYA",gp:"Bendaravadi"},
+  {sno:33,code:614683,name:"Honaganahalli",dk:"",vao:"ANIL JAMAKHANDI",gp:"Kalkuni"},
+  {sno:34,code:614684,name:"Kalkuni",dk:"1)Puttegowdanakoppalu 2)Chikkamaligekoppalu",vao:"ANIL JAMAKHANDI",gp:"Kalkuni"},
+  {sno:35,code:651353,name:"Doddegowdanakoppalu",dk:"",vao:"ANIL JAMAKHANDI",gp:"Kalkuni"},
+  {sno:36,code:614685,name:"Huvinakoppalu",dk:"",vao:"ANIL JAMAKHANDI",gp:"Sujjalur"},
+  {sno:37,code:614686,name:"Sujjalur",dk:"1)Channapillekoppalu 2)Nanjegowdanadoddi",vao:"ANIL JAMAKHANDI",gp:"Sujjalur"},
+  {sno:38,code:651447,name:"Samshettipura",dk:"",vao:"ANIL JAMAKHANDI",gp:"Sujjalur"},
+  {sno:39,code:614687,name:"Uppanahalli",dk:"",vao:"HANAMANTARAYA BOGONDI",gp:"Settihalli"},
+  {sno:40,code:614688,name:"Yamadurukaval",dk:"",vao:"HANAMANTARAYA BOGONDI",gp:"Ragibommanahalli"},
+  {sno:41,code:614689,name:"Yamaduru",dk:"",vao:"HANAMANTARAYA BOGONDI",gp:"Ragibommanahalli"},
+  {sno:42,code:614690,name:"Ragibommanahalli",dk:"Hucchanadoddi",vao:"HANAMANTARAYA BOGONDI",gp:"Ragibommanahalli"},
+  {sno:43,code:614691,name:"Ganaganuru",dk:"",vao:"PUNEETH KUMAR N",gp:"Ragibommanahalli"},
+  {sno:44,code:614692,name:"Hangrapura",dk:"",vao:"PUNEETH KUMAR N",gp:"Ragibommanahalli"},
+  {sno:45,code:614693,name:"Avverahalli",dk:"Vadakepura",vao:"PUNEETH KUMAR N",gp:"Ragibommanahalli"},
+  {sno:46,code:614694,name:"Kebbepura",dk:"",vao:"PUNEETH KUMAR N",gp:"Sujjalur"},
+  {sno:47,code:614695,name:"Maliyur",dk:"Uppagerikoppalu",vao:"PUNEETH KUMAR N",gp:"Sujjalur"},
+  {sno:48,code:651355,name:"Nelligere",dk:"",vao:"PUNEETH KUMAR N",gp:"Sujjalur"},
+  {sno:49,code:614696,name:"Hanakola",dk:"",vao:"PUNEETH KUMAR N",gp:"Sujjalur"},
+  {sno:50,code:614697,name:"Basavana Halli",dk:"",vao:"PUNEETH KUMAR N",gp:"Purigali"},
+  {sno:51,code:614698,name:"Surakahalli",dk:"",vao:"PUNEETH KUMAR N",gp:"Purigali"},
+  {sno:52,code:614699,name:"Nelamakanahalli",dk:"",vao:"CHAITHRA K",gp:"Nelamakanahalli"},
+  {sno:53,code:654905,name:"Hombegowdanadoddi",dk:"",vao:"CHAITHRA K",gp:"Nelamakanahalli"},
+  {sno:54,code:654906,name:"Bhugathagahalli",dk:"",vao:"CHAITHRA K",gp:"Nelamakanahalli"},
+  {sno:55,code:614700,name:"Appugowdana Halli",dk:"Kalakempanadoddi",vao:"CHAITHRA K",gp:"Nelamakanahalli"},
+  {sno:56,code:651356,name:"Nelluru",dk:"",vao:"CHAITHRA K",gp:"Nelamakanahalli"},
+  {sno:57,code:614701,name:"Kaluveeranahalli",dk:"Moledoddi",vao:"USMAN BHASHA",gp:"Kandegala"},
+  {sno:58,code:614702,name:"Kandegala",dk:"",vao:"USMAN BHASHA",gp:"Kandegala"},
+  {sno:59,code:614703,name:"Gulagatta",dk:"",vao:"USMAN BHASHA",gp:"Nelamakanahalli"},
+  {sno:60,code:614704,name:"Malavalli(Rural)",dk:"Tammadahalli",vao:"NANDEESH",gp:"Marehalli"},
+  {sno:61,code:614705,name:"Nidaghatta",dk:"Kyathegowdanadoddi",vao:"MADEVI J",gp:"Nidaghatta"},
+  {sno:62,code:651360,name:"Cholanahalli",dk:"",vao:"MADEVI J",gp:"Nidaghatta"},
+  {sno:63,code:614706,name:"Ankanahalli",dk:"Anchedoddi",vao:"NATARAJ B",gp:"Kandegala"},
+  {sno:64,code:614707,name:"Gowdagere",dk:"",vao:"SIDRAMAPPA",gp:"Nidaghatta"},
+  {sno:65,code:614708,name:"Amrutheswaranahalli",dk:"",vao:"SIDRAMAPPA",gp:"Kandegala"},
+  {sno:66,code:614709,name:"Kembuthagere",dk:"K. Annahalli",vao:"SIDRAMAPPA",gp:"Agasnapura"},
+  {sno:67,code:614710,name:"Sahalli",dk:"",vao:"SIDRAMAPPA",gp:"Agasnapura"},
+  {sno:68,code:614711,name:"Hadli",dk:"",vao:"RAVEESH M",gp:"Haadli"},
+  {sno:69,code:614712,name:"Kodipura",dk:"",vao:"RAVEESH M",gp:"Agasnapura"},
+  {sno:70,code:614713,name:"Koonanapura",dk:"",vao:"RAVEESH M",gp:"Haadli"},
+  {sno:71,code:614714,name:"Jogipura",dk:"",vao:"SHIVAPPA DAMANALA",gp:"Agasnapura"},
+  {sno:72,code:614715,name:"Agasanapura",dk:"",vao:"SHIVAPPA DAMANALA",gp:"Agasnapura"},
+  {sno:73,code:614716,name:"Banagahalli",dk:"",vao:"SHIVASHANKAR B JAMAKANDI",gp:"Huskur"},
+  {sno:74,code:614717,name:"Chandupura",dk:"",vao:"SHIVASHANKAR B JAMAKANDI",gp:"Huskur"},
+  {sno:75,code:614718,name:"M.Shivapura",dk:"",vao:"ABHIJITH N L",gp:"Yathambadi"},
+  {sno:76,code:614719,name:"Huskur",dk:"1)Hucchegowdanadoddi 2)Appajayanadoddi 3)Kulumedoddi 4)Siddapura",vao:"SHIVASHANKAR B JAMAKANDI",gp:"Huskur"},
+  {sno:77,code:614720,name:"Kaladevanahalli",dk:"",vao:"KENCHAPPA KODLIWWAD",gp:"Yathambadi"},
+  {sno:78,code:614721,name:"Hosapura",dk:"Gollaradoddi",vao:"ABHIJITH N L",gp:"Yathambadi"},
+  {sno:79,code:614722,name:"Aslishivapura",dk:"",vao:"ABHIJITH N L",gp:"Yathambadi"},
+  {sno:80,code:614723,name:"Belathur",dk:"",vao:"ABHIJITH N L",gp:"Yathambadi"},
+  {sno:81,code:614724,name:"Yethambadi",dk:"",vao:"ABHIJITH N L",gp:"Yathambadi"},
+  {sno:82,code:614725,name:"Antharavalli",dk:"",vao:"KENCHAPPA KODLIWWAD",gp:"Yathambadi"},
+  {sno:83,code:614726,name:"Hullahalli",dk:"",vao:"SHIVASHANKAR B JAMAKANDI",gp:"Yathambadi"},
+  {sno:84,code:614727,name:"Channipura",dk:"",vao:"RAVEESH M",gp:"D.Halasahalli"},
+  {sno:85,code:614728,name:"Hullagala",dk:"",vao:"SHIVASHANKAR B JAMAKANDI",gp:"Huskur"},
+  {sno:86,code:614729,name:"Dadamahalli",dk:"",vao:"KENCHAPPA KODLIWWAD",gp:"Yathambadi"},
+  {sno:87,code:614730,name:"Kiragasur",dk:"",vao:"KENCHAPPA KODLIWWAD",gp:"Yathambadi"},
+  {sno:88,code:614731,name:"Banasamudra",dk:"",vao:"BHASKAR S",gp:"D.Halasahalli"},
+  {sno:89,code:614732,name:"Kaggalipura",dk:"",vao:"BHASKAR S",gp:"D.Halasahalli"},
+  {sno:90,code:614733,name:"Konnapura",dk:"",vao:"BHASKAR S",gp:"D.Halasahalli"},
+  {sno:91,code:614734,name:"Halasahalli",dk:"",vao:"BHASKAR S",gp:"D.Halasahalli"},
+  {sno:92,code:614735,name:"Dhanagur",dk:"",vao:"SHIVAPPA DAMANALA",gp:"Dhanaguru"},
+  {sno:93,code:614736,name:"Linganapura",dk:"",vao:"SUDARSHAN KUMAR PS",gp:"Haadli"},
+  {sno:94,code:614737,name:"Gramadevathepura",dk:"",vao:"SUDARSHAN KUMAR PS",gp:"Dhanaguru"},
+  {sno:95,code:614738,name:"Basavanpura",dk:"",vao:"RAVEESH M",gp:"D.Halasahalli"},
+  {sno:96,code:614739,name:"Nadakalapura",dk:"Nanjegowdanadoddi",vao:"SUDARSHAN KUMAR PS",gp:"Haadli"},
+  {sno:97,code:614740,name:"Megalapura",dk:"",vao:"PRAVEEN KUMAR M",gp:"Haadli"},
+  {sno:98,code:614741,name:"Kamsagara",dk:"",vao:"PRAVEEN KUMAR M",gp:"Haadli"},
+  {sno:99,code:614742,name:"Thuraganur",dk:"",vao:"PRAVEEN KUMAR M",gp:"Haadli"},
+  {sno:100,code:614743,name:"Attuvanahalli",dk:"",vao:"SUDARSHAN KUMAR PS",gp:"Haadli"},
+  {sno:101,code:614744,name:"Alada Halli",dk:"",vao:"PRAVEEN KUMAR M",gp:"Haadli"},
+  {sno:102,code:614745,name:"Gajanur",dk:"Sunnadadoddi",vao:"MADEVI J",gp:"Nidaghatta"},
+  {sno:103,code:614746,name:"Voddarahalli",dk:"1)Channegowdanadoddi 2)Annekoppalu",vao:"NATARAJ B",gp:"Marehalli"},
+  {sno:104,code:614747,name:"Marehalli",dk:"1)Bosegowdanadoddi 2)Nagegowdanadoddi",vao:"NATARAJ B",gp:"Marehalli"},
+  {sno:105,code:614748,name:"Ravani",dk:"Lakshmipuradoddi",vao:"MALLESH KP",gp:"Kyathnahalli"},
+  {sno:106,code:614749,name:"Devalinganapura",dk:"",vao:"NATARAJ B",gp:"Marehalli"},
+  {sno:107,code:614750,name:"Savandipura",dk:"",vao:"NARASAPPA",gp:"Nitturu"},
+  {sno:108,code:614751,name:"Sagyasaragur",dk:"1)Honnemaradadoddi 2)Siddapura Kaloni",vao:"NARASAPPA",gp:"Nitturu"},
+  {sno:109,code:614752,name:"Nitturhalasahalli",dk:"",vao:"NARASAPPA",gp:"Nitturu"},
+  {sno:110,code:614753,name:"Kunthur",dk:"",vao:"NARASAPPA",gp:"Lingapatna"},
+  {sno:111,code:614754,name:"Lingapatna",dk:"1)Naripura 2)Moogegowdanadoddi",vao:"SOMASHEKAR P",gp:"Lingapatna"},
+  {sno:112,code:614755,name:"Nittur",dk:"1)N Hosadoddi 2)Kumbegowdanadoddi",vao:"SIDDARAYAMALI",gp:"Nitturu"},
+  {sno:113,code:658634,name:"B Hosuru",dk:"",vao:"SIDDARAYAMALI",gp:"Nitturu"},
+  {sno:114,code:614756,name:"Ankanahalli",dk:"Buyyanadoddi",vao:"SIDDARAYAMALI",gp:"Nitturu"},
+  {sno:115,code:614757,name:"Maragowdanahalli",dk:"1)Kuntanadoddi 2)Heggodlu",vao:"SOMANNA",gp:"Thorekadanahalli"},
+  {sno:116,code:614758,name:"Nitthur Kodihalli",dk:"",vao:"SOMANNA",gp:"Thorekadanahalli"},
+  {sno:117,code:614759,name:"Karadahalli",dk:"",vao:"SIDDARAYAMALI",gp:"Lingapatna"},
+  {sno:118,code:614760,name:"Vodeyarabasapura",dk:"Odubasappanadoddi",vao:"SOMANNA",gp:"Thorekadanahalli"},
+  {sno:119,code:614761,name:"Handanahalli",dk:"",vao:"SOMANNA",gp:"Lingapatna"},
+  {sno:120,code:614762,name:"Kodipura",dk:"",vao:"LATHA G",gp:"Thorekadanahalli"},
+  {sno:121,code:614763,name:"Veerajithimmanadoddi",dk:"Vaddaradoddi",vao:"SOMASHEKAR P",gp:"Lingapatna"},
+  {sno:122,code:614764,name:"Juganahalli",dk:"1)Doddegownadoddi 2)Benamanahalli",vao:"SOMASHEKAR P",gp:"Lingapatna"},
+  {sno:123,code:614765,name:"Balehonniga",dk:"",vao:"SOMASHEKAR P",gp:"Dalavayikodihalli"},
+  {sno:124,code:614766,name:"Dalavaikodihalli",dk:"",vao:"SOMASHEKAR P",gp:"Dalavayikodihalli"},
+  {sno:125,code:614767,name:"Deveerahalli",dk:"",vao:"SOMASHEKAR P",gp:"Dalavayikodihalli"},
+  {sno:126,code:614768,name:"Kempainadoddi",dk:"",vao:"SOMASHEKAR P",gp:"Dalavayikodihalli"},
+  {sno:127,code:614769,name:"Nandipura",dk:"",vao:"SOMASHEKAR P",gp:"H Basavapura"},
+  {sno:128,code:614770,name:"Gundapura",dk:"",vao:"LATHA G",gp:"H Basavapura"},
+  {sno:129,code:614771,name:"Hosapetebasavapura",dk:"",vao:"LATHA G",gp:"H Basavapura"},
+  {sno:130,code:614772,name:"Hagadur",dk:"",vao:"LATHA G",gp:"H Basavapura"},
+  {sno:131,code:614773,name:"Shivanahalli",dk:"",vao:"LATHA G",gp:"H Basavapura"},
+  {sno:132,code:614774,name:"Gollarahalli",dk:"",vao:"LATHA G",gp:"Bydarahalli"},
+  {sno:133,code:614775,name:"Halaguru",dk:"1)Konnapura 2)Valageredoddi",vao:"SOMANNA",gp:"Halaguru"},
+  {sno:134,code:614776,name:"Halaganadoddi",dk:"",vao:"LATHA G",gp:"Bydarahalli"},
+  {sno:135,code:614777,name:"Chillapura",dk:"",vao:"LATHA G",gp:"Thorekadanahalli"},
+  {sno:136,code:614778,name:"Thorekadanahalli",dk:"",vao:"BHASKAR S",gp:"Thorekadanahalli"},
+  {sno:137,code:614779,name:"Nanjapura",dk:"",vao:"LATHA G",gp:"Bydarahalli"},
+  {sno:138,code:614780,name:"Chikkayelachagere",dk:"",vao:"LATHA G",gp:"Bydarahalli"},
+  {sno:139,code:614781,name:"Halagapura",dk:"",vao:"LATHA G",gp:"Thorekadanahalli"},
+  {sno:140,code:614782,name:"Doddayelachagere",dk:"",vao:"LATHA G",gp:"Bydarahalli"},
+  {sno:141,code:614783,name:"Madahalli",dk:"",vao:"LATHA G",gp:"Dugganahalli"},
+  {sno:142,code:614784,name:"Ganalu",dk:"1)Masteradoddi 2)Kenchaboyidoddi 3)Kodlayyanadoddi 4)Beeruta 5)Konnapura Doddi 6)Tagadayyanadoddi 7)Ganagalu Hosadoddi 8)Karigowdanadoddi 9)Marijogidoddi 10)Beerappanadoddi 11)Guligowdanadoddi 12)Shakunidoddi 13)Byalamaradadoddi",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:143,code:614785,name:"Bydarahalli",dk:"1)Krushnegowdanadoddi 2)Hosadoddi 3)Soligaradoddi",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:144,code:651365,name:"Karalakattedoddi",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:145,code:614786,name:"Muthalakatte",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:146,code:614787,name:"Solaba",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:147,code:614788,name:"Basavanahalli",dk:"",vao:"SOMASHEKAR P",gp:"H Basavapura"},
+  {sno:148,code:614789,name:"Basavana Betta Forest",dk:"",vao:"NARASAPPA",gp:"H Basavapura"},
+  {sno:149,code:614790,name:"Dalanakatte",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:150,code:614791,name:"Basavegowdanadoddi",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:151,code:614792,name:"Talavadi",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:152,code:614793,name:"Majjigemallanahatti",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:153,code:614794,name:"Muthathi",dk:"",vao:"NARASAPPA",gp:"Bydarahalli"},
+  {sno:154,code:614795,name:"Doddaboovalli",dk:"",vao:"RUKSAR FARHEEN",gp:"Kyathnahalli"},
+  {sno:155,code:614796,name:"Kyathanahalli",dk:"",vao:"RUKSAR FARHEEN",gp:"Kyathnahalli"},
+  {sno:156,code:614797,name:"Kundur",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kundur"},
+  {sno:157,code:614798,name:"Shiramalli",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kundur"},
+  {sno:158,code:614799,name:"Pandithahalli",dk:"",vao:"PRAVEEN T K",gp:"Pandithahalli"},
+  {sno:159,code:614800,name:"Bachanahalli",dk:"",vao:"PRAVEEN T K",gp:"Pandithahalli"},
+  {sno:160,code:614801,name:"Manchanapura",dk:"",vao:"MADHU M",gp:"Chottenahalli"},
+  {sno:161,code:614802,name:"Chottanahalli",dk:"1)Kenchanadoddi 2)Chikkanadoddi",vao:"MADHU M",gp:"Chottenahalli"},
+  {sno:162,code:651318,name:"Kunanakoppalu",dk:"",vao:"MADHU M",gp:"Chottenahalli"},
+  {sno:163,code:614803,name:"Chandahalli",dk:"",vao:"MADHU M",gp:"Chottenahalli"},
+  {sno:164,code:651422,name:"Varadarajaswamydoddi",dk:"",vao:"MADHU M",gp:"Chottenahalli"},
+  {sno:165,code:614804,name:"Dabbahalli",dk:"",vao:"LAVANYA",gp:"Dhanaguru"},
+  {sno:166,code:614805,name:"Netkal",dk:"Shimshapura",vao:"LAVANYA",gp:"Chottenahalli"},
+  {sno:167,code:614806,name:"Mallikyathanahalli",dk:"Bluff(Shivanasamudra)",vao:"LANKESH H S",gp:"Hosahalli"},
+  {sno:168,code:614807,name:"Belakavadi",dk:"1)Anthrayanapuradadoddi 2)Bannithalekoppalu",vao:"LANKESH H S",gp:"Belakavadi"},
+  {sno:169,code:651558,name:"Javaganahalli",dk:"",vao:"LANKESH H S",gp:"Belakavadi"},
+  {sno:170,code:614808,name:"Kiragasur",dk:"",vao:"LANKESH H S",gp:"Kaggalipura"},
+  {sno:171,code:614809,name:"Vasuvalli",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kaggalipura"},
+  {sno:172,code:614810,name:"Hokkarahalli",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kaggalipura"},
+  {sno:173,code:614811,name:"Nanjanayanapura",dk:"",vao:"SHRIKANTH KOTYAL",gp:"B.G.Pura"},
+  {sno:174,code:614812,name:"Dyavapatna",dk:"",vao:"SHRIKANTH KOTYAL",gp:"B.G.Pura"},
+  {sno:175,code:614813,name:"Hosahalli",dk:"",vao:"PRAVEEN T K",gp:"Hosahalli"},
+  {sno:176,code:614814,name:"Hebbani",dk:"",vao:"MADHU M",gp:"Pandithahalli"},
+  {sno:177,code:614815,name:"Manchanahalli",dk:"",vao:"MADHU M",gp:"Pandithahalli"},
+  {sno:178,code:614816,name:"Dasanadoddi",dk:"Hosadoddi",vao:"PRAVEEN T K",gp:"Pandithahalli"},
+  {sno:179,code:614817,name:"Kanchugahalli",dk:"Narayanapura",vao:"SHRIKANTH KOTYAL",gp:"Kundur"},
+  {sno:180,code:614818,name:"Malagalali",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kundur"},
+  {sno:181,code:614819,name:"Thenkahalli",dk:"",vao:"SHRIKANTH KOTYAL",gp:"Kundur"},
+  {sno:182,code:614820,name:"Kadabahalli",dk:"Kalyanikoppalu",vao:"MADHU M",gp:"Sarguru"},
+  {sno:183,code:614821,name:"Mallinathapura",dk:"",vao:"MADHU M",gp:"Kyathnahalli"},
+  {sno:184,code:614822,name:"Kaggala",dk:"",vao:"MADHU M",gp:"Kyathnahalli"},
+  {sno:185,code:614823,name:"Kanikahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Sarguru"},
+  {sno:186,code:614824,name:"Udape Boovalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Sarguru"},
+  {sno:187,code:614825,name:"Thigadahalli",dk:"Konanakoppalu",vao:"SUBHASH",gp:"Kundur"},
+  {sno:188,code:614826,name:"Boppagowdanapura",dk:"Utturu",vao:"SUDEEP KUMAR V",gp:"B.G.Pura"},
+  {sno:189,code:614827,name:"Muttanahalli",dk:"",vao:"SUBHASH",gp:"B.G.Pura"},
+  {sno:190,code:614828,name:"Saraguru",dk:"1)Ainorahundi 2)Halagattekoppalu 3)Agasaragoddi 4)Manchanakoppalu",vao:"SRINIVASAMURTHY",gp:"Sarguru"},
+  {sno:191,code:614829,name:"Hanavadi",dk:"",vao:"SRINIVASAMURTHY",gp:"Sarguru"},
+  {sno:192,code:614830,name:"Purigali",dk:"Akkamallanahundi",vao:"SANJAY K",gp:"Purigali"},
+  {sno:193,code:614831,name:"Hullamballi",dk:"",vao:"SRINIVASMURTHY",gp:"Purigali"},
+  {sno:194,code:614832,name:"Chikka Abbagilu",dk:"",vao:"SRINIVASMURTHY",gp:"Purigali"},
+  {sno:195,code:614833,name:"Chikkabagiluhanta",dk:"",vao:"SANJAY K",gp:"Purigali"},
+  {sno:196,code:614834,name:"Maralahalli",dk:"",vao:"SRINIVASMURTHY",gp:"Purigali"},
+  {sno:197,code:614835,name:"Ballagere",dk:"",vao:"SANJAY K",gp:"Sarguru"},
+  {sno:198,code:614836,name:"Somanahalli",dk:"Bilijagalimole",vao:"SANJAY K",gp:"Sarguru"},
+  {sno:199,code:614837,name:"Kodagahalli",dk:"",vao:"SUBHASH",gp:"B.G.Pura"},
+  {sno:200,code:614838,name:"Haladasanahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
+  {sno:201,code:614839,name:"Kaggalipura",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
+  {sno:202,code:651342,name:"Honaganahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
+];
+
+// ─── Build flat row list (village rows + dakale sub-rows) ─────────────────────
+const parseDk = s => {
+  if (!s || !s.trim()) return [];
+  const m = s.match(/\d+\)\s*([^0-9)]+)/g);
+  if (m && m.length > 1) return m.map(x => x.replace(/^\d+\)\s*/,"").trim()).filter(Boolean);
+  return [s.trim()];
+};
+
+const ALL_ROWS = (() => {
+  const rows = [];
+  RAW.forEach(v => {
+    const dks = parseDk(v.dk);
+    rows.push({...v, type:"village", rid:"V_"+v.code, dkNames:dks});
+    dks.forEach((d,i) => rows.push({...v, type:"dakale", rid:"D_"+v.code+"_"+i, dkName:d}));
+  });
+  return rows;
+})();
+
+const VAOS = [...new Set(RAW.map(v=>v.vao))].sort();
+const GPS  = [...new Set(RAW.map(v=>v.gp.trim()))].sort();
+
+// ─── Persistence (localStorage — works on GitHub Pages) ───────────────────────
+const lsGet = k => { try { const v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch { return null; } };
+const lsSet = (k,v) => { try { localStorage.setItem(k,JSON.stringify(v)); } catch {} };
+
+// ─── App ──────────────────────────────────────────────────────────────────────
+function App() {
+  const [role,    setRole]    = useState(null);
+  const [lr,      setLr]      = useState("vao");
+  const [uname,   setUname]   = useState("");
+  const [pwd,     setPwd]     = useState("");
+  const [loginErr,setLoginErr]= useState("");
+  const [entries, setEntries] = useState({});
+  const [pend,    setPend]    = useState({});
+  const [sheetUrl,setSheetUrl]= useState("");
+  const [urlIn,   setUrlIn]   = useState("");
+  const [toast,   setToast]   = useState(null);
+  const [sync,    setSync]    = useState({});
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    const e = lsGet("c27_e"); if (e) setEntries(e);
+    const u = lsGet("c27_u"); if (u) { setSheetUrl(u); setUrlIn(u); }
+  }, []);
+
+  // ── Toast helper
+  const flash = (msg, type) => {
+    setToast({msg, type: type||"ok"});
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setToast(null), 3000);
+  };
+
+  // ── Auth
+  const doLogin = () => {
+    if (!uname) { setLoginErr("Please select a name."); return; }
+    if (pwd !== "Mal@1234") { setLoginErr("Incorrect password."); return; }
+    setRole(lr); setLoginErr("");
+  };
+  const doLogout = () => { setRole(null); setUname(""); setPwd(""); setPend({}); };
+
+  // ── Sheet URL
+  const saveUrl = () => {
+    setSheetUrl(urlIn);
+    lsSet("c27_u", urlIn);
+    flash("✓ Google Sheets URL saved", "info");
+  };
+
+  // ── Push to Sheets (fire-and-forget)
+  const pushSheet = async (rid, payload) => {
+    if (!sheetUrl) return;
+    setSync(p => ({...p, [rid]:"syncing"}));
+    try {
+      await fetch(sheetUrl, {
+        method:"POST", mode:"no-cors",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+      });
+      setSync(p => ({...p, [rid]:"ok"}));
+    } catch {
+      setSync(p => ({...p, [rid]:"err"}));
+    }
+  };
+
+  // ── Derived state
+  const vis = role === "vao"
+    ? ALL_ROWS.filter(r => r.vao === uname)
+    : ALL_ROWS.filter(r => r.gp.trim() === uname);
+
+  const vCount = vis.filter(r => r.type === "village").length;
+  const total  = vis.length;
+  const done   = vis.filter(r => {
+    const e = entries[r.rid] || {};
+    return role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
+  }).length;
+  const pct = Math.round(done / Math.max(total, 1) * 100);
+
+  // ── Field helpers
+  const getVal = (rid, f) => {
+    if (pend[rid] && pend[rid][f] !== undefined) return pend[rid][f];
+    const e = entries[rid] || {};
+    if (role === "vao") return f === "p" ? (e.pV !== undefined ? e.pV : "") : (e.hV !== undefined ? e.hV : "");
+    return f === "p" ? (e.pS !== undefined ? e.pS : "") : (e.hS !== undefined ? e.hS : "");
+  };
+
+  const isSaved = rid => {
+    const e = entries[rid] || {};
+    return role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
+  };
+
+  const hasPend = rid => pend[rid] && Object.keys(pend[rid]).length > 0;
+
+  const upd = (rid, f, v) => {
+    const c = v.replace(/[^0-9]/g, "");
+    setPend(p => ({...p, [rid]: {...(p[rid]||{}), [f]:c}}));
+  };
+
+  const saveRow = async row => {
+    const {rid, code, name, type, dkName, vao, gp} = row;
+    const ed = pend[rid] || {};
+    const ex = entries[rid] || {};
+    const up = {...ex};
+    const now = new Date().toLocaleString("en-IN");
+    if (role === "vao") {
+      if (ed.p !== undefined) up.pV = ed.p;
+      if (ed.h !== undefined) up.hV = ed.h;
+      up.byV = uname; up.atV = now;
+    } else {
+      if (ed.p !== undefined) up.pS = ed.p;
+      if (ed.h !== undefined) up.hS = ed.h;
+      up.byS = uname; up.atS = now;
+    }
+    const ne = {...entries, [rid]: up};
+    setEntries(ne);
+    setPend(p => { const n={...p}; delete n[rid]; return n; });
+    lsSet("c27_e", ne);
+    flash("✓ Saved: " + (type === "dakale" ? dkName : name));
+    pushSheet(rid, {
+      action:"upsertRow", rowId:rid, code, villageName:name, rowType:type,
+      dakaleGrama: type === "dakale" ? dkName : "",
+      vao, gp,
+      popVAO:   up.pV  !== undefined ? up.pV  : "",
+      hhVAO:    up.hV  !== undefined ? up.hV  : "",
+      savedByVAO: up.byV || "",
+      vaoAt:    up.atV || "",
+      popSec:   up.pS  !== undefined ? up.pS  : "",
+      hhSec:    up.hS  !== undefined ? up.hS  : "",
+      savedBySec: up.byS || "",
+      secAt:    up.atS || ""
+    });
+  };
+
+  // ── Render helpers (avoid re-creating components — use inline functions)
+  const renderInput = (rid, f) => {
+    const v   = getVal(rid, f);
+    const ex  = entries[rid] || {};
+    const saved = role === "vao"
+      ? (f === "p" ? ex.pV : ex.hV)
+      : (f === "p" ? ex.pS : ex.hS);
+    const hasSaved = saved !== undefined && saved !== "";
+    return h("input", {
+      className: "ni" + (hasSaved ? " hv" : ""),
+      type: "text",
+      inputMode: "numeric",
+      pattern: "[0-9]*",
+      placeholder: "Enter",
+      value: v,
+      onChange: ev => upd(rid, f, ev.target.value)
+    });
+  };
+
+  const renderSyncDot = rid => {
+    if (!sheetUrl) return null;
+    const s = sync[rid];
+    if (s === "syncing") return h("span", {className:"dot dot-spin", title:"Syncing…"});
+    if (s === "ok")      return h("span", {className:"dot dot-ok",   title:"Synced ✓"});
+    if (s === "err")     return h("span", {className:"dot dot-err",  title:"Sync failed — re-save to retry"});
+    return null;
+  };
+
+  // ── Header (shared)
+  const header = h("header", {className:"hdr"},
+    h("div", {className:"hdr-in"},
+      h("div", {className:"hdr-seal"}, "🏛️"),
+      h("div", {className:"hdr-text"},
+        h("h1", null, "Census 2027 — Village Population Data Entry"),
+        h("p",  null, "Malavalli Taluk · Mandya District · Karnataka Government")
+      ),
+      role ? h("div", {className:"hdr-meta"},
+        h("div", {className:"hdr-badge"}, role === "vao" ? "👤 VAO" : "🏢 Secretary"),
+        h("div", {className:"hdr-user"},  uname)
+      ) : null
+    )
+  );
+
+  // ── LOGIN ──
+  if (!role) {
+    return h("div", {className:"app"},
+      header,
+      h("div", {className:"main"},
+        h("div", {className:"login-wrap"},
+          h("div", {className:"login-card"},
+            h("div", {className:"login-top"},
+              h("div", {className:"login-ico"}, "🔐"),
+              h("h2", null, "Secure Login Portal"),
+              h("p",  null, "Authorized Personnel Only · Census 2027")
+            ),
+            h("div", {className:"login-body"},
+              h("div", {className:"rtabs"},
+                h("button", {
+                  className: "rtab" + (lr === "vao" ? " on" : ""),
+                  onClick: () => { setLr("vao"); setUname(""); setLoginErr(""); }
+                }, "👤 VAO"),
+                h("button", {
+                  className: "rtab" + (lr === "secretary" ? " on" : ""),
+                  onClick: () => { setLr("secretary"); setUname(""); setLoginErr(""); }
+                }, "🏢 GP Secretary")
+              ),
+              loginErr ? h("div", {className:"err-msg"}, loginErr) : null,
+              h("div", {className:"fgrp"},
+                h("label", {className:"flbl"}, lr === "vao" ? "VAO Name" : "GP Name"),
+                h("select", {
+                  className: "fsel",
+                  value: uname,
+                  onChange: e => setUname(e.target.value)
+                },
+                  h("option", {value:""}, "-- Select --"),
+                  ...(lr === "vao" ? VAOS : GPS).map(x =>
+                    h("option", {key:x, value:x}, x)
+                  )
+                )
+              ),
+              h("div", {className:"fgrp"},
+                h("label", {className:"flbl"}, "Password"),
+                h("input", {
+                  className: "finp",
+                  type: "password",
+                  placeholder: "Enter password",
+                  value: pwd,
+                  onChange: e => setPwd(e.target.value),
+                  onKeyDown: e => e.key === "Enter" && doLogin()
+                })
+              ),
+              h("button", {className:"btn-login", onClick: doLogin}, "Login →")
+            )
+          )
+        )
+      )
+    );
+  }
+
+  // ── MAIN ENTRY VIEW ──
+  const colPop = role === "vao" ? "Present Population (VAO)" : "Present Population (Sec)";
+  const colHH  = role === "vao" ? "Total House Holds (VAO)"  : "Total House Holds (Sec)";
+
+  return h("div", {className:"app"},
+    header,
+    h("div", {className:"main"},
+      h("div", {className:"layout"},
+
+        // ─── Sidebar ───
+        h("div", {className:"sb"},
+          h("div", {className:"sb-hd"},
+            h("h3", null, role === "vao" ? "👤 VAO Panel" : "🏢 Secretary Panel"),
+            h("p",  null, uname)
+          ),
+          h("div", {className:"sb-bd"},
+            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Role"),      h("span",{className:"ival"}, role === "vao" ? "VAO" : "GP Secretary")),
+            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Villages"),  h("span",{className:"ival"}, vCount)),
+            h("div", {className:"irow"}, h("span",{className:"ilbl"},"Total Rows"),h("span",{className:"ival"}, total)),
+            h("div", {className:"irow"},
+              h("span",{className:"ilbl"},"Completed"),
+              h("span",{className:"ival "+(done===total?"done":"pend")}, done+"/"+total)
+            ),
+            h("div", {className:"pbar-info"}, h("span",null,"Progress"), h("span",null,pct+"%")),
+            h("div", {className:"pbar"}, h("div",{className:"pfill",style:{width:pct+"%"}})),
+
+            // Google Sheets connector
+            h("div", {className:"sbt"},
+              h("div", {className:"sbt-title"}, "☁️ Auto-Save to Google Sheets"),
+              h("input", {
+                className: "url-inp" + (sheetUrl ? " ok" : ""),
+                type: "text",
+                placeholder: "Paste Apps Script URL…",
+                value: urlIn,
+                onChange: e => setUrlIn(e.target.value)
+              }),
+              h("button", {className:"btn-link", onClick: saveUrl}, "Save URL"),
+              sheetUrl ? h("div", {className:"linked-tag"},
+                h("span", {className:"dot dot-ok"}),
+                "Auto-save active"
+              ) : null
+            ),
+
+            h("button", {className:"btn-out", onClick: doLogout}, "← Logout")
+          )
+        ),
+
+        // ─── Content ───
+        h("div", {className:"content"},
+          h("div", {className:"ctop"},
+            h("h2", null, uname + " — Data Entry"),
+            h("p",  null, vCount+" villages · Dakale Gramas shown as indented ↳ sub-rows with same village code"),
+            sheetUrl
+              ? h("span", {className:"stag stag-ok"}, h("span",{className:"dot dot-ok"}), "Auto-saving to Google Sheets on every Save")
+              : h("span", {className:"stag stag-no"}, h("span",{className:"dot dot-err"}), "Add Sheets URL in sidebar to enable auto-save")
+          ),
+
+          h("div", {className:"tbl-wrap"},
+            h("table", {className:"tbl"},
+              h("thead", null,
+                h("tr", null,
+                  h("th", {style:{width:36}}, "#"),
+                  h("th", null, "Code"),
+                  h("th", null, "Village / Dakale Grama"),
+                  h("th", null, role === "vao" ? "GP Name" : "VAO"),
+                  h("th", null, colPop),
+                  h("th", null, colHH),
+                  h("th", {style:{width:90}}, "Save")
+                )
+              ),
+              h("tbody", null,
+                ...vis.map(row => {
+                  const {rid, type, code, name, dkName, dkNames, vao, gp} = row;
+                  const sv  = isSaved(rid);
+                  const hp  = hasPend(rid);
+                  const isDk = type === "dakale";
+                  const rowClass = (isDk ? "drow" : "vrow") + (sv ? " sv" : "");
+
+                  return h("tr", {key: rid, className: rowClass},
+
+                    // # column
+                    h("td", null,
+                      !isDk
+                        ? h("div", {className:"sno-b"}, row.sno)
+                        : h("div", {style:{textAlign:"center", color:"#a78bfa", fontSize:16, lineHeight:1}}, "↳")
+                    ),
+
+                    // Code
+                    h("td", null, h("span", {className:"code-txt"}, code)),
+
+                    // Name
+                    h("td", null,
+                      isDk
+                        ? h("div", {className:"dk-row"},
+                            h("div",  {className:"dk-dash"}),
+                            h("span", {className:"dk-label"}, dkName),
+                            h("span", {className:"dk-tag"},   "DAKALE")
+                          )
+                        : h("div", null,
+                            h("div", {className:"vname"}, name),
+                            dkNames && dkNames.length > 0
+                              ? h("div", {className:"dk-sub"}, dkNames.length + " dakale grama" + (dkNames.length > 1 ? "s" : "") + " ↓")
+                              : null
+                          )
+                    ),
+
+                    // GP / VAO
+                    h("td", null,
+                      role === "vao"
+                        ? h("span", {className:"gp-b"}, gp.trim())
+                        : h("span", {style:{fontSize:12, color:"#475569"}}, vao)
+                    ),
+
+                    // Population
+                    h("td", null, renderInput(rid, "p")),
+
+                    // House Holds
+                    h("td", null, renderInput(rid, "h")),
+
+                    // Save
+                    h("td", null,
+                      h("div", {className:"sync-cell"},
+                        renderSyncDot(rid),
+                        hp
+                          ? h("button", {className:"sv-btn",     onClick: () => saveRow(row)}, "Save")
+                          : sv
+                            ? h("span", {className:"tick"}, "✅")
+                            : h("button", {className:"sv-btn dim", onClick: () => saveRow(row)}, "Save")
+                      )
+                    )
+                  );
+                })
+              )
+            )
+          )
+        )
+      )
+    ),
+
+    // Toast
+    toast ? h("div", {className:"toast t-"+toast.type}, toast.msg) : null
+  );
+}
+
+// ─── Mount ────────────────────────────────────────────────────────────────────
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(h(App, null));
+</script>
+</body>
+</html>
