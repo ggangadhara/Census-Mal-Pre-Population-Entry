@@ -75,11 +75,11 @@ body{font-family:'Mukta',sans-serif;background:#eef2f7;min-height:100vh}
 .pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .6s ease}
 .sbt{margin-top:13px;padding-top:12px;border-top:1px solid #e8edf3}
 .sbt-title{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
-.url-inp{width:100%;padding:7px 9px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:'Mukta',sans-serif;font-size:11px;color:#1e293b;outline:none;transition:border-color .2s}
-.url-inp:focus{border-color:#1b3d6e}
-.url-inp.ok{border-color:#16a34a;background:#f0fdf4}
-.btn-link{width:100%;padding:7px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:'Mukta',sans-serif;font-size:11px;font-weight:700;cursor:pointer;margin-top:5px;transition:background .2s}
-.btn-link:hover{background:#0d4a8c}
+.url-inp{display:none} /* removed — URL now hardcoded */
+.btn-link{display:none} /* removed */
+.sheet-status{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:7px;margin-top:2px}
+.sheet-status.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+.sheet-status.err{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
 .linked-tag{font-size:11px;color:#16a34a;margin-top:5px;display:flex;align-items:center;gap:4px}
 .btn-out{width:100%;padding:9px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-family:'Mukta',sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
 .btn-out:hover{background:#dc2626;color:#fff}
@@ -390,6 +390,14 @@ const GPS  = [...new Set(RAW.map(v=>v.gp.trim()))].sort();
 const lsGet = k => { try { const v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch { return null; } };
 const lsSet = (k,v) => { try { localStorage.setItem(k,JSON.stringify(v)); } catch {} };
 
+// ════════════════════════════════════════════════════════════════════════════
+// ▼▼▼  ADMIN: PASTE YOUR GOOGLE APPS SCRIPT URL BELOW (between the quotes)  ▼▼▼
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbx6ABy75mSbz9bd8bzVK7SgaL7SfyfcgYMlrMhAe5DXAK4R9k623UyC3UHIN9iir2wvMA/exec";
+// ▲▲▲  That's all you need to change — save the file and re-upload to GitHub ▲▲▲
+// ════════════════════════════════════════════════════════════════════════════
+
+const SHEET_CONFIGURED = SHEET_URL && SHEET_URL !== "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+
 // ─── App ──────────────────────────────────────────────────────────────────────
 function App() {
   const [role,    setRole]    = useState(null);
@@ -399,15 +407,12 @@ function App() {
   const [loginErr,setLoginErr]= useState("");
   const [entries, setEntries] = useState({});
   const [pend,    setPend]    = useState({});
-  const [sheetUrl,setSheetUrl]= useState("");
-  const [urlIn,   setUrlIn]   = useState("");
   const [toast,   setToast]   = useState(null);
   const [sync,    setSync]    = useState({});
   const timerRef = useRef(null);
 
   useEffect(() => {
     const e = lsGet("c27_e"); if (e) setEntries(e);
-    const u = lsGet("c27_u"); if (u) { setSheetUrl(u); setUrlIn(u); }
   }, []);
 
   // ── Toast helper
@@ -425,23 +430,17 @@ function App() {
   };
   const doLogout = () => { setRole(null); setUname(""); setPwd(""); setPend({}); };
 
-  // ── Sheet URL
-  const saveUrl = () => {
-    setSheetUrl(urlIn);
-    lsSet("c27_u", urlIn);
-    flash("✓ Google Sheets URL saved", "info");
-  };
-
-  // ── Push to Sheets (fire-and-forget)
+  // ── Push to Sheets (fire-and-forget, uses hardcoded SHEET_URL)
   const pushSheet = async (rid, payload) => {
-    if (!sheetUrl) return;
+    if (!SHEET_CONFIGURED) return;
     setSync(p => ({...p, [rid]:"syncing"}));
     try {
-      await fetch(sheetUrl, {
+      await fetch(SHEET_URL, {
         method:"POST", mode:"no-cors",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(payload)
       });
+      // no-cors always resolves — treat as success
       setSync(p => ({...p, [rid]:"ok"}));
     } catch {
       setSync(p => ({...p, [rid]:"err"}));
@@ -641,21 +640,18 @@ function App() {
             h("div", {className:"pbar-info"}, h("span",null,"Progress"), h("span",null,pct+"%")),
             h("div", {className:"pbar"}, h("div",{className:"pfill",style:{width:pct+"%"}})),
 
-            // Google Sheets connector
+            // Google Sheets status — auto-configured, no input needed
             h("div", {className:"sbt"},
-              h("div", {className:"sbt-title"}, "☁️ Auto-Save to Google Sheets"),
-              h("input", {
-                className: "url-inp" + (sheetUrl ? " ok" : ""),
-                type: "text",
-                placeholder: "Paste Apps Script URL…",
-                value: urlIn,
-                onChange: e => setUrlIn(e.target.value)
-              }),
-              h("button", {className:"btn-link", onClick: saveUrl}, "Save URL"),
-              sheetUrl ? h("div", {className:"linked-tag"},
-                h("span", {className:"dot dot-ok"}),
-                "Auto-save active"
-              ) : null
+              h("div", {className:"sbt-title"}, "☁️ Google Sheets"),
+              SHEET_CONFIGURED
+                ? h("div", {className:"sheet-status ok"},
+                    h("span", {className:"dot dot-ok"}),
+                    "Connected — auto-saving"
+                  )
+                : h("div", {className:"sheet-status err"},
+                    h("span", {className:"dot dot-err"}),
+                    "Not configured yet"
+                  )
             ),
 
             h("button", {className:"btn-out", onClick: doLogout}, "← Logout")
@@ -667,9 +663,9 @@ function App() {
           h("div", {className:"ctop"},
             h("h2", null, uname + " — Data Entry"),
             h("p",  null, vCount+" villages · Dakale Gramas shown as indented ↳ sub-rows with same village code"),
-            sheetUrl
+            SHEET_CONFIGURED
               ? h("span", {className:"stag stag-ok"}, h("span",{className:"dot dot-ok"}), "Auto-saving to Google Sheets on every Save")
-              : h("span", {className:"stag stag-no"}, h("span",{className:"dot dot-err"}), "Add Sheets URL in sidebar to enable auto-save")
+              : h("span", {className:"stag stag-no"}, h("span",{className:"dot dot-err"}), "Google Sheets not configured — contact admin")
           ),
 
           h("div", {className:"tbl-wrap"},
