@@ -1107,8 +1107,8 @@ async function doLogin(){
   $('sb-nm').textContent    = nm;
   $('sb-role').textContent  = S.role==='vao'?'Village Accountant':'Grama Panchayath';
   $('th3').textContent = 'ಗ್ರಾ.ಪಂ ಹೆಸರು';
-  $('th4').textContent = S.role==='vao'?'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಗ್ರಾ.ಲೆ)':'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಕಾರ್ಯದರ್ಶಿ)';
-  $('th5').textContent = S.role==='vao'?'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಗ್ರಾ.ಲೆ)':'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಕಾರ್ಯದರ್ಶಿ)';
+  $('th4').textContent = S.role==='vao'?'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಗ್ರಾ.ಲೆ)':'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಕಾರ್ಯ.ದ.)';
+  $('th5').textContent = S.role==='vao'?'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಗ್ರಾ.ಲೆ)':'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಕಾರ್ಯ.ದ.)';
   const vc=S.vis.filter(r=>r.type==='village').length;
   $('ct-title').textContent = nm+' — Data Entry';
   $('ct-sub').textContent   = vc+' villages · Dakale Gramas shown as ↳ sub-rows · Auto-saves locally, syncs to Google Sheets';
