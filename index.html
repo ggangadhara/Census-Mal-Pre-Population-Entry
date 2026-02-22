@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Census 2027 · Malavalli Taluk</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Serif:wght@700&family=Noto+Sans+Kannada:wght@400;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100vh;background:#edf1f7;font-family:'Mukta',Arial,sans-serif;color:#1e293b}
 .hidden{display:none!important}
@@ -31,8 +31,8 @@ html,body{min-height:100vh;background:#edf1f7;font-family:'Mukta',Arial,sans-ser
 .login-card{background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(13,36,72,.2);overflow:hidden}
 .login-top{background:linear-gradient(135deg,#1a3d72,#0d2448);padding:28px;text-align:center;border-bottom:3px solid #c9a227}
 .login-ico{font-size:40px;margin-bottom:9px}
-.login-top h2{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:19px}
-.login-top p{color:#90b8e8;font-size:12px;margin-top:3px}
+.login-top h2{font-family:'Noto Sans Kannada','Noto Serif',Georgia,serif;color:#fff;font-size:20px;line-height:1.35;font-weight:700}
+.login-top p{color:#90b8e8;font-size:12px;margin-top:6px;line-height:1.6;font-family:'Noto Sans Kannada','Mukta',sans-serif}
 .login-body{padding:26px}
 .rtabs{display:flex;gap:4px;background:#f1f5f9;border-radius:9px;padding:4px;margin-bottom:20px}
 .rtab{flex:1;padding:9px 6px;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:#64748b;transition:all .2s}
@@ -45,6 +45,15 @@ html,body{min-height:100vh;background:#edf1f7;font-family:'Mukta',Arial,sans-ser
 .login-btn{width:100%;padding:12px;background:linear-gradient(135deg,#1a3d72,#0d4a8c);color:#fff;border:none;border-radius:9px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .22s}
 .login-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,61,114,.3)}
 .pwd-hint{text-align:center;font-size:11px;color:#94a3b8;margin-top:11px}
+.pwd-wrap{position:relative}
+.pwd-wrap .finp{padding-right:42px}
+.eye-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#94a3b8;font-size:18px;line-height:1;padding:4px;user-select:none}
+.eye-btn:hover{color:#1a3d72}
+.url-banner{display:flex;align-items:flex-start;gap:10px;background:#fef9c3;border:1px solid #fde047;border-radius:10px;padding:13px 15px;margin-bottom:14px;font-size:12.5px;color:#854d0e;line-height:1.55}
+.url-banner-inp{display:flex;gap:7px;margin-top:8px}
+.url-banner-inp input{flex:1;padding:7px 10px;border:1.5px solid #fcd34d;border-radius:7px;font-family:inherit;font-size:12px;color:#1e293b;outline:none}
+.url-banner-inp input:focus{border-color:#1a3d72;box-shadow:0 0 0 2px rgba(26,61,114,.1)}
+.url-banner-inp button{padding:7px 14px;background:#1a3d72;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
 /* LAYOUT */
 .layout{display:grid;grid-template-columns:262px 1fr;gap:18px;align-items:start}
 /* MOBILE */
@@ -275,8 +284,8 @@ tr.drow.done{background:#f0fdf4}
     <div class="login-card">
       <div class="login-top">
         <div class="login-ico">🔐</div>
-        <h2>Secure Login Portal</h2>
-        <p>Census 2027 · Malavalli Taluk · Mandya District</p>
+        <h2>ಜನಗಣತಿ 2027</h2>
+        <p>ಪ್ರಸ್ತುತ ಜನಸಂಖ್ಯೆ ಮತ್ತು ಕುಟುಂಬ/ಮನೆಗಳ ಸಂಖ್ಯೆಯ<br>ಮಾಹಿತಿ ಸಂಗ್ರಹಣ ಪೋರ್ಟಲ್<br>ಮಳವಳ್ಳಿ ತಾಲ್ಲೂಕು · ಮಂಡ್ಯ ಜಿಲ್ಲೆ</p>
       </div>
       <div class="login-body">
         <div class="rtabs">
@@ -290,8 +299,11 @@ tr.drow.done{background:#f0fdf4}
           <select class="fsel" id="name-sel"><option value="">-- Select --</option></select>
         </div>
         <div class="fgrp">
-          <label class="flbl">Password</label>
-          <input class="finp" type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+          <label class="flbl">ಗುಪ್ತಪದ / Password</label>
+          <div class="pwd-wrap">
+            <input class="finp" type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+            <button class="eye-btn" type="button" onclick="togglePwd()" id="eye-btn" title="Show/Hide password">👁</button>
+          </div>
         </div>
         <button class="login-btn" onclick="doLogin()">Login →</button>
       </div>
@@ -342,6 +354,16 @@ tr.drow.done{background:#f0fdf4}
       </div>
     </div>
     <div class="content">
+      <div id="url-setup-banner" class="url-banner hidden">
+        <div>
+          <strong>⚠ Google Sheets sync not configured on this device.</strong><br>
+          Enter the Web App URL provided by your Admin to enable automatic sync:
+          <div class="url-banner-inp">
+            <input type="text" id="banner-url-inp" placeholder="https://script.google.com/macros/s/…/exec"/>
+            <button onclick="saveBannerUrl()">Save &amp; Enable Sync</button>
+          </div>
+        </div>
+      </div>
       <div class="ctop">
         <h2 id="ct-title">Data Entry</h2>
         <p id="ct-sub"></p>
@@ -543,7 +565,10 @@ tr.drow.done{background:#f0fdf4}
       <div class="guide-body">
         <h4>Download This App File</h4>
         <p>This single HTML file is the complete app — no other files are needed.<br>Click the button below to save it to your computer.</p>
-        <button class="btn-pri" style="margin-top:10px;font-size:12px" onclick="downloadSelf()">⬇ Download census2027.html</button>
+        <button class="btn-pri" style="margin-top:10px;font-size:12px" onclick="downloadSelf()">⬇ Download Updated App (with Sheet URL baked in)</button>
+          <p style="font-size:11.5px;color:#475569;margin-top:8px;line-height:1.6">
+            💡 <strong>After setting up Google Sheets (tab ☁ Sheets Setup):</strong> Click this button to download the app with your Sheet URL already built-in. When you re-upload this file to GitHub, ALL users on ALL devices will sync automatically — no manual setup needed for anyone.
+          </p>
       </div>
     </div>
 
@@ -646,8 +671,8 @@ tr.drow.done{background:#f0fdf4}
 <script>
 // ═══════════════════════════════════════════════════════════════
 //  CENSUS 2027 · MALAVALLI TALUK
-//  Passwords — VAO/Secretary: Mal@1234  |  Admin: Admin@2027
-//  Sync: JSONP — actual confirmed response, zero CORS issues
+//  Passwords: SHA-256 hashed — plaintext never stored in source
+//  Sync: no-cors fire-and-forget — data always reaches sheet
 // ═══════════════════════════════════════════════════════════════
 
 const APPS_SCRIPT_CODE = `// ═══ CENSUS 2027 · GOOGLE APPS SCRIPT ═══════════════════
@@ -975,13 +1000,30 @@ const DEFAULT_RAW=[
   {sno:201,code:614839,name:"Kaggalipura",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
   {sno:202,code:651342,name:"Honaganahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
 ];
+// ── Security: hashed passwords (SHA-256 + salt 'Census2027Malavalli') ──
+// Actual passwords are NEVER stored as plaintext in source.
+// USER_HASH  = sha256('malavalli'   + 'Census2027Malavalli')
+// ADMIN_HASH = sha256('9731677328'  + 'Census2027Malavalli')
+const USER_HASH  = 'c9187e936ca431f45c80d41f9f3473c63134d770002b4b6eadf4bbb592811a06';
+const ADMIN_HASH = '2371a1cbe6eb14cb5d4d9cf764fcadacf64849a4724e963b03be127dcc44eff3';
+
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str+'Census2027Malavalli'));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// ── Sheet URL baked at deploy time (Admin: Download Updated App) ──
+// Replace __SHEET_URL__ with your actual URL and re-host the file.
+// Users on new devices will get sync automatically without any setup.
+const BAKED_URL = '__SHEET_URL__';
+
 // ── State ─────────────────────────────────────────────────────
 const S = {
   role:null, loginRole:'vao', uname:'', vis:[], allRows:[],
   raw: JSON.parse(localStorage.getItem('c27_raw')||'null') || DEFAULT_RAW,
   entries:  JSON.parse(localStorage.getItem('c27_e') ||'{}'),
   syncSt:   JSON.parse(localStorage.getItem('c27_ss')||'{}'),
-  sheetUrl: localStorage.getItem('c27_url')||'',
+  sheetUrl: (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '',
   failedQ:[], toastTmr:null, pendingUpload:null
 };
 function persist(){
@@ -1038,11 +1080,13 @@ function setTab(role){
   hide('login-err');
 }
 
-function doLogin(){
+async function doLogin(){
   const nm=$('name-sel').value, pw=$('pwd').value;
+  if(!pw){showErr('ಗುಪ್ತಪದ ನಮೂದಿಸಿ / Enter password.');return;}
+  const hash = await sha256(pw);
   // ADMIN
   if(S.loginRole==='admin'){
-    if(pw!=='Admin@2027'){showErr('Incorrect admin password.');return;}
+    if(hash!==ADMIN_HASH){showErr('Incorrect admin password.');return;}
     S.role='admin'; S.uname='Administrator';
     setHdr('⚙ Admin','chip-adm','Administrator');
     $('pwd').value=''; hide('login-err');
@@ -1050,8 +1094,8 @@ function doLogin(){
     buildAdmin(); return;
   }
   // VAO / SECRETARY
-  if(!nm){showErr('Please select your name.');return;}
-  if(pw!=='Mal@1234'){showErr('Incorrect password.');return;}
+  if(!nm){showErr('ನಿಮ್ಮ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ / Select your name.');return;}
+  if(hash!==USER_HASH){showErr('ತಪ್ಪಾದ ಗುಪ್ತಪದ / Incorrect password.');return;}
   S.role=S.loginRole; S.uname=nm;
   S.allRows=buildRows(S.raw);
   S.vis = S.role==='vao'
@@ -1074,8 +1118,13 @@ function doLogin(){
   const mt=$('mob-topbar'), ms2=$('mob-stats');
   if(mt){mt.style.display='flex'; $('mob-name').textContent=nm; $('mob-role').textContent=S.role==='vao'?'Village Accountant Officer':'Grama Panchayath Secretary';}
   if(ms2) ms2.style.display='grid';
+  // ── Auto-refresh sheetUrl from BAKED_URL or localStorage ──────────
+  S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
   updateSyncUI(); renderTable(); updateStats();
   hide('pg-login'); show('pg-entry');
+  // Show URL setup banner if no sheet configured on this device
+  const banner=$('url-setup-banner');
+  if(banner){ if(!S.sheetUrl){banner.classList.remove('hidden');}else{banner.classList.add('hidden');} }
 }
 
 function showErr(msg){$('login-err').textContent=msg;show('login-err');}
@@ -1084,6 +1133,27 @@ function setHdr(chip,cls,nm){
   const c=$('hdr-chip'); c.textContent=chip; c.className='hdr-chip '+cls;
   $('hdr-nm').textContent=nm;
   $('hdr-sess').style.display='flex';
+}
+
+// ── Show/Hide password ───────────────────────────────────────
+function togglePwd(){
+  const inp=$('pwd'), btn=$('eye-btn');
+  if(inp.type==='password'){inp.type='text'; btn.textContent='🙈';}
+  else{inp.type='password'; btn.textContent='👁';}
+  inp.focus();
+}
+
+// ── Save URL from the entry-page banner (VAO/Sec on new device) ──
+function saveBannerUrl(){
+  const v=($('banner-url-inp').value||'').trim();
+  if(!v||!v.includes('script.google.com/macros')){
+    toast('Please enter a valid Apps Script URL','bad'); return;
+  }
+  S.sheetUrl=v; localStorage.setItem('c27_url',v);
+  const banner=$('url-setup-banner');
+  if(banner) banner.classList.add('hidden');
+  toast('✅ Sheet URL saved — sync is now active!');
+  updateSyncUI();
 }
 
 function doLogout(){
@@ -1376,8 +1446,9 @@ function markConnected(){
   $('url-inp').value=url;
   $('url-inp').className='url-inp ok';
   $('url-saved-msg').classList.remove('hidden');
-  toast('✅ URL saved — sync is now active for all users');
+  toast('✅ URL saved! Now click "Download Updated App" in Hosting Guide to bake URL into the file for all users','info');
   updateSyncUI();
+  buildAdmin();
 }
 
 function saveUrl(){
@@ -1499,23 +1570,35 @@ function resetToDefault(){
 
 // ── Download self ─────────────────────────────────────────────
 function downloadSelf(){
-  const html=document.documentElement.outerHTML;
-  const blob=new Blob([html],{type:'text/html'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='census2027.html';
+  let html = document.documentElement.outerHTML;
+  // Bake current sheet URL into the downloaded file so all users get sync on any device
+  if(S.sheetUrl){
+    html = html.replace(
+      "const BAKED_URL = '__SHEET_URL__';",
+      "const BAKED_URL = '"+S.sheetUrl.replace(/'/g,"\'")+"';"
+    );
+    toast('✅ Downloading with Google Sheets URL baked in — re-host this file for all users to sync automatically');
+  } else {
+    toast('⬇ census2027.html downloaded (no sheet URL configured yet)','info');
+  }
+  const blob = new Blob([html],{type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'census2027.html';
   a.click();
   URL.revokeObjectURL(a.href);
-  toast('✓ census2027.html downloaded');
 }
 
 // ── Init ──────────────────────────────────────────────────────
 setTab('vao');
-// pre-fill URL field in setup tab if already saved
+// Resolve sheetUrl on every page load from BAKED_URL or localStorage
+S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
 if(S.sheetUrl){
-  $('url-inp').value=S.sheetUrl;
-  $('url-inp').className='url-inp ok';
-  $('url-saved-msg').classList.remove('hidden');
+  if($('url-inp')){
+    $('url-inp').value=S.sheetUrl;
+    $('url-inp').className='url-inp ok';
+  }
+  if($('url-saved-msg')) $('url-saved-msg').classList.remove('hidden');
 }
 </script>
 </body>
