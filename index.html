@@ -371,7 +371,7 @@ tr.drow.done{background:#f0fdf4}
         <span class="spill sp-ok hidden" id="pill-ok">✓ Connected — every Save auto-syncs to Google Sheets</span>
         <span class="spill sp-warn hidden" id="pill-warn">⚠ Some rows failed to sync — use Retry in sidebar</span>
       </div>
-      async function fetchFromSheet(user){
+      
   const url = resolveSheetURL();
   if(!url) return;
 
@@ -1132,7 +1132,7 @@ async function doLogin(){
   // VAO / SECRETARY
   if(!nm){showErr('ನಿಮ್ಮ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ / Select your name.');return;}
   if(hash!==USER_HASH){showErr('ತಪ್ಪಾದ ಗುಪ್ತಪದ / Incorrect password.');return;}
-  fetchFromSheet(userName);
+  fetchFromSheet(nm);
   S.role=S.loginRole; S.uname=nm;
   S.allRows=buildRows(S.raw);
   S.vis = S.role==='vao'
@@ -1161,7 +1161,7 @@ async function doLogin(){
   hide('pg-login'); show('pg-entry');
   // Show URL setup banner if no sheet configured on this device
   const banner=$('url-setup-banner');
-  if(banner){   S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';   banner.classList.toggle('hidden', !!S.sheetUrl); }
+  if(banner){   S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwn3HTMQSaId_LucXRxLt4dCb8bfsfiqsWmFdeg_s1R-kQnM4skB5G8FD3zCtUG-omH/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';   banner.classList.toggle('hidden', !!S.sheetUrl); }
 }
 
 function showErr(msg){$('login-err').textContent=msg;show('login-err');}
@@ -1311,116 +1311,137 @@ function saveRow(rid){
   updateStats();
   if(row) syncRow(rid,row,up);
 }
-
-// ── Sync Engine ─────────────────────────────────────// ========== PRODUCTION SYNC ENGINE ==========
-
-let isSyncing = false;
-let retryTimer = null;
-
-// Robust sheet URL resolver
-function resolveSheetURL(){
-  return (typeof BAKED_URL !== 'undefined' && 
-         BAKED_URL && 
-         BAKED_URL !== '__SHEET_URL__')
-         ? BAKED_URL
-         : localStorage.getItem('c27_url') || '';
-}
-
-// Sync single row (safe, idempotent)
-async function syncRow(row){
-  const url = resolveSheetURL();
-  if(!url) return false;
+  async function fetchFromSheet(user){
+  if(!S.sheetUrl) return;
 
   try{
-    const res = await fetch(url,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        action:'upsertRow',
-        data:row
-      })
+    const res = await fetch(S.sheetUrl + '?action=getUserData&user=' + encodeURIComponent(user));
+    const json = await res.json();
+
+    if(json.success){
+      json.rows.forEach(r=>{
+        const rid = r["Row ID"];
+        if(!rid) return;
+
+        if(!S.entries[rid]) S.entries[rid] = {};
+
+        S.entries[rid].pV = r["Population (VAO)"] || '';
+        S.entries[rid].hV = r["House Holds (VAO)"] || '';
+        S.entries[rid].pS = r["Population (Secretary)"] || '';
+        S.entries[rid].hS = r["House Holds (Secretary)"] || '';
+
+        S.syncSt[rid] = 'ok';
+      });
+
+      persist();
+      renderTable();
+      updateStats();
+      updateSyncUI();
+    }
+
+  }catch(err){
+    console.warn("Sheet fetch failed", err);
+  }
+}
+
+// ─────────────────────────────────────────────
+//  TWO-WAY GOOGLE SHEETS SYNC (FINAL VERSION)
+// ─────────────────────────────────────────────
+
+// Pull data from Sheet on login (multi-device consistency)
+async function fetchFromSheet(user){
+  const url = S.sheetUrl;
+  if(!url) return;
+
+  try{
+    const res = await fetch(url + '?action=getUserData&user=' + encodeURIComponent(user));
+    const json = await res.json();
+    if(!json.success) return;
+
+    json.rows.forEach(r=>{
+      const rid = r["Row ID"];
+      if(!rid) return;
+
+      const entry = S.entries[rid] || {};
+
+      // VAO data
+      if(r["Population (VAO)"] !== "" && r["Population (VAO)"] != null)
+        entry.pV = r["Population (VAO)"];
+      if(r["House Holds (VAO)"] !== "" && r["House Holds (VAO)"] != null)
+        entry.hV = r["House Holds (VAO)"];
+
+      // Secretary data
+      if(r["Population (Secretary)"] !== "" && r["Population (Secretary)"] != null)
+        entry.pS = r["Population (Secretary)"];
+      if(r["House Holds (Secretary)"] !== "" && r["House Holds (Secretary)"] != null)
+        entry.hS = r["House Holds (Secretary)"];
+
+      S.entries[rid] = entry;
+      S.syncSt[rid] = 'ok';
     });
 
-    const json = await res.json();
-    if(json.success){
-      S.syncSt[row.rowId]='ok';
-      saveState();
-      return true;
-    }
+    persist();
+    renderTable();
+    updateStats();
+    updateSyncUI();
+
   }catch(e){
-    console.warn('Sync failed:',e);
+    console.warn("Sheet fetch failed", e);
   }
-
-  S.syncSt[row.rowId]='pending';
-  saveState();
-  return false;
 }
 
-// Sync all pending rows
-async function syncAll(){
-  if(isSyncing) return;
-  isSyncing = true;
+// Push single row to Sheet (compatible with your structure)
+async function syncRow(rid,row,entry){
+  if(!S.sheetUrl) return;
+
+  const params = new URLSearchParams({
+    action: 'upsert',
+    rowId: rid,
+    sno: row.sno,
+    code: row.code,
+    village: row.name,
+    rowType: row.type,
+    dakale: row.dkName || '',
+    vao: row.vao,
+    gp: row.gp,
+    popVAO: entry.pV || '',
+    hhVAO: entry.hV || '',
+    byVAO: entry.byV || '',
+    atVAO: entry.atV || '',
+    popSec: entry.pS || '',
+    hhSec: entry.hS || '',
+    bySec: entry.byS || '',
+    atSec: entry.atS || ''
+  });
+
+  const dot = $('rd-'+rid);
+  if(dot) dot.className='rdot v rd-spin';
+
+  try{
+    await fetch(S.sheetUrl + '?' + params.toString(), {mode:'no-cors'});
+    S.syncSt[rid]='ok';
+    persist();
+    if(dot) dot.className='rdot v rd-ok';
+  }catch(e){
+    S.syncSt[rid]='err';
+    S.failedQ.push(rid);
+    persist();
+    if(dot) dot.className='rdot v rd-err';
+  }
 
   updateSyncUI();
-
-  const rows = Object.values(S.rows || {});
-  for(const r of rows){
-    if(S.syncSt[r.rowId] !== 'ok'){
-      await syncRow(r);
-    }
-  }
-
-  isSyncing = false;
-  updateSyncUI();
 }
 
-// Auto retry engine
-function startAutoRetry(){
-  if(retryTimer) clearInterval(retryTimer);
-
-  retryTimer = setInterval(()=>{
-    if(navigator.onLine){
-      syncAll();
-    }
-  },15000); // retry every 15 seconds
+// Retry failed rows
+function retryFailed(){
+  if(!S.sheetUrl) return;
+  const failed = [...S.failedQ];
+  S.failedQ=[];
+  failed.forEach(rid=>{
+    const row = S.allRows.find(r=>r.rid===rid);
+    if(row) syncRow(rid,row,S.entries[rid]);
+  });
 }
-
-// Online/offline detection
-window.addEventListener('online', ()=>{
-  toast('Internet restored — syncing...');
-  syncAll();
-});
-
-window.addEventListener('offline', ()=>{
-  toast('You are offline — data saved locally','warn');
-});
-
-// Improved Sync UI
-function updateSyncUI(){
-  const statusDot = document.getElementById('syncDot');
-  const statusText = document.getElementById('syncText');
-
-  const url = resolveSheetURL();
-
-  if(!url){
-    statusDot?.classList.remove('green');
-    statusText && (statusText.textContent='No Sync');
-    return;
-  }
-
-  const pending = Object.values(S.syncSt || {}).filter(s=>s!=='ok').length;
-
-  if(pending === 0){
-    statusDot?.classList.add('green');
-    statusText && (statusText.textContent='Synced');
-  }else{
-    statusDot?.classList.remove('green');
-    statusText && (statusText.textContent='Syncing...');
-  }
-}
-
-// Call once at app start
-startAutoRetry();
 
 // ── Admin dashboard ───────────────────────────────────────────
 function showAdminTab(n){
@@ -1544,7 +1565,7 @@ function saveUrl(){
   $('url-inp').className='url-inp ok';
   $('url-saved-msg').classList.remove('hidden');
   toast('✓ URL saved — open it in a new tab to verify it shows {"ok":true}');
-  updateSyncUI();
+
 }
 
 // ── Upload CSV/Excel ──────────────────────────────────────────
@@ -1676,7 +1697,7 @@ function downloadSelf(){
 // ── Init ──────────────────────────────────────────────────────
 setTab('vao');
 // Resolve sheetUrl on every page load from BAKED_URL or localStorage
-S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
+S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwn3HTMQSaId_LucXRxLt4dCb8bfsfiqsWmFdeg_s1R-kQnM4skB5G8FD3zCtUG-omH/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
 if(S.sheetUrl){
   if($('url-inp')){
     $('url-inp').value=S.sheetUrl;
