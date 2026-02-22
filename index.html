@@ -371,6 +371,42 @@ tr.drow.done{background:#f0fdf4}
         <span class="spill sp-ok hidden" id="pill-ok">✓ Connected — every Save auto-syncs to Google Sheets</span>
         <span class="spill sp-warn hidden" id="pill-warn">⚠ Some rows failed to sync — use Retry in sidebar</span>
       </div>
+      async function fetchFromSheet(user){
+  const url = resolveSheetURL();
+  if(!url) return;
+
+  try{
+    const res = await fetch(url,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        action:'getUserData',
+        user:user
+      })
+    });
+
+    const json = await res.json();
+
+    if(json.success){
+      S.rows = {};
+      json.rows.forEach(r=>{
+        S.rows[r["Row ID"]] = {
+          rowId:r["Row ID"],
+          popVAO:r["Population (VAO)"] || '',
+          hhVAO:r["House Holds (VAO)"] || ''
+        };
+        S.syncSt[r["Row ID"]] = 'ok';
+      });
+
+      saveState();
+      renderTable();
+      updateSyncUI();
+    }
+
+  }catch(e){
+    console.warn("Fetch failed",e);
+  }
+}
       <div class="tbl-card">
         <table>
           <thead><tr>
@@ -1096,6 +1132,7 @@ async function doLogin(){
   // VAO / SECRETARY
   if(!nm){showErr('ನಿಮ್ಮ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ / Select your name.');return;}
   if(hash!==USER_HASH){showErr('ತಪ್ಪಾದ ಗುಪ್ತಪದ / Incorrect password.');return;}
+  fetchFromSheet(userName);
   S.role=S.loginRole; S.uname=nm;
   S.allRows=buildRows(S.raw);
   S.vis = S.role==='vao'
@@ -1119,7 +1156,7 @@ async function doLogin(){
   if(mt){mt.style.display='flex'; $('mob-name').textContent=nm; $('mob-role').textContent=S.role==='vao'?'Village Accountant Officer':'Grama Panchayath Secretary';}
   if(ms2) ms2.style.display='grid';
   // ── Auto-refresh sheetUrl from BAKED_URL or localStorage ──────────
-  S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
+  S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwrvD16_t1qz037rEtEnlOGg12EzvUdsNYCL0WHPfwNG7QnZoM-nQexOuQH6xXVCqQ4/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
   updateSyncUI(); renderTable(); updateStats();
   hide('pg-login'); show('pg-entry');
   // Show URL setup banner if no sheet configured on this device
@@ -1169,7 +1206,7 @@ function doLogout(){
 // ── Sync UI ───────────────────────────────────────────────────
 function updateSyncUI(){
   // Re-read from localStorage on every call (fixes mobile "not connected" bug)
- S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
+ S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwrvD16_t1qz037rEtEnlOGg12EzvUdsNYCL0WHPfwNG7QnZoM-nQexOuQH6xXVCqQ4/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
   const b=$('ss-blk'), t=$('ss-txt');
   hide('pill-no'); hide('pill-ok'); hide('pill-warn');
   let dotCls, txt, blkCls, mobTxt='';
