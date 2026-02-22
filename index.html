@@ -47,7 +47,54 @@ html,body{min-height:100vh;background:#edf1f7;font-family:'Mukta',Arial,sans-ser
 .pwd-hint{text-align:center;font-size:11px;color:#94a3b8;margin-top:11px}
 /* LAYOUT */
 .layout{display:grid;grid-template-columns:262px 1fr;gap:18px;align-items:start}
-@media(max-width:740px){.layout{grid-template-columns:1fr}}
+/* MOBILE */
+@media(max-width:740px){
+  .layout{grid-template-columns:1fr}
+  .page{padding:10px 10px}
+  .hdr-in{padding:8px 12px;gap:8px}
+  .gov-seal{width:36px;height:36px;font-size:17px}
+  .hdr-title h1{font-size:12px}
+  .hdr-title p{font-size:9px}
+  .hdr-uname{max-width:80px;font-size:10px}
+  .hdr-chip{font-size:9px;padding:2px 7px}
+  .sb{position:static;margin-bottom:0}
+  .sb-body{padding:10px 12px}
+  .tbl-card{overflow-x:auto;max-height:none;border-radius:10px}
+  table{min-width:0;width:100%}
+  thead th{font-size:9px;padding:8px 6px;white-space:nowrap}
+  tbody td{padding:7px 6px;font-size:12px}
+  .ni{width:80px;font-size:12px;padding:5px 6px}
+  .btn-sv,.btn-ed{font-size:11px;padding:5px 8px}
+  .ctop{padding:13px 14px}
+  .ctop h2{font-size:14px}
+  .ctop p{font-size:11px}
+  .login-wrap{margin:16px auto}
+  .login-body{padding:18px}
+  .atab{font-size:10px;padding:10px 4px}
+  .apanel{padding:16px 14px}
+  .admin-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-card{padding:13px}
+  .sc-val{font-size:22px}
+  .setup-step{flex-direction:column;gap:10px}
+  .url-row{flex-direction:column}
+  .btn-url{width:100%}
+  .guide-step{flex-direction:column;gap:8px;padding:13px}
+  .sb-card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:0}
+  .mobile-stats{display:grid!important;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+  .mobile-stat{text-align:center;padding:10px 6px;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0}
+  .mobile-stat-val{font-size:18px;font-weight:700;color:#1a3d72}
+  .mobile-stat-lbl{font-size:9px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+  .sb{display:none}
+  .mobile-topbar{display:flex!important;align-items:center;justify-content:space-between;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:10px}
+  .mobile-topbar-name{font-weight:700;color:#1a3d72;font-size:13px}
+  .mobile-topbar-role{font-size:10px;color:#64748b}
+  .prog-table{font-size:11px}
+  .prog-table th,.prog-table td{padding:6px 7px}
+}
+@media(min-width:741px){
+  .mobile-topbar{display:none!important}
+  .mobile-stats{display:none!important}
+}
 /* SIDEBAR */
 .sb{background:#fff;border-radius:14px;box-shadow:0 4px 22px rgba(0,0,0,.09);overflow:hidden;position:sticky;top:72px}
 .sb-head{background:linear-gradient(135deg,#1a3d72,#0d2448);padding:15px 17px;border-bottom:2px solid #c9a227}
@@ -259,6 +306,23 @@ tr.drow.done{background:#f0fdf4}
 
 <!-- ENTRY PAGE (VAO / Secretary) -->
 <div class="page hidden" id="pg-entry">
+  <!-- Mobile topbar (hidden on desktop via CSS) -->
+  <div class="mobile-topbar" id="mob-topbar" style="display:none">
+    <div>
+      <div class="mobile-topbar-name" id="mob-name"></div>
+      <div class="mobile-topbar-role" id="mob-role"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span id="mob-sync" style="font-size:11px;font-weight:700"></span>
+      <button onclick="doLogout()" style="background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;border-radius:7px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">Logout</button>
+    </div>
+  </div>
+  <!-- Mobile mini-stats (hidden on desktop) -->
+  <div class="mobile-stats" id="mob-stats" style="display:none">
+    <div class="mobile-stat"><div class="mobile-stat-val" id="mob-v">0</div><div class="mobile-stat-lbl">ಗ್ರಾಮಗಳು</div></div>
+    <div class="mobile-stat"><div class="mobile-stat-val" id="mob-done">0</div><div class="mobile-stat-lbl">ಪೂರ್ಣ</div></div>
+    <div class="mobile-stat"><div class="mobile-stat-val" id="mob-pct">0%</div><div class="mobile-stat-lbl">Progress</div></div>
+  </div>
   <div class="layout">
     <div class="sb">
       <div class="sb-head"><h3 id="sb-title">VAO Panel</h3><p id="sb-nm"></p></div>
@@ -288,9 +352,9 @@ tr.drow.done{background:#f0fdf4}
       <div class="tbl-card">
         <table>
           <thead><tr>
-            <th style="width:34px">#</th><th>Code</th><th>Village / Dakale Grama</th>
-            <th id="th3">GP Name</th><th id="th4">Population</th><th id="th5">House Holds</th>
-            <th style="width:115px">Action</th>
+            <th style="width:30px">#</th><th>Code</th><th id="th2">ಗ್ರಾಮದ/ದಾಖಲೆ ಹೆಸರು</th>
+            <th id="th3">ಗ್ರಾ.ಪಂ ಹೆಸರು</th><th id="th4">ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಗ್ರಾ.ಲೆ)</th><th id="th5">ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಗ್ರಾ.ಲೆ)</th>
+            <th style="width:110px">Action</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
         </table>
@@ -306,11 +370,12 @@ tr.drow.done{background:#f0fdf4}
 
 <!-- ADMIN PAGE -->
 <div class="page hidden" id="pg-admin">
-  <div class="admin-tabs">
-    <button class="atab on" id="at-0" onclick="showAdminTab(0)">📊 Progress Dashboard</button>
-    <button class="atab" id="at-1" onclick="showAdminTab(1)">☁ Sheets Setup</button>
-    <button class="atab" id="at-2" onclick="showAdminTab(2)">📤 Upload Data</button>
-    <button class="atab" id="at-3" onclick="showAdminTab(3)">🚀 Hosting Guide</button>
+  <div class="admin-tabs" style="display:flex;align-items:stretch">
+    <button class="atab on" id="at-0" onclick="showAdminTab(0)">📊 Progress</button>
+    <button class="atab" id="at-1" onclick="showAdminTab(1)">☁ Sheets</button>
+    <button class="atab" id="at-2" onclick="showAdminTab(2)">📤 Upload</button>
+    <button class="atab" id="at-3" onclick="showAdminTab(3)">🚀 Hosting</button>
+    <button onclick="doLogout()" style="background:#fee2e2;color:#991b1b;border:none;border-left:1px solid #fca5a5;padding:10px 16px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;border-radius:0 14px 0 0">← Logout</button>
   </div>
 
   <!-- TAB 0: PROGRESS -->
@@ -963,7 +1028,7 @@ function setTab(role){
   const isAdmin = role==='admin';
   $('name-grp').classList[isAdmin?'add':'remove']('hidden');
   if(!isAdmin){
-    $('name-lbl').textContent = role==='vao'?'VAO Name':'GP Name';
+    $('name-lbl').textContent = role==='vao'?'VAO Name':'Panchayath Name';
     const sel=$('name-sel');
     sel.innerHTML='<option value="">-- Select --</option>';
     (role==='vao'?getVAOs(S.raw):getGPs(S.raw)).forEach(x=>{
@@ -996,15 +1061,19 @@ function doLogin(){
          S.role==='vao'?'chip-vao':'chip-sec', nm);
   $('sb-title').textContent = S.role==='vao'?'👤 VAO Panel':'🏢 Secretary Panel';
   $('sb-nm').textContent    = nm;
-  $('sb-role').textContent  = S.role==='vao'?'Village Accountant':'GP Secretary';
-  $('th3').textContent = S.role==='vao'?'GP Name':'VAO';
-  $('th4').textContent = S.role==='vao'?'Population (VAO)':'Population (Sec)';
-  $('th5').textContent = S.role==='vao'?'House Holds (VAO)':'House Holds (Sec)';
+  $('sb-role').textContent  = S.role==='vao'?'Village Accountant':'Grama Panchayath';
+  $('th3').textContent = 'ಗ್ರಾ.ಪಂ ಹೆಸರು';
+  $('th4').textContent = S.role==='vao'?'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಗ್ರಾ.ಲೆ)':'ಇಂದಿನ ಜನಸಂಖ್ಯೆ (ಕಾರ್ಯದರ್ಶಿ)';
+  $('th5').textContent = S.role==='vao'?'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಗ್ರಾ.ಲೆ)':'ಮನೆಗಳ/ಕುಟುಂಬಗಳ ಸಂಖ್ಯೆ(ಕಾರ್ಯದರ್ಶಿ)';
   const vc=S.vis.filter(r=>r.type==='village').length;
   $('ct-title').textContent = nm+' — Data Entry';
   $('ct-sub').textContent   = vc+' villages · Dakale Gramas shown as ↳ sub-rows · Auto-saves locally, syncs to Google Sheets';
   S.failedQ = Object.keys(S.syncSt).filter(k=>S.syncSt[k]==='err');
   $('pwd').value=''; hide('login-err');
+  // Mobile topbar
+  const mt=$('mob-topbar'), ms2=$('mob-stats');
+  if(mt){mt.style.display='flex'; $('mob-name').textContent=nm; $('mob-role').textContent=S.role==='vao'?'Village Accountant Officer':'Grama Panchayath Secretary';}
+  if(ms2) ms2.style.display='grid';
   updateSyncUI(); renderTable(); updateStats();
   hide('pg-login'); show('pg-entry');
 }
@@ -1020,26 +1089,32 @@ function setHdr(chip,cls,nm){
 function doLogout(){
   S.role=null; S.uname=''; S.vis=[];
   $('hdr-sess').style.display='none';
+  const mt=$('mob-topbar'), ms=$('mob-stats');
+  if(mt) mt.style.display='none';
+  if(ms) ms.style.display='none';
   ['pg-entry','pg-admin'].forEach(hide); show('pg-login');
   $('name-sel').value=''; $('pwd').value='';
 }
 
 // ── Sync UI ───────────────────────────────────────────────────
 function updateSyncUI(){
+  // Re-read from localStorage on every call (fixes mobile "not connected" bug)
+  if(!S.sheetUrl) S.sheetUrl = localStorage.getItem('c27_url')||'';
   const b=$('ss-blk'), t=$('ss-txt');
   hide('pill-no'); hide('pill-ok'); hide('pill-warn');
-  let dotCls, txt, blkCls;
+  let dotCls, txt, blkCls, mobTxt='';
   if(!S.sheetUrl){
-    dotCls='bdot bd-a'; txt='Not connected to Sheets'; blkCls='sync-stat ss-no'; show('pill-no');
+    dotCls='bdot bd-a'; txt='Not connected to Sheets'; blkCls='sync-stat ss-no'; show('pill-no'); mobTxt='🔴 No Sync';
   } else if(S.failedQ.length>0){
-    dotCls='bdot bd-r'; txt=S.failedQ.length+' rows failed to sync'; blkCls='sync-stat ss-err'; show('pill-warn');
-    $('btn-retry').classList.remove('hidden');
+    dotCls='bdot bd-r'; txt=S.failedQ.length+' rows failed'; blkCls='sync-stat ss-err'; show('pill-warn');
+    $('btn-retry').classList.remove('hidden'); mobTxt='🔴 Retry';
   } else {
     dotCls='bdot bd-g'; txt='Connected — auto-syncing ✓'; blkCls='sync-stat ss-ok'; show('pill-ok');
-    $('btn-retry').classList.add('hidden');
+    $('btn-retry').classList.add('hidden'); mobTxt='🟢 Syncing';
   }
   b.className=blkCls;
   b.innerHTML='<span class="'+dotCls+'"></span><span id="ss-txt">'+txt+'</span>';
+  const ms=$('mob-sync'); if(ms) ms.textContent=mobTxt;
 }
 
 // ── Progress stats ────────────────────────────────────────────
@@ -1060,6 +1135,11 @@ function updateStats(){
   $('sb-sync').className='sval '+(synced===done&&S.sheetUrl?'g':'a');
   $('pb-pct').textContent=pct+'%';
   $('pfill').style.width=pct+'%';
+  // Mobile mini-stats
+  const mv=$('mob-v'),md=$('mob-done'),mp=$('mob-pct');
+  if(mv) mv.textContent=vc;
+  if(md) md.textContent=done;
+  if(mp) mp.textContent=pct+'%';
 }
 
 // ── Render table ──────────────────────────────────────────────
@@ -1075,9 +1155,8 @@ function renderTable(){
     const nmTd=isDk
       ?'<td><div class="dk-rl"><div class="dk-dl"></div><span class="dk-nm">'+esc(r.dkName)+'</span><span class="dk-ch">DAKALE</span></div></td>'
       :'<td><div class="vname">'+esc(r.name)+'</div>'+(r.dkNames&&r.dkNames.length?'<div class="dk-hint">'+r.dkNames.length+' dakale ↓</div>':'')+'</td>';
-    const gpTd=isV
-      ?'<td><span class="gp-ch">'+esc((r.gp||'').trim())+'</span></td>'
-      :'<td style="font-size:12px;color:#475569">'+esc(r.vao||'')+'</td>';
+    // Secretary sees GP name (same as VAO), not VAO name
+    const gpTd='<td><span class="gp-ch">'+esc((r.gp||'').trim())+'</span></td>';
     const dotH=syn?'<span class="rdot v '+(syn==='ok'?'rd-ok':'rd-err')+'" id="rd-'+rid+'"></span>'
                    :'<span class="rdot" id="rd-'+rid+'"></span>';
     const actH=saved
