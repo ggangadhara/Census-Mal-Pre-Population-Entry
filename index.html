@@ -1124,7 +1124,7 @@ async function doLogin(){
   hide('pg-login'); show('pg-entry');
   // Show URL setup banner if no sheet configured on this device
   const banner=$('url-setup-banner');
-  if(banner){ if(!S.sheetUrl){banner.classList.remove('hidden');}else{banner.classList.add('hidden');} }
+  if(banner){   S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';   banner.classList.toggle('hidden', !!S.sheetUrl); }
 }
 
 function showErr(msg){$('login-err').textContent=msg;show('login-err');}
@@ -1169,7 +1169,7 @@ function doLogout(){
 // ── Sync UI ───────────────────────────────────────────────────
 function updateSyncUI(){
   // Re-read from localStorage on every call (fixes mobile "not connected" bug)
-  if(!S.sheetUrl) S.sheetUrl = localStorage.getItem('c27_url')||'';
+ S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
   const b=$('ss-blk'), t=$('ss-txt');
   hide('pill-no'); hide('pill-ok'); hide('pill-warn');
   let dotCls, txt, blkCls, mobTxt='';
@@ -1275,69 +1275,115 @@ function saveRow(rid){
   if(row) syncRow(rid,row,up);
 }
 
-// ── Sync Engine ───────────────────────────────────────────────
-// WHY no-cors works when fetch/JSONP fail:
-//   fetch() with CORS → blocked by Google's redirect chain
-//   JSONP             → blocked if script tag loads login page
-//   fetch no-cors     → browser ALWAYS sends the request, server
-//                       receives and processes it, writes to Sheet.
-//                       We just cannot read the response back.
-//   Result: data reliably arrives. Dot = 🟠 "submitted" (not confirmed).
-//   This is the only method that works on ALL networks, ALL browsers.
+// ── Sync Engine ─────────────────────────────────────// ========== PRODUCTION SYNC ENGINE ==========
 
-function fireAndForget(url, params) {
-  const qs = Object.keys(params)
-    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-    .join('&');
-  return fetch(url + '?' + qs, {method:'GET', mode:'no-cors'});
+let isSyncing = false;
+let retryTimer = null;
+
+// Robust sheet URL resolver
+function resolveSheetURL(){
+  return (typeof BAKED_URL !== 'undefined' && 
+         BAKED_URL && 
+         BAKED_URL !== '__SHEET_URL__')
+         ? BAKED_URL
+         : localStorage.getItem('c27_url') || '';
 }
 
-function syncRow(rid, row, up) {
-  if(!S.sheetUrl) return;
-  setDot(rid, 'spin');
-  fireAndForget(S.sheetUrl, {
-    action:'upsert', rowId:rid,
-    sno:row.sno||'', code:row.code||'',
-    village:row.name||'', rowType:row.type||'',
-    dakale:row.type==='dakale'?(row.dkName||''):'',
-    vao:row.vao||'', gp:row.gp||'',
-    popVAO:up.pV!==undefined?up.pV:'', hhVAO:up.hV!==undefined?up.hV:'',
-    byVAO:up.byV||'', atVAO:up.atV||'',
-    popSec:up.pS!==undefined?up.pS:'', hhSec:up.hS!==undefined?up.hS:'',
-    bySec:up.byS||'', atSec:up.atS||''
-  })
-  .then(()=>{
-    // Request was sent — data is on its way to the sheet.
-    // no-cors means we cannot confirm receipt, so mark as "sent" (amber).
-    S.syncSt[rid]='sent'; persist(); setDot(rid,'sent');
-    S.failedQ=S.failedQ.filter(r=>r!==rid);
-    toast('☁ Data submitted to Google Sheets');
-    updateStats(); updateSyncUI();
-  })
-  .catch(()=>{
-    // Only fails if there is literally NO internet connection.
-    S.syncSt[rid]='err'; persist(); setDot(rid,'err');
-    if(!S.failedQ.includes(rid)) S.failedQ.push(rid);
-    toast('⚠ No internet — saved locally. Will retry when online.','warn');
-    updateStats(); updateSyncUI();
-  });
+// Sync single row (safe, idempotent)
+async function syncRow(row){
+  const url = resolveSheetURL();
+  if(!url) return false;
+
+  try{
+    const res = await fetch(url,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        action:'upsertRow',
+        data:row
+      })
+    });
+
+    const json = await res.json();
+    if(json.success){
+      S.syncSt[row.rowId]='ok';
+      saveState();
+      return true;
+    }
+  }catch(e){
+    console.warn('Sync failed:',e);
+  }
+
+  S.syncSt[row.rowId]='pending';
+  saveState();
+  return false;
 }
 
-function setDot(rid,state){
-  const d=$('rd-'+rid); if(!d) return;
-  d.className='rdot v '+(state==='ok'||state==='sent'?'rd-ok':state==='err'?'rd-err':'rd-spin');
+// Sync all pending rows
+async function syncAll(){
+  if(isSyncing) return;
+  isSyncing = true;
+
+  updateSyncUI();
+
+  const rows = Object.values(S.rows || {});
+  for(const r of rows){
+    if(S.syncSt[r.rowId] !== 'ok'){
+      await syncRow(r);
+    }
+  }
+
+  isSyncing = false;
+  updateSyncUI();
 }
 
-function retryFailed(){
-  const list=S.failedQ.slice();
-  if(!list.length){toast('No failed rows to retry','info');return;}
-  toast('Retrying '+list.length+' row(s)…','info');
-  list.forEach(rid=>{
-    const row=S.allRows.find(r=>r.rid===rid);
-    const up=S.entries[rid];
-    if(row&&up) syncRow(rid,row,up);
-  });
+// Auto retry engine
+function startAutoRetry(){
+  if(retryTimer) clearInterval(retryTimer);
+
+  retryTimer = setInterval(()=>{
+    if(navigator.onLine){
+      syncAll();
+    }
+  },15000); // retry every 15 seconds
 }
+
+// Online/offline detection
+window.addEventListener('online', ()=>{
+  toast('Internet restored — syncing...');
+  syncAll();
+});
+
+window.addEventListener('offline', ()=>{
+  toast('You are offline — data saved locally','warn');
+});
+
+// Improved Sync UI
+function updateSyncUI(){
+  const statusDot = document.getElementById('syncDot');
+  const statusText = document.getElementById('syncText');
+
+  const url = resolveSheetURL();
+
+  if(!url){
+    statusDot?.classList.remove('green');
+    statusText && (statusText.textContent='No Sync');
+    return;
+  }
+
+  const pending = Object.values(S.syncSt || {}).filter(s=>s!=='ok').length;
+
+  if(pending === 0){
+    statusDot?.classList.add('green');
+    statusText && (statusText.textContent='Synced');
+  }else{
+    statusDot?.classList.remove('green');
+    statusText && (statusText.textContent='Syncing...');
+  }
+}
+
+// Call once at app start
+startAutoRetry();
 
 // ── Admin dashboard ───────────────────────────────────────────
 function showAdminTab(n){
@@ -1571,16 +1617,17 @@ function resetToDefault(){
 // ── Download self ─────────────────────────────────────────────
 function downloadSelf(){
   let html = document.documentElement.outerHTML;
-  // Bake current sheet URL into the downloaded file so all users get sync on any device
+
   if(S.sheetUrl){
     html = html.replace(
-      "const BAKED_URL = '__SHEET_URL__';",
-      "const BAKED_URL = '"+S.sheetUrl.replace(/'/g,"\'")+"';"
+      /const BAKED_URL = '.*?';/,
+      "const BAKED_URL = '" + S.sheetUrl.replace(/'/g,"\\'") + "';"
     );
-    toast('✅ Downloading with Google Sheets URL baked in — re-host this file for all users to sync automatically');
+    toast('✅ Downloading with Google Sheets URL baked in — re-host this file for all users');
   } else {
-    toast('⬇ census2027.html downloaded (no sheet URL configured yet)','info');
+    toast('⬇ Downloading app (no sheet URL configured)','info');
   }
+
   const blob = new Blob([html],{type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
