@@ -3,279 +3,653 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Census 2027 — Malavalli Taluk</title>
+<title>Census 2027 · Malavalli Taluk</title>
 <style>
-/* ── Google Fonts inline fallback — loaded async so blank page never happens ── */
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Serif:wght@700&display=swap');
-
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100vh}
-body{font-family:'Mukta',Arial,sans-serif;background:#eef2f7;color:#1e293b}
-
-/* ════ HEADER ════ */
-.hdr{background:linear-gradient(90deg,#1b3d6e,#0f2548);border-bottom:3px solid #c9a227;position:sticky;top:0;z-index:100}
-.hdr-in{max-width:1200px;margin:0 auto;padding:11px 18px;display:flex;align-items:center;gap:12px}
-.hdr-seal{width:44px;height:44px;background:radial-gradient(circle,#d4aa30,#a07818);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 0 0 3px rgba(212,170,48,.25)}
-.hdr-txt h1{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:15px;font-weight:700;line-height:1.3}
-.hdr-txt p{color:#8aadd4;font-size:11px;margin-top:1px}
-.hdr-badge-wrap{margin-left:auto;text-align:right;flex-shrink:0}
-.hdr-badge{background:rgba(201,162,39,.18);border:1px solid #c9a227;color:#e8c84a;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;display:inline-block}
-.hdr-uname{color:#8aadd4;font-size:11px;margin-top:3px}
-
-/* ════ PAGE WRAPPER ════ */
-.page{max-width:1200px;margin:0 auto;padding:20px 16px}
-
-/* ════ LOGIN ════ */
-.login-wrap{max-width:420px;margin:50px auto}
-.login-card{background:#fff;border-radius:14px;box-shadow:0 20px 60px rgba(15,37,72,.22);overflow:hidden}
-.login-top{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:26px;text-align:center;border-bottom:3px solid #c9a227}
-.login-ico{font-size:36px;margin-bottom:8px}
-.login-top h2{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:18px;font-weight:700}
-.login-top p{color:#8aadd4;font-size:12px;margin-top:3px}
-.login-body{padding:24px}
-.rtabs{display:flex;gap:5px;background:#f1f5f9;border-radius:8px;padding:4px;margin-bottom:20px}
-.rtab{flex:1;padding:9px;border:none;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:#64748b;transition:all .2s}
-.rtab.on{background:#1b3d6e;color:#fff;box-shadow:0 2px 8px rgba(27,61,110,.3)}
-.flbl{display:block;font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.fgrp{margin-bottom:15px}
-.fsel,.finp{width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:inherit;font-size:14px;color:#1e293b;outline:none;background:#fff;transition:border-color .2s,box-shadow .2s}
-.fsel:focus,.finp:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
-.err-box{background:#fee2e2;border:1px solid #fca5a5;color:#dc2626;padding:9px 12px;border-radius:7px;font-size:13px;margin-bottom:14px;display:none}
-.err-box.show{display:block}
-.btn-login{width:100%;padding:11px;background:linear-gradient(135deg,#1b3d6e,#0d4a8c);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.3px;margin-top:4px;transition:all .2s}
-.btn-login:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,61,110,.32)}
-.btn-login:active{transform:translateY(0)}
-
-/* ════ LAYOUT ════ */
-.layout{display:grid;grid-template-columns:255px 1fr;gap:18px;align-items:start}
-@media(max-width:700px){.layout{grid-template-columns:1fr}}
-
-/* ════ SIDEBAR ════ */
-.sb{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden;position:sticky;top:72px}
-.sb-hd{background:linear-gradient(135deg,#1b3d6e,#0f2548);padding:14px 16px;border-bottom:2px solid #c9a227}
-.sb-hd h3{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:14px;font-weight:700}
-.sb-hd p{color:#8aadd4;font-size:11px;margin-top:2px}
-.sb-bd{padding:14px 15px}
-.irow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:12px}
-.irow:last-child{border-bottom:none}
-.ilbl{color:#64748b}
-.ival{color:#1e293b;font-weight:700}
-.ival.done{color:#15803d}
-.ival.pend{color:#d97706}
-.pb-info{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin:11px 0 4px}
-.pbar{height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .5s ease;width:0%}
-.sbt{margin-top:13px;padding-top:12px;border-top:1px solid #e8edf3}
-.sbt-title{font-size:10px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-.sheet-status{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;padding:9px 11px;border-radius:7px}
-.sheet-status.ok{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
-.sheet-status.no{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
-.dot-ok{background:#16a34a}
-.dot-err{background:#dc2626}
-.dot-spin{background:#eab308;animation:spin .7s infinite}
-@keyframes spin{0%,100%{opacity:1}50%{opacity:.25}}
-.btn-out{width:100%;padding:9px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-top:14px;transition:all .2s}
-.btn-out:hover{background:#dc2626;color:#fff}
-
-/* ════ CONTENT ════ */
-.content{display:flex;flex-direction:column;gap:14px}
-.ctop{background:#fff;border-radius:12px;padding:17px 20px;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.ctop h2{font-family:'Noto Serif',Georgia,serif;color:#1b3d6e;font-size:16px;font-weight:700}
-.ctop p{color:#64748b;font-size:12px;margin-top:3px}
-.stag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:8px;display:inline-flex;align-items:center;gap:5px}
-.stag.ok{background:#dcfce7;color:#15803d}
-.stag.no{background:#fee2e2;color:#dc2626}
-
-/* ════ TABLE ════ */
-.tbl-wrap{background:#fff;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:auto;max-height:calc(100vh - 220px)}
-table{width:100%;border-collapse:collapse;min-width:740px}
-thead{background:linear-gradient(135deg,#1b3d6e,#0f2548);position:sticky;top:0;z-index:5}
-thead th{padding:11px 11px;text-align:left;font-size:10px;font-weight:700;color:#8aadd4;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap}
-thead th:last-child{border-right:none}
-tbody td{padding:9px 11px;font-size:13px;color:#334155;vertical-align:middle}
-
-/* Village rows */
-tr.vrow{background:#fff;border-bottom:1px solid #e8edf3;transition:background .1s}
-tr.vrow:hover{background:#f8fafc}
-tr.vrow.sv{background:#f0fdf4}
-/* Dakale rows */
-tr.drow{background:#faf7ff;border-bottom:1px solid #ede9fe;transition:background .1s}
-tr.drow:hover{background:#f3eeff}
-tr.drow.sv{background:#f0fdf4}
-
-/* Cells */
-.sno-b{background:#e2e8f0;color:#475569;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-.arr{color:#a78bfa;font-size:16px;font-weight:700}
-.vname{font-weight:700;color:#1e293b;font-size:13px}
-.dk-sub{font-size:10px;color:#a78bfa;margin-top:2px}
-.dk-row{display:flex;align-items:center;gap:7px}
-.dk-dash{border-top:2px dashed #a78bfa;width:16px;flex-shrink:0}
-.dk-lbl{font-weight:700;color:#5b21b6;font-size:13px}
-.dk-tag{background:#ede9fe;color:#5b21b6;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.3px;margin-left:3px}
-.gp-b{background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
-.code-txt{font-family:'Courier New',monospace;font-size:11px;color:#94a3b8}
-
-/* Number input */
-.ni{width:128px;padding:7px 9px;border:1.5px solid #e2e8f0;border-radius:6px;font-family:inherit;font-size:13px;color:#1e293b;outline:none;text-align:right;transition:border-color .2s,box-shadow .2s;-moz-appearance:textfield;appearance:textfield}
-.ni::-webkit-outer-spin-button,.ni::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.ni:focus{border-color:#1b3d6e;box-shadow:0 0 0 3px rgba(27,61,110,.1)}
-.ni.hv{border-color:#16a34a;background:#f0fdf4}
-
-/* Save cell */
-.sc{display:flex;align-items:center;gap:6px}
-.sv-btn{padding:5px 13px;background:#1b3d6e;color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
-.sv-btn:hover{background:#0d4a8c}
-.sv-btn:active{background:#0a3a7a}
-.sv-btn.dim{opacity:.3;cursor:default}
-.sv-btn.dim:hover{background:#1b3d6e}
-.tick{color:#16a34a;font-size:18px}
-
-/* ════ FOOTER ════ */
-.footer{text-align:center;padding:22px 16px;margin-top:8px;border-top:1px solid #e2e8f0;color:#64748b;font-size:11px;line-height:1.7}
-.footer strong{color:#1b3d6e;font-weight:700}
-.footer .copy{color:#94a3b8;font-size:10px;margin-top:2px}
-
-/* ════ TOAST ════ */
-#toast{position:fixed;bottom:20px;right:20px;padding:11px 18px;border-radius:9px;font-size:13px;font-weight:600;box-shadow:0 8px 28px rgba(0,0,0,.22);z-index:9999;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(12px);transition:all .25s ease;pointer-events:none;max-width:320px}
-#toast.show{opacity:1;transform:translateY(0)}
-#toast.ok{background:#15803d;color:#fff}
-#toast.err{background:#dc2626;color:#fff}
-#toast.info{background:#1b3d6e;color:#fff}
-
-/* ════ HIDDEN ════ */
+html,body{min-height:100vh;background:#edf1f7;font-family:'Mukta',Arial,sans-serif;color:#1e293b}
 .hidden{display:none!important}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:#94a3b8;border-radius:3px}
+.hdr{background:linear-gradient(95deg,#1a3d72,#0d2448);border-bottom:3px solid #c9a227;position:sticky;top:0;z-index:300;box-shadow:0 2px 14px rgba(0,0,0,.3)}
+.hdr-in{max-width:1280px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:14px}
+.gov-seal{width:44px;height:44px;border-radius:50%;background:conic-gradient(#e2b93b 0%,#c9a227 30%,#a07818 60%,#c9a227 80%,#e2b93b 100%);display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;box-shadow:0 0 0 3px rgba(201,162,39,.3)}
+.hdr-title{flex:1}
+.hdr-title h1{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:15px;font-weight:700}
+.hdr-title p{color:#90b8e8;font-size:11px;margin-top:1px}
+.hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.hdr-chip{padding:3px 11px;border-radius:20px;font-size:11px;font-weight:700;border:1px solid}
+.chip-vao{background:rgba(59,130,246,.2);border-color:#60a5fa;color:#93c5fd}
+.chip-sec{background:rgba(16,185,129,.2);border-color:#34d399;color:#6ee7b7}
+.chip-adm{background:rgba(245,158,11,.2);border-color:#fbbf24;color:#fde68a}
+.hdr-uname{color:#90b8e8;font-size:11px;font-weight:600;max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-hdr{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:5px 12px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.btn-hdr:hover{background:rgba(255,255,255,.22)}
+.page{max-width:1280px;margin:0 auto;padding:22px 18px}
+/* LOGIN */
+.login-wrap{max-width:440px;margin:44px auto}
+.login-card{background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(13,36,72,.2);overflow:hidden}
+.login-top{background:linear-gradient(135deg,#1a3d72,#0d2448);padding:28px;text-align:center;border-bottom:3px solid #c9a227}
+.login-ico{font-size:40px;margin-bottom:9px}
+.login-top h2{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:19px}
+.login-top p{color:#90b8e8;font-size:12px;margin-top:3px}
+.login-body{padding:26px}
+.rtabs{display:flex;gap:4px;background:#f1f5f9;border-radius:9px;padding:4px;margin-bottom:20px}
+.rtab{flex:1;padding:9px 6px;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;background:transparent;color:#64748b;transition:all .2s}
+.rtab.on{background:#1a3d72;color:#fff;box-shadow:0 2px 8px rgba(26,61,114,.28)}
+.flbl{display:block;font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.fgrp{margin-bottom:15px}
+.fsel,.finp{width:100%;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:14px;color:#1e293b;outline:none;background:#fff;transition:all .2s}
+.fsel:focus,.finp:focus{border-color:#1a3d72;box-shadow:0 0 0 3px rgba(26,61,114,.1)}
+.err-msg{background:#fee2e2;border:1px solid #fca5a5;color:#dc2626;padding:9px 12px;border-radius:7px;font-size:13px;margin-bottom:14px}
+.login-btn{width:100%;padding:12px;background:linear-gradient(135deg,#1a3d72,#0d4a8c);color:#fff;border:none;border-radius:9px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .22s}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,61,114,.3)}
+.pwd-hint{text-align:center;font-size:11px;color:#94a3b8;margin-top:11px}
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:262px 1fr;gap:18px;align-items:start}
+@media(max-width:740px){.layout{grid-template-columns:1fr}}
+/* SIDEBAR */
+.sb{background:#fff;border-radius:14px;box-shadow:0 4px 22px rgba(0,0,0,.09);overflow:hidden;position:sticky;top:72px}
+.sb-head{background:linear-gradient(135deg,#1a3d72,#0d2448);padding:15px 17px;border-bottom:2px solid #c9a227}
+.sb-head h3{font-family:'Noto Serif',Georgia,serif;color:#fff;font-size:14px}
+.sb-head p{color:#90b8e8;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-body{padding:14px 15px}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:12px}
+.srow:last-child{border-bottom:none}
+.slbl{color:#64748b;font-weight:600}
+.sval{font-weight:700;color:#1e293b}
+.sval.g{color:#15803d}.sval.a{color:#d97706}.sval.b{color:#1d4ed8}
+.pb-row{display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin:12px 0 4px}
+.pbar{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:4px;transition:width .5s}
+.sync-stat{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;margin-top:13px;font-size:12px;font-weight:700}
+.ss-ok{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
+.ss-no{background:#fffbeb;color:#92400e;border:1px solid #fcd34d}
+.ss-err{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.bdot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.bd-g{background:#16a34a}.bd-a{background:#f59e0b;animation:bl .8s infinite}.bd-r{background:#dc2626}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.sb-btns{display:flex;flex-direction:column;gap:7px;margin-top:12px}
+.sbbtn{padding:9px;border-radius:8px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;border:none;text-align:center}
+.btn-lo{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}.btn-lo:hover{background:#991b1b;color:#fff}
+.btn-retry{background:#fffbeb;color:#92400e;border:1px solid #fcd34d}.btn-retry:hover{background:#f59e0b;color:#fff}
+/* CONTENT */
+.content{display:flex;flex-direction:column;gap:14px}
+.ctop{background:#fff;border-radius:14px;padding:17px 21px;box-shadow:0 4px 22px rgba(0,0,0,.09)}
+.ctop h2{font-family:'Noto Serif',Georgia,serif;color:#1a3d72;font-size:17px}
+.ctop p{color:#64748b;font-size:12px;margin-top:3px;line-height:1.5}
+.spill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 11px;border-radius:20px;margin-top:9px}
+.sp-ok{background:#dcfce7;color:#15803d}
+.sp-no{background:#fee2e2;color:#991b1b}
+.sp-warn{background:#fef9c3;color:#854d0e}
+/* TABLE */
+.tbl-card{background:#fff;border-radius:14px;box-shadow:0 4px 22px rgba(0,0,0,.09);overflow:auto;max-height:calc(100vh - 240px)}
+table{width:100%;border-collapse:collapse;min-width:800px}
+thead{background:linear-gradient(135deg,#1a3d72,#0d2448);position:sticky;top:0;z-index:5}
+thead th{padding:11px 10px;text-align:left;font-size:10px;font-weight:700;color:#90b8e8;text-transform:uppercase;letter-spacing:.5px;border-right:1px solid rgba(255,255,255,.07);white-space:nowrap}
+thead th:last-child{border-right:none}
+tbody td{padding:9px 10px;font-size:13px;color:#334155;vertical-align:middle;border-bottom:1px solid #e8edf5}
+tr.vrow{background:#fff;transition:background .1s}
+tr.vrow:hover{background:#f8fafc}
+tr.vrow.done{background:#f0fdf4}
+tr.drow{background:#faf7ff}
+tr.drow:hover{background:#f3eeff}
+tr.drow.done{background:#f0fdf4}
+.sno-c{background:#e2e8f0;color:#475569;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.dk-arr{color:#a78bfa;font-size:16px;font-weight:900}
+.vname{font-weight:700;color:#1e293b;font-size:13px}
+.dk-hint{font-size:10px;color:#a78bfa;margin-top:1px}
+.dk-rl{display:flex;align-items:center;gap:7px}
+.dk-dl{border-top:2px dashed #c4b5fd;width:14px;flex-shrink:0}
+.dk-nm{font-weight:700;color:#5b21b6;font-size:13px}
+.dk-ch{background:#ede9fe;color:#5b21b6;padding:2px 6px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:.4px;margin-left:3px}
+.gp-ch{background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap}
+.cm{font-family:'Courier New',monospace;font-size:11px;color:#94a3b8}
+.ni{width:115px;padding:7px 9px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:inherit;font-size:13px;color:#1e293b;text-align:right;outline:none;transition:all .2s;-moz-appearance:textfield;appearance:textfield}
+.ni::-webkit-outer-spin-button,.ni::-webkit-inner-spin-button{-webkit-appearance:none}
+.ni:focus{border-color:#1a3d72;box-shadow:0 0 0 3px rgba(26,61,114,.1)}
+.ni.ok{border-color:#16a34a;background:#f0fdf4}
+.act{display:flex;align-items:center;gap:6px}
+.rdot{width:8px;height:8px;border-radius:50%;display:none;flex-shrink:0}
+.rdot.v{display:inline-block}
+.rd-spin{background:#f59e0b;animation:bl .8s infinite}
+.rd-ok{background:#16a34a}
+.rd-err{background:#dc2626}
+.btn-sv{padding:5px 13px;background:#1a3d72;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.btn-sv:hover{background:#0d4a8c}
+.btn-ed{padding:5px 11px;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;border-radius:7px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.btn-ed:hover{background:#1e40af;color:#fff}
+/* ADMIN */
+.admin-tabs{display:flex;gap:0;background:#fff;border-radius:14px 14px 0 0;overflow:hidden;box-shadow:0 -2px 8px rgba(0,0,0,.05)}
+.atab{flex:1;padding:13px 8px;border:none;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;background:#f8fafc;color:#64748b;border-bottom:3px solid transparent;transition:all .2s;text-align:center}
+.atab.on{background:#fff;color:#1a3d72;border-bottom-color:#1a3d72}
+.atab:hover:not(.on){background:#f1f5f9}
+.apanel{background:#fff;border-radius:0 0 14px 14px;box-shadow:0 4px 22px rgba(0,0,0,.09);padding:24px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:13px;margin-bottom:22px}
+.stat-card{background:linear-gradient(135deg,#1a3d72,#0d2448);color:#fff;border-radius:12px;padding:17px;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;right:-10px;bottom:-10px;width:65px;height:65px;border-radius:50%;background:rgba(255,255,255,.07)}
+.sc-ico{font-size:26px;margin-bottom:7px}
+.sc-val{font-size:27px;font-weight:700;line-height:1}
+.sc-lbl{font-size:11px;color:#90b8e8;margin-top:4px;font-weight:600}
+.sc-bar{height:4px;background:rgba(255,255,255,.2);border-radius:2px;margin-top:10px;overflow:hidden}
+.sc-fill{height:100%;background:#c9a227;border-radius:2px;transition:width .5s}
+.sec-title{font-family:'Noto Serif',Georgia,serif;color:#1a3d72;font-size:15px;font-weight:700;margin-bottom:13px;display:flex;align-items:center;gap:7px}
+.prog-table{width:100%;border-collapse:collapse}
+.prog-table th{background:#f1f5f9;padding:9px 11px;text-align:left;font-size:10.5px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid #e2e8f0}
+.prog-table td{padding:9px 11px;font-size:12.5px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+.prog-table tr:hover td{background:#f8fafc}
+.mini-bar{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;min-width:80px}
+.mini-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#16a34a,#22c55e)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.b-done{background:#dcfce7;color:#15803d}
+.b-part{background:#fef9c3;color:#854d0e}
+.b-none{background:#f1f5f9;color:#475569}
+/* SETUP */
+.setup-step{display:flex;gap:14px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #e2e8f0}
+.setup-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.step-n{width:32px;height:32px;background:#1a3d72;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.step-body h4{font-size:14px;font-weight:700;color:#1e293b;margin-bottom:5px}
+.step-body p{font-size:12.5px;color:#475569;line-height:1.65}
+.step-body a{color:#1a3d72;font-weight:700}
+.step-body code{background:#f1f5f9;padding:2px 5px;border-radius:3px;font-family:'Courier New',monospace;font-size:11px;color:#1a3d72}
+.code-wrap{position:relative;margin-top:10px}
+.code-blk{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;font-family:'Courier New',monospace;font-size:11px;line-height:1.65;max-height:230px;overflow:auto;white-space:pre}
+.cp-btn{position:absolute;top:8px;right:8px;background:#1a3d72;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.cp-btn.done{background:#15803d}
+.url-row{display:flex;gap:8px;margin-top:10px}
+.url-inp{flex:1;padding:10px 12px;border:1.5px solid #e2e8f0;border-radius:7px;font-family:inherit;font-size:13px;color:#1e293b;outline:none;transition:all .2s}
+.url-inp:focus{border-color:#1a3d72;box-shadow:0 0 0 3px rgba(26,61,114,.1)}
+.url-inp.ok{border-color:#16a34a;background:#f0fdf4}
+.btn-url{padding:10px 18px;background:#1a3d72;color:#fff;border:none;border-radius:7px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.btn-url:hover{background:#0d4a8c}
+.btn-test{padding:7px 16px;background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px}
+.btn-test:hover{background:#0369a1;color:#fff}
+.test-ok{background:#f0fdf4;color:#15803d;border:1px solid #86efac;padding:9px 12px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px}
+.test-err{background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;padding:9px 12px;border-radius:7px;font-size:12px;font-weight:700;margin-top:8px}
+/* UPLOAD */
+.upload-zone{border:2px dashed #cbd5e1;border-radius:12px;padding:34px;text-align:center;cursor:pointer;transition:all .2s;background:#f8fafc;margin-bottom:16px}
+.upload-zone:hover,.upload-zone.drag{border-color:#1a3d72;background:#eff6ff}
+.upload-ico{font-size:40px;margin-bottom:10px}
+.upload-zone h3{font-size:15px;font-weight:700;color:#1e293b;margin-bottom:5px}
+.upload-zone p{font-size:12px;color:#64748b;line-height:1.6}
+.csv-fmt{background:#f1f5f9;border-radius:8px;padding:13px;margin-top:14px}
+.csv-fmt h4{font-size:11px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px}
+.csv-fmt code{display:block;font-family:'Courier New',monospace;font-size:11px;color:#1a3d72;background:#fff;border:1px solid #e2e8f0;border-radius:5px;padding:8px 10px;white-space:pre;overflow:auto}
+.btn-pri{padding:10px 22px;background:linear-gradient(135deg,#1a3d72,#0d4a8c);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.btn-pri:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,61,114,.3)}
+.btn-sec{padding:10px 22px;background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.preview-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.preview-tbl th{background:#f1f5f9;padding:7px 10px;text-align:left;font-weight:700;color:#475569;border-bottom:1px solid #e2e8f0;font-size:10.5px;text-transform:uppercase}
+.preview-tbl td{padding:6px 10px;border-bottom:1px solid #f1f5f9;color:#334155}
+/* GUIDE */
+.guide-step{display:flex;gap:14px;margin-bottom:16px;padding:17px;background:#f8fafc;border-radius:12px;border-left:4px solid #1a3d72}
+.guide-n{width:34px;height:34px;background:#1a3d72;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.guide-body h4{font-size:14px;font-weight:700;color:#1a3d72;margin-bottom:5px}
+.guide-body p{font-size:12.5px;color:#475569;line-height:1.65}
+.guide-body code{background:#e8edf5;padding:2px 6px;border-radius:4px;font-family:'Courier New',monospace;font-size:11px;color:#1a3d72}
+.note-box{background:#fef9c3;border:1px solid #fde047;border-radius:8px;padding:12px 16px;margin:14px 0;font-size:12.5px;color:#854d0e;line-height:1.6}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px 16px;margin:14px 0;font-size:12.5px;color:#1e40af;line-height:1.6}
+.tag{display:inline-flex;align-items:center;gap:5px;background:#dcfce7;color:#15803d;border:1px solid #86efac;padding:3px 10px;border-radius:20px;font-size:11.5px;font-weight:700;margin:3px}
+/* FOOTER */
+.footer{text-align:center;padding:24px 16px 16px;margin-top:12px;border-top:1px solid #dce3ed;line-height:1.9}
+.footer .f1{font-family:'Noto Serif',Georgia,serif;font-size:13px;font-weight:700;color:#1a3d72}
+.footer .f2{font-size:12px;color:#475569}.footer .f2 strong{color:#1a3d72}
+.footer .f3{font-size:11px;color:#94a3b8;margin-top:2px}
+/* TOAST */
+#toast{position:fixed;bottom:22px;right:22px;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:9999;pointer-events:none;opacity:0;transform:translateY(14px);transition:all .25s;max-width:320px;display:flex;align-items:center;gap:8px}
+#toast.show{opacity:1;transform:translateY(0)}
+#toast.tok{background:#15803d;color:#fff}
+#toast.tbad{background:#dc2626;color:#fff}
+#toast.tinfo{background:#1a3d72;color:#fff}
+#toast.twarn{background:#d97706;color:#fff}
 </style>
 </head>
 <body>
-
-<!-- ════ HEADER ════ -->
+<!-- HEADER -->
 <header class="hdr">
   <div class="hdr-in">
-    <div class="hdr-seal">🏛️</div>
-    <div class="hdr-txt">
+    <div class="gov-seal">🏛️</div>
+    <div class="hdr-title">
       <h1>Census 2027 — Village Population Data Entry</h1>
       <p>Malavalli Taluk · Mandya District · Karnataka Government</p>
     </div>
-    <div class="hdr-badge-wrap hidden" id="hdr-meta">
-      <div class="hdr-badge" id="hdr-role-badge"></div>
-      <div class="hdr-uname" id="hdr-uname"></div>
+    <div class="hdr-right">
+      <div id="hdr-sess" style="display:none;align-items:center;gap:8px">
+        <span id="hdr-chip" class="hdr-chip chip-vao"></span>
+        <span id="hdr-nm" class="hdr-uname"></span>
+      </div>
+      <button class="btn-hdr" onclick="doLogout()">Logout</button>
     </div>
   </div>
 </header>
 
-<!-- ════ LOGIN PAGE ════ -->
-<div class="page" id="login-page">
+<!-- LOGIN PAGE -->
+<div class="page" id="pg-login">
   <div class="login-wrap">
     <div class="login-card">
       <div class="login-top">
         <div class="login-ico">🔐</div>
         <h2>Secure Login Portal</h2>
-        <p>Authorized Personnel Only · Census 2027</p>
+        <p>Census 2027 · Malavalli Taluk · Mandya District</p>
       </div>
       <div class="login-body">
         <div class="rtabs">
-          <button class="rtab on" id="tab-vao" onclick="switchTab('vao')">👤 VAO</button>
-          <button class="rtab" id="tab-sec" onclick="switchTab('secretary')">🏢 GP Secretary</button>
+          <button class="rtab on" id="tab-vao" onclick="setTab('vao')">👤 VAO</button>
+          <button class="rtab" id="tab-sec" onclick="setTab('secretary')">🏢 Secretary</button>
+          <button class="rtab" id="tab-adm" onclick="setTab('admin')">⚙ Admin</button>
         </div>
-        <div class="err-box" id="login-err"></div>
-        <div class="fgrp">
-          <label class="flbl" id="sel-label">VAO Name</label>
+        <div class="err-msg hidden" id="login-err"></div>
+        <div class="fgrp" id="name-grp">
+          <label class="flbl" id="name-lbl">VAO Name</label>
           <select class="fsel" id="name-sel"><option value="">-- Select --</option></select>
         </div>
         <div class="fgrp">
           <label class="flbl">Password</label>
-          <input class="finp" type="password" id="pwd-inp" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+          <input class="finp" type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
         </div>
-        <button class="btn-login" onclick="doLogin()">Login →</button>
+        <button class="login-btn" onclick="doLogin()">Login →</button>
+        <div class="pwd-hint">VAO &amp; Secretary: <strong>Mal@1234</strong> &nbsp;·&nbsp; Admin: <strong>Admin@2027</strong></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════ ENTRY PAGE ════ -->
-<div class="page hidden" id="entry-page">
+<!-- ENTRY PAGE (VAO / Secretary) -->
+<div class="page hidden" id="pg-entry">
   <div class="layout">
-
-    <!-- Sidebar -->
     <div class="sb">
-      <div class="sb-hd">
-        <h3 id="sb-title">👤 VAO Panel</h3>
-        <p id="sb-name"></p>
-      </div>
-      <div class="sb-bd">
-        <div class="irow"><span class="ilbl">Role</span><span class="ival" id="sb-role"></span></div>
-        <div class="irow"><span class="ilbl">Villages</span><span class="ival" id="sb-villages"></span></div>
-        <div class="irow"><span class="ilbl">Total Rows</span><span class="ival" id="sb-total"></span></div>
-        <div class="irow"><span class="ilbl">Completed</span><span class="ival" id="sb-done"></span></div>
-        <div class="pb-info"><span>Progress</span><span id="pb-pct">0%</span></div>
+      <div class="sb-head"><h3 id="sb-title">VAO Panel</h3><p id="sb-nm"></p></div>
+      <div class="sb-body">
+        <div class="srow"><span class="slbl">Role</span><span class="sval b" id="sb-role"></span></div>
+        <div class="srow"><span class="slbl">Villages</span><span class="sval" id="sb-v"></span></div>
+        <div class="srow"><span class="slbl">Total Rows</span><span class="sval" id="sb-t"></span></div>
+        <div class="srow"><span class="slbl">Completed</span><span class="sval" id="sb-done"></span></div>
+        <div class="srow"><span class="slbl">Synced ☁</span><span class="sval" id="sb-sync"></span></div>
+        <div class="pb-row"><span>Progress</span><span id="pb-pct">0%</span></div>
         <div class="pbar"><div class="pfill" id="pfill"></div></div>
-        <div class="sbt">
-          <div class="sbt-title">☁️ Google Sheets</div>
-          <div class="sheet-status ok hidden" id="sheet-ok">
-            <span class="dot dot-ok"></span>Connected — auto-saving
-          </div>
-          <div class="sheet-status no" id="sheet-no">
-            <span class="dot dot-err"></span>Not configured yet
-          </div>
+        <div class="sync-stat ss-no" id="ss-blk"><span class="bdot bd-a"></span><span id="ss-txt">Not connected</span></div>
+        <div class="sb-btns">
+          <button class="sbbtn btn-retry hidden" id="btn-retry" onclick="retryFailed()">↩ Retry Failed Syncs</button>
+          <button class="sbbtn btn-lo" onclick="doLogout()">← Logout</button>
         </div>
-        <button class="btn-out" onclick="doLogout()">← Logout</button>
       </div>
     </div>
-
-    <!-- Content -->
     <div class="content">
       <div class="ctop">
-        <h2 id="ctop-title"></h2>
-        <p id="ctop-sub"></p>
-        <span class="stag ok hidden" id="stag-ok"><span class="dot dot-ok"></span>Auto-saving to Google Sheets on every Save</span>
-        <span class="stag no" id="stag-no"><span class="dot dot-err"></span>Google Sheets not configured — contact admin</span>
+        <h2 id="ct-title">Data Entry</h2>
+        <p id="ct-sub"></p>
+        <span class="spill sp-no hidden" id="pill-no">⚠ Google Sheets not configured — Admin must set up</span>
+        <span class="spill sp-ok hidden" id="pill-ok">✓ Connected — every Save auto-syncs to Google Sheets</span>
+        <span class="spill sp-warn hidden" id="pill-warn">⚠ Some rows failed to sync — use Retry in sidebar</span>
       </div>
-
-      <div class="tbl-wrap">
+      <div class="tbl-card">
         <table>
-          <thead>
-            <tr>
-              <th style="width:36px">#</th>
-              <th>Code</th>
-              <th>Village / Dakale Grama</th>
-              <th id="th-gp">GP Name</th>
-              <th id="th-pop">Present Population</th>
-              <th id="th-hh">Total House Holds</th>
-              <th style="width:90px">Save</th>
-            </tr>
-          </thead>
-          <tbody id="tbl-body"></tbody>
+          <thead><tr>
+            <th style="width:34px">#</th><th>Code</th><th>Village / Dakale Grama</th>
+            <th id="th3">GP Name</th><th id="th4">Population</th><th id="th5">House Holds</th>
+            <th style="width:115px">Action</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
         </table>
       </div>
     </div>
-
   </div>
-
-  <!-- Footer -->
   <div class="footer">
-    <div><strong>© 2027 Census Data Entry System</strong></div>
-    <div>Designed and Developed by <strong>Gangadhar</strong> · Statistical Inspector</div>
-    <div>Taluk Office Malavalli, Mandya District · Karnataka Government</div>
-    <div class="copy">All rights reserved · For official use only</div>
+    <div class="f1">Census 2027 — Village Population Data Entry System</div>
+    <div class="f2">Designed &amp; Developed by <strong>Gangadhar</strong> · Statistical Inspector · Taluk Office Malavalli · Mandya District</div>
+    <div class="f3">© 2027 All rights reserved · For official government use only</div>
   </div>
 </div>
 
-<!-- Toast -->
+<!-- ADMIN PAGE -->
+<div class="page hidden" id="pg-admin">
+  <div class="admin-tabs">
+    <button class="atab on" id="at-0" onclick="showAdminTab(0)">📊 Progress Dashboard</button>
+    <button class="atab" id="at-1" onclick="showAdminTab(1)">☁ Sheets Setup</button>
+    <button class="atab" id="at-2" onclick="showAdminTab(2)">📤 Upload Data</button>
+    <button class="atab" id="at-3" onclick="showAdminTab(3)">🚀 Hosting Guide</button>
+  </div>
+
+  <!-- TAB 0: PROGRESS -->
+  <div class="apanel" id="ap-0">
+    <div class="admin-grid" id="admin-cards"></div>
+    <div class="sec-title">📋 VAO-wise Completion Status</div>
+    <div style="overflow:auto;margin-bottom:22px">
+      <table class="prog-table">
+        <thead><tr><th>#</th><th>VAO Name</th><th>Villages</th><th>VAO Completed</th><th>Sec Verified</th><th>Progress</th><th>Status</th></tr></thead>
+        <tbody id="vao-tbody"></tbody>
+      </table>
+    </div>
+    <div class="sec-title">🏘 Village-level Detail</div>
+    <div style="overflow:auto;max-height:360px">
+      <table class="prog-table">
+        <thead><tr><th>#</th><th>Code</th><th>Village</th><th>VAO</th><th>GP</th><th>Pop (VAO)</th><th>HH (VAO)</th><th>Pop (Sec)</th><th>HH (Sec)</th><th>Sync</th></tr></thead>
+        <tbody id="vil-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 1: SHEETS SETUP -->
+  <div class="apanel hidden" id="ap-1">
+    <div class="sec-title">☁ Google Sheets Integration — 4-Step Setup</div>
+    <div class="setup-step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h4>Create a Google Sheet</h4>
+        <p>Go to <a href="https://sheets.google.com" target="_blank">sheets.google.com</a> → Click <strong>＋ Blank</strong><br>
+        Rename it: <strong>"Census 2027 Malavalli Taluk"</strong><br>
+        The app auto-creates all headers and formatting on first save — nothing manual needed.</p>
+      </div>
+    </div>
+    <div class="setup-step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h4>Open Apps Script &amp; Paste the Code Below</h4>
+        <p>In the sheet → click <strong>Extensions</strong> menu → <strong>Apps Script</strong><br>
+        Delete all existing code in the editor, then paste:</p>
+        <div class="code-wrap">
+          <pre class="code-blk" id="script-box"></pre>
+          <button class="cp-btn" id="cp-btn" onclick="copyScript()">Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="setup-step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h4>Deploy as Web App</h4>
+        <p>
+          In Apps Script → Click <strong>Deploy</strong> button (top right) → <strong>New deployment</strong><br>
+          → Click the <strong>gear icon ⚙</strong> → Select <strong>Web app</strong><br>
+          → Execute as: <strong>Me</strong><br>
+          → Who has access: <strong>Anyone</strong> ← <em>This is the critical setting</em><br>
+          → Click <strong>Deploy</strong> → Click <strong>Authorize access</strong> → Choose your Google account → <strong>Allow</strong><br>
+          → <strong>Copy the Web App URL</strong> (starts with <code>https://script.google.com/macros/s/…/exec</code>)
+        </p>
+      </div>
+    </div>
+    <div class="setup-step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h4>Paste URL here &amp; Test</h4>
+        <div class="url-row">
+          <input class="url-inp" type="text" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec"/>
+          <button class="btn-url" onclick="saveUrl()">Save URL</button>
+        </div>
+        <button class="btn-test" onclick="testConn()">🔌 Test Connection Now</button>
+        <div id="test-res" class="hidden"></div>
+        <div id="url-saved-msg" class="hidden" style="color:#15803d;font-size:12px;font-weight:700;margin-top:8px">✓ URL saved — all VAOs and Secretaries will now sync automatically</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: UPLOAD DATA -->
+  <div class="apanel hidden" id="ap-2">
+    <div class="sec-title">📤 Upload Village Data from Excel / CSV</div>
+    <p style="font-size:13px;color:#475569;margin-bottom:16px;line-height:1.6">
+      Upload your own village list to replace the built-in 202 villages. All VAO and Secretary logins will use the new data.
+    </p>
+    <div class="upload-zone" id="drop-zone"
+      onclick="document.getElementById('file-inp').click()"
+      ondragover="event.preventDefault();this.classList.add('drag')"
+      ondragleave="this.classList.remove('drag')"
+      ondrop="handleDrop(event)">
+      <div class="upload-ico">📂</div>
+      <h3>Click to select file or drag &amp; drop</h3>
+      <p>Supported: <strong>.csv</strong> (recommended) or <strong>.xlsx / .xls</strong><br>Maximum: 1000 villages</p>
+    </div>
+    <input type="file" id="file-inp" accept=".csv,.xlsx,.xls" onchange="handleFile(this)" style="display:none"/>
+    <div class="csv-fmt">
+      <h4>Required Column Format (first row = headers)</h4>
+      <code id="csv-sample"></code>
+      <p style="font-size:11.5px;color:#64748b;margin-top:8px">
+        💡 <strong>Tip:</strong> Open your Excel file → File → Save As → CSV (Comma delimited) → Upload that CSV file here.<br>
+        For multiple Dakale Gramas use format: <code>1)Name1 2)Name2 3)Name3</code> — single name or leave blank is also fine.
+      </p>
+    </div>
+    <div class="hidden" id="upload-preview">
+      <div class="sec-title" style="margin-top:20px">Preview (first 5 rows)</div>
+      <div style="overflow:auto"><table class="preview-tbl" id="prev-tbl"></table></div>
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button class="btn-pri" onclick="applyUpload()">✓ Apply This Data</button>
+        <button class="btn-sec" onclick="cancelUpload()">✕ Cancel</button>
+      </div>
+    </div>
+    <div style="margin-top:18px">
+      <button class="btn-sec" style="font-size:12px" onclick="resetToDefault()">↩ Reset to Built-in Default (202 villages)</button>
+    </div>
+  </div>
+
+  <!-- TAB 3: HOSTING GUIDE -->
+  <div class="apanel hidden" id="ap-3">
+    <div class="sec-title">🚀 Host on GitHub Pages — Free, No Commands Needed</div>
+    <div class="info-box">
+      <strong>What you get after following these steps:</strong> A live website working on any phone/computer, handling 100+ users at once, costs ₹0/month, always online, no server, no maintenance.
+      <br><span class="tag">✓ Free forever</span><span class="tag">✓ No server</span><span class="tag">✓ Works on mobile</span><span class="tag">✓ 100+ simultaneous users</span><span class="tag">✓ Zero maintenance</span>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">1</div>
+      <div class="guide-body">
+        <h4>Download This App File</h4>
+        <p>This single HTML file is the complete app — no other files are needed.<br>Click the button below to save it to your computer.</p>
+        <button class="btn-pri" style="margin-top:10px;font-size:12px" onclick="downloadSelf()">⬇ Download census2027.html</button>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">2</div>
+      <div class="guide-body">
+        <h4>Create a Free GitHub Account</h4>
+        <p>Open <strong>github.com</strong> in your browser → Click <strong>Sign up</strong> (top right)<br>
+        Enter your email → Create a password → Choose a username (example: <code>malavalli-census</code>)<br>
+        Verify your email address → Account is ready to use.</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">3</div>
+      <div class="guide-body">
+        <h4>Create a New Repository</h4>
+        <p>After logging in to github.com:<br>
+        → Click the <strong>green "New" button</strong> (top-left area)<br>
+        → Repository name: <code>census-2027</code> (use lowercase, no spaces)<br>
+        → Select <strong>Public</strong> ← required for free hosting<br>
+        → Check <strong>"Add a README file"</strong><br>
+        → Click <strong>"Create repository"</strong></p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">4</div>
+      <div class="guide-body">
+        <h4>Upload the HTML File</h4>
+        <p>You are now inside your new repository:<br>
+        → Click <strong>"Add file"</strong> button → select <strong>"Upload files"</strong><br>
+        → Drag <code>census2027.html</code> into the upload box (or click "choose your files")<br>
+        → Scroll down → Click <strong>"Commit changes"</strong> (green button)</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">5</div>
+      <div class="guide-body">
+        <h4>Rename the File to index.html</h4>
+        <p>GitHub Pages needs the main file to be named exactly <code>index.html</code>:<br>
+        → Click on <code>census2027.html</code> in the file list<br>
+        → Click the <strong>pencil icon ✏ "Edit this file"</strong> (top-right of the file view)<br>
+        → At the very top, change the filename from <code>census2027.html</code> to <code>index.html</code><br>
+        → Scroll down → Click <strong>"Commit changes"</strong> → Click <strong>"Commit changes"</strong> again in the popup</p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">6</div>
+      <div class="guide-body">
+        <h4>Enable GitHub Pages</h4>
+        <p>→ Click the <strong>"Settings"</strong> tab (last tab in your repository)<br>
+        → In the left sidebar, scroll down and click <strong>"Pages"</strong><br>
+        → Under "Source" → click the dropdown showing "None" → select <strong>"main"</strong><br>
+        → Leave the second dropdown as <strong>"/ (root)"</strong><br>
+        → Click <strong>"Save"</strong><br>
+        A banner appears: <em>"Your site is ready to be published at https://…"</em></p>
+      </div>
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">7</div>
+      <div class="guide-body">
+        <h4>Wait 2 Minutes — Your App is Live!</h4>
+        <p>Open this URL in any browser (replace YOUR-USERNAME with your GitHub username):<br>
+        <code>https://YOUR-USERNAME.github.io/census-2027/</code><br><br>
+        Share this link with all VAOs and GP Secretaries. Works on phones and computers.</p>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>⚠ How to update the app after hosting:</strong> Go to github.com → your repository → click <code>index.html</code> → click pencil ✏ → make your change → Commit changes. Updates go live within 2–3 minutes.
+    </div>
+
+    <div class="guide-step">
+      <div class="guide-n">8</div>
+      <div class="guide-body">
+        <h4>Connect Google Sheets for Live Data Sync</h4>
+        <p>Go to the <strong>☁ Sheets Setup</strong> tab above → follow the 4 steps → paste the Apps Script URL → click Save → Test Connection.<br>
+        Once connected, every time a VAO or Secretary clicks Save, the data appears in your Google Sheet within seconds.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>Total Cost: ₹0 forever</strong><br>
+      GitHub Pages: ₹0 · Google Sheets: ₹0 · Apps Script: ₹0 · Domain (github.io): ₹0
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="f1">Census 2027 — Village Population Data Entry System</div>
+    <div class="f2">Designed &amp; Developed by <strong>Gangadhar</strong> · Statistical Inspector · Taluk Office Malavalli · Mandya District</div>
+    <div class="f3">© 2027 All rights reserved · For official government use only</div>
+  </div>
+</div>
+
 <div id="toast"></div>
-
 <script>
-// ════════════════════════════════════════════════════════════════
-// ▼▼▼  ADMIN: PASTE YOUR GOOGLE APPS SCRIPT URL BELOW  ▼▼▼
-const SHEET_URL = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
-// ▲▲▲  Only change the above line — nothing else needed  ▲▲▲
-// ════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+//  CENSUS 2027 · MALAVALLI TALUK
+//  Passwords — VAO/Secretary: Mal@1234  |  Admin: Admin@2027
+//  Sync: JSONP — actual confirmed response, zero CORS issues
+// ═══════════════════════════════════════════════════════════════
 
-const PASSWORD     = "Mal@1234";
-const SHEET_READY  = SHEET_URL && SHEET_URL !== "https://script.google.com/macros/s/AKfycbx6ABy75mSbz9bd8bzVK7SgaL7SfyfcgYMlrMhAe5DXAK4R9k623UyC3UHIN9iir2wvMA/exec";
+const APPS_SCRIPT_CODE = `// ═══ CENSUS 2027 · GOOGLE APPS SCRIPT ═══════════════════
+// STEP-BY-STEP DEPLOYMENT:
+// 1. In your Google Sheet → Extensions → Apps Script
+// 2. Delete all existing code → Paste this entire script
+// 3. Click Save (Ctrl+S)
+// 4. Click Deploy (top right) → New deployment
+// 5. Click gear icon ⚙ → Select "Web app"
+// 6. Execute as: Me
+// 7. Who has access: Anyone   ← CRITICAL — must be Anyone
+// 8. Click Deploy → Authorize access → Allow
+// 9. Copy the Web App URL → paste in Admin → Sheets Setup
+// ════════════════════════════════════════════════════════════
 
-// ── Village data ──────────────────────────────────────────────
-const RAW = [
+const SHEET_TAB = "Census2027";
+
+function doGet(e) {
+  // JSONP: wraps response in callback function
+  // This completely bypasses ALL browser CORS restrictions
+  var cb = (e.parameter && e.parameter.callback) ? e.parameter.callback : "cb";
+  var result;
+  try {
+    var action = e.parameter ? e.parameter.action : "";
+    if (action === "ping") {
+      result = {ok: true, msg: "Census 2027 Malavalli connected successfully"};
+    } else if (action === "upsert") {
+      upsertRow(e.parameter);
+      result = {ok: true, rowId: e.parameter.rowId};
+    } else {
+      result = {ok: false, error: "Unknown action: " + action};
+    }
+  } catch(err) {
+    result = {ok: false, error: err.toString()};
+  }
+  return ContentService
+    .createTextOutput(cb + "(" + JSON.stringify(result) + ");")
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+function getOrCreateSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_TAB);
+  if (!sh) {
+    sh = ss.insertSheet(SHEET_TAB);
+    var headers = [
+      "Row ID", "S.No", "Village Code", "Village Name", "Row Type",
+      "Dakale Grama", "VAO Name", "GP Name",
+      "Population (VAO)", "House Holds (VAO)", "Saved By VAO", "VAO Saved At",
+      "Population (Secretary)", "House Holds (Secretary)",
+      "Saved By Secretary", "Secretary Saved At"
+    ];
+    var hr = sh.getRange(1, 1, 1, headers.length);
+    hr.setValues([headers]);
+    hr.setBackground("#1a3d72")
+      .setFontColor("#ffffff")
+      .setFontWeight("bold")
+      .setFontSize(10);
+    sh.setFrozenRows(1);
+    sh.setColumnWidths(1, 16, 115);
+    sh.setColumnWidth(4, 160);
+    sh.setColumnWidth(6, 160);
+  }
+  return sh;
+}
+
+function upsertRow(p) {
+  var sh = getOrCreateSheet();
+  var data = sh.getDataRange().getValues();
+  var targetRow = -1;
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === String(p.rowId)) {
+      targetRow = i + 1;
+      break;
+    }
+  }
+  // Preserve existing cell values — only overwrite if new value provided
+  var ex = targetRow > 0 ? data[targetRow - 1] : new Array(16).fill("");
+  var row = [
+    p.rowId,
+    p.sno     || ex[1]  || "",
+    p.code    || ex[2]  || "",
+    p.village || ex[3]  || "",
+    p.rowType || ex[4]  || "",
+    p.dakale  || ex[5]  || "",
+    p.vao     || ex[6]  || "",
+    p.gp      || ex[7]  || "",
+    (p.popVAO !== undefined && p.popVAO !== "") ? p.popVAO : (ex[8]  || ""),
+    (p.hhVAO  !== undefined && p.hhVAO  !== "") ? p.hhVAO  : (ex[9]  || ""),
+    p.byVAO   || ex[10] || "",
+    p.atVAO   || ex[11] || "",
+    (p.popSec !== undefined && p.popSec !== "") ? p.popSec : (ex[12] || ""),
+    (p.hhSec  !== undefined && p.hhSec  !== "") ? p.hhSec  : (ex[13] || ""),
+    p.bySec   || ex[14] || "",
+    p.atSec   || ex[15] || ""
+  ];
+  if (targetRow > 0) {
+    sh.getRange(targetRow, 1, 1, row.length).setValues([row]);
+  } else {
+    sh.appendRow(row);
+    targetRow = sh.getLastRow();
+  }
+  // Colour coding: dakale rows = light purple, village rows = white
+  sh.getRange(targetRow, 1, 1, row.length)
+    .setBackground(p.rowType === "dakale" ? "#f5f0ff" : "#ffffff");
+}`;
+
+const CSV_SAMPLE = `S.No,Village Code,Village Name,Dakale Grama,VAO Name,GP Name
+1,614654,Chikkamulagudu,Vaddara Kaloni,SHAFI,Chikkamulagudu
+2,649474,Kurubanapura,,SHAFI,Chikkamulagudu
+10,614661,Hittanahalli,"1)Hittanahalli Koppalu 2)Budukegowdanadoddi",GURURAJ,Hittanahalli`;
+
+const DEFAULT_RAW=[
   {sno:1,code:614654,name:"Chikkamulagudu",dk:"Vaddara Kaloni",vao:"SHAFI",gp:"Chikkamulagudu"},
   {sno:2,code:649474,name:"Kurubanapura",dk:"",vao:"SHAFI",gp:"Chikkamulagudu"},
   {sno:3,code:614655,name:"Veerajipura",dk:"",vao:"MANJUNATH M V",gp:"Mikkere"},
@@ -479,358 +853,506 @@ const RAW = [
   {sno:201,code:614839,name:"Kaggalipura",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
   {sno:202,code:651342,name:"Honaganahalli",dk:"",vao:"SRINIVASAMURTHY",gp:"Kaggalipura"},
 ];
-
-// ── Build flat rows (village + dakale sub-rows) ───────────────
-function parseDk(s) {
-  if (!s || !s.trim()) return [];
-  var m = s.match(/\d+\)\s*([^0-9)]+)/g);
-  if (m && m.length > 1) return m.map(function(x){ return x.replace(/^\d+\)\s*/,"").trim(); }).filter(Boolean);
-  return [s.trim()];
-}
-
-var ALL_ROWS = [];
-RAW.forEach(function(v) {
-  var dks = parseDk(v.dk);
-  ALL_ROWS.push(Object.assign({}, v, {type:"village", rid:"V_"+v.code, dkNames:dks}));
-  dks.forEach(function(d, i) {
-    ALL_ROWS.push(Object.assign({}, v, {type:"dakale", rid:"D_"+v.code+"_"+i, dkName:d}));
-  });
-});
-
-var VAOS = Array.from(new Set(RAW.map(function(v){return v.vao;}))).sort();
-var GPS  = Array.from(new Set(RAW.map(function(v){return v.gp.trim();}))).sort();
-
 // ── State ─────────────────────────────────────────────────────
-var STATE = {
-  role: null,       // 'vao' | 'secretary'
-  loginRole: "vao",
-  uname: "",
-  entries: {},      // rid → {pV,hV,byV,atV, pS,hS,byS,atS}
-  vis: [],          // filtered ALL_ROWS for current user
-  toastTimer: null
+const S = {
+  role:null, loginRole:'vao', uname:'', vis:[], allRows:[],
+  raw: JSON.parse(localStorage.getItem('c27_raw')||'null') || DEFAULT_RAW,
+  entries:  JSON.parse(localStorage.getItem('c27_e') ||'{}'),
+  syncSt:   JSON.parse(localStorage.getItem('c27_ss')||'{}'),
+  sheetUrl: localStorage.getItem('c27_url')||'',
+  failedQ:[], toastTmr:null, pendingUpload:null
 };
-
-// ── LocalStorage ──────────────────────────────────────────────
-function lsGet(k) { try { var v=localStorage.getItem(k); return v?JSON.parse(v):null; } catch(e){ return null; } }
-function lsSet(k,v) { try { localStorage.setItem(k,JSON.stringify(v)); } catch(e){} }
-
-// Load persisted entries
-var saved = lsGet("c27_entries");
-if (saved) STATE.entries = saved;
+function persist(){
+  localStorage.setItem('c27_e',  JSON.stringify(S.entries));
+  localStorage.setItem('c27_ss', JSON.stringify(S.syncSt));
+}
 
 // ── Helpers ───────────────────────────────────────────────────
-function $(id){ return document.getElementById(id); }
-function show(id){ $(id).classList.remove("hidden"); }
-function hide(id){ $(id).classList.add("hidden"); }
+const $=id=>document.getElementById(id);
+const show=id=>$(id).classList.remove('hidden');
+const hide=id=>$(id).classList.add('hidden');
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
-function flash(msg, type) {
-  var t = $("toast");
-  t.textContent = msg;
-  t.className = "show " + (type||"ok");
-  if (STATE.toastTimer) clearTimeout(STATE.toastTimer);
-  STATE.toastTimer = setTimeout(function(){ t.className = ""; }, 3000);
+function toast(msg,type){
+  const t=$('toast'); t.textContent=msg; t.className='show t'+(type||'ok');
+  if(S.toastTmr) clearTimeout(S.toastTmr);
+  S.toastTmr = setTimeout(()=>t.className='', 3500);
 }
 
-function escHtml(s) {
-  return String(s)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
+// ── Build flat row list ───────────────────────────────────────
+function parseDk(s){
+  if(!s||!s.trim()) return [];
+  const m = s.match(/\d+\)\s*([^0-9)]+)/g);
+  if(m&&m.length>1) return m.map(x=>x.replace(/^\d+\)\s*/,'').trim()).filter(Boolean);
+  return [s.trim()];
 }
-
-// ── Login tab switch ──────────────────────────────────────────
-function switchTab(role) {
-  STATE.loginRole = role;
-  $("tab-vao").className = "rtab" + (role==="vao" ? " on" : "");
-  $("tab-sec").className = "rtab" + (role==="secretary" ? " on" : "");
-  $("sel-label").textContent = role === "vao" ? "VAO Name" : "GP Name";
-  var sel = $("name-sel");
-  sel.innerHTML = '<option value="">-- Select --</option>';
-  var list = role === "vao" ? VAOS : GPS;
-  list.forEach(function(x){
-    var o = document.createElement("option");
-    o.value = x; o.textContent = x;
-    sel.appendChild(o);
+function buildRows(raw){
+  const rows=[];
+  raw.forEach(v=>{
+    const dks=parseDk(v.dk||'');
+    rows.push({...v, type:'village', rid:'V_'+v.code, dkNames:dks});
+    dks.forEach((d,i)=>rows.push({...v, type:'dakale', rid:'D_'+v.code+'_'+i, dkName:d}));
   });
-  $("login-err").className = "err-box";
+  return rows;
 }
+const getVAOs=raw=>[...new Set(raw.map(v=>v.vao))].filter(Boolean).sort();
+const getGPs =raw=>[...new Set(raw.map(v=>(v.gp||'').trim()))].filter(Boolean).sort();
 
-// ── Login ─────────────────────────────────────────────────────
-function doLogin() {
-  var uname = $("name-sel").value;
-  var pwd   = $("pwd-inp").value;
-  var err   = $("login-err");
-  if (!uname) { err.textContent="Please select a name."; err.className="err-box show"; return; }
-  if (pwd !== PASSWORD) { err.textContent="Incorrect password."; err.className="err-box show"; return; }
-
-  STATE.role  = STATE.loginRole;
-  STATE.uname = uname;
-
-  // Filter rows for this user
-  STATE.vis = STATE.role === "vao"
-    ? ALL_ROWS.filter(function(r){ return r.vao === uname; })
-    : ALL_ROWS.filter(function(r){ return r.gp.trim() === uname; });
-
-  // Update header
-  $("hdr-role-badge").textContent = STATE.role === "vao" ? "👤 VAO" : "🏢 Secretary";
-  $("hdr-uname").textContent = uname;
-  show("hdr-meta");
-
-  // Update sidebar
-  $("sb-title").textContent = STATE.role === "vao" ? "👤 VAO Panel" : "🏢 Secretary Panel";
-  $("sb-name").textContent  = uname;
-  $("sb-role").textContent  = STATE.role === "vao" ? "VAO" : "GP Secretary";
-
-  // Column headers
-  var isVao = STATE.role === "vao";
-  $("th-gp").textContent  = isVao ? "GP Name" : "VAO";
-  $("th-pop").textContent = isVao ? "Present Population (VAO)" : "Present Population (Sec)";
-  $("th-hh").textContent  = isVao ? "Total House Holds (VAO)"  : "Total House Holds (Sec)";
-
-  // Sheet status
-  if (SHEET_READY) {
-    show("sheet-ok"); hide("sheet-no");
-    show("stag-ok");  hide("stag-no");
-  } else {
-    hide("sheet-ok"); show("sheet-no");
-    hide("stag-ok");  show("stag-no");
+// ── Login / Tab ───────────────────────────────────────────────
+function setTab(role){
+  S.loginRole=role;
+  ['vao','sec','adm'].forEach(r=>$('tab-'+r).className='rtab');
+  $('tab-'+{vao:'vao',secretary:'sec',admin:'adm'}[role]).className='rtab on';
+  const isAdmin = role==='admin';
+  $('name-grp').classList[isAdmin?'add':'remove']('hidden');
+  if(!isAdmin){
+    $('name-lbl').textContent = role==='vao'?'VAO Name':'GP Name';
+    const sel=$('name-sel');
+    sel.innerHTML='<option value="">-- Select --</option>';
+    (role==='vao'?getVAOs(S.raw):getGPs(S.raw)).forEach(x=>{
+      const o=document.createElement('option'); o.value=x; o.textContent=x; sel.appendChild(o);
+    });
   }
-
-  $("ctop-title").textContent = uname + " — Data Entry";
-  $("ctop-sub").textContent   = STATE.vis.filter(function(r){return r.type==="village";}).length +
-    " villages · Dakale Gramas shown as indented ↳ sub-rows";
-
-  renderTable();
-  updateProgress();
-
-  hide("login-page");
-  show("entry-page");
-  $("pwd-inp").value = "";
+  hide('login-err');
 }
 
-// ── Logout ────────────────────────────────────────────────────
-function doLogout() {
-  STATE.role = null; STATE.uname = "";
-  hide("entry-page"); show("login-page");
-  hide("hdr-meta");
-  $("name-sel").value = ""; $("pwd-inp").value = "";
-  $("login-err").className = "err-box";
+function doLogin(){
+  const nm=$('name-sel').value, pw=$('pwd').value;
+  // ADMIN
+  if(S.loginRole==='admin'){
+    if(pw!=='Admin@2027'){showErr('Incorrect admin password.');return;}
+    S.role='admin'; S.uname='Administrator';
+    setHdr('⚙ Admin','chip-adm','Administrator');
+    $('pwd').value=''; hide('login-err');
+    hide('pg-login'); show('pg-admin');
+    buildAdmin(); return;
+  }
+  // VAO / SECRETARY
+  if(!nm){showErr('Please select your name.');return;}
+  if(pw!=='Mal@1234'){showErr('Incorrect password.');return;}
+  S.role=S.loginRole; S.uname=nm;
+  S.allRows=buildRows(S.raw);
+  S.vis = S.role==='vao'
+    ? S.allRows.filter(r=>r.vao===nm)
+    : S.allRows.filter(r=>(r.gp||'').trim()===nm);
+  setHdr(S.role==='vao'?'👤 VAO':'🏢 Secretary',
+         S.role==='vao'?'chip-vao':'chip-sec', nm);
+  $('sb-title').textContent = S.role==='vao'?'👤 VAO Panel':'🏢 Secretary Panel';
+  $('sb-nm').textContent    = nm;
+  $('sb-role').textContent  = S.role==='vao'?'Village Accountant':'GP Secretary';
+  $('th3').textContent = S.role==='vao'?'GP Name':'VAO';
+  $('th4').textContent = S.role==='vao'?'Population (VAO)':'Population (Sec)';
+  $('th5').textContent = S.role==='vao'?'House Holds (VAO)':'House Holds (Sec)';
+  const vc=S.vis.filter(r=>r.type==='village').length;
+  $('ct-title').textContent = nm+' — Data Entry';
+  $('ct-sub').textContent   = vc+' villages · Dakale Gramas shown as ↳ sub-rows · Auto-saves locally, syncs to Google Sheets';
+  S.failedQ = Object.keys(S.syncSt).filter(k=>S.syncSt[k]==='err');
+  $('pwd').value=''; hide('login-err');
+  updateSyncUI(); renderTable(); updateStats();
+  hide('pg-login'); show('pg-entry');
 }
 
-// ── Progress ──────────────────────────────────────────────────
-function updateProgress() {
-  var total = STATE.vis.length;
-  var vCount= STATE.vis.filter(function(r){return r.type==="village";}).length;
-  var done  = STATE.vis.filter(function(r){
-    var e = STATE.entries[r.rid] || {};
-    return STATE.role === "vao" ? (e.pV !== undefined && e.pV !== "") : (e.pS !== undefined && e.pS !== "");
+function showErr(msg){$('login-err').textContent=msg;show('login-err');}
+
+function setHdr(chip,cls,nm){
+  const c=$('hdr-chip'); c.textContent=chip; c.className='hdr-chip '+cls;
+  $('hdr-nm').textContent=nm;
+  $('hdr-sess').style.display='flex';
+}
+
+function doLogout(){
+  S.role=null; S.uname=''; S.vis=[];
+  $('hdr-sess').style.display='none';
+  ['pg-entry','pg-admin'].forEach(hide); show('pg-login');
+  $('name-sel').value=''; $('pwd').value='';
+}
+
+// ── Sync UI ───────────────────────────────────────────────────
+function updateSyncUI(){
+  const b=$('ss-blk'), t=$('ss-txt');
+  hide('pill-no'); hide('pill-ok'); hide('pill-warn');
+  let dotCls, txt, blkCls;
+  if(!S.sheetUrl){
+    dotCls='bdot bd-a'; txt='Not connected to Sheets'; blkCls='sync-stat ss-no'; show('pill-no');
+  } else if(S.failedQ.length>0){
+    dotCls='bdot bd-r'; txt=S.failedQ.length+' rows failed to sync'; blkCls='sync-stat ss-err'; show('pill-warn');
+    $('btn-retry').classList.remove('hidden');
+  } else {
+    dotCls='bdot bd-g'; txt='Connected — auto-syncing ✓'; blkCls='sync-stat ss-ok'; show('pill-ok');
+    $('btn-retry').classList.add('hidden');
+  }
+  b.className=blkCls;
+  b.innerHTML='<span class="'+dotCls+'"></span><span id="ss-txt">'+txt+'</span>';
+}
+
+// ── Progress stats ────────────────────────────────────────────
+function updateStats(){
+  if(!S.vis.length) return;
+  const total=S.vis.length, vc=S.vis.filter(r=>r.type==='village').length;
+  const done=S.vis.filter(r=>{
+    const e=S.entries[r.rid]||{};
+    return S.role==='vao'?(e.pV!==undefined&&e.pV!==''):(e.pS!==undefined&&e.pS!=='');
   }).length;
-  var pct = Math.round(done / Math.max(total,1) * 100);
-  $("sb-villages").textContent = vCount;
-  $("sb-total").textContent    = total;
-  $("sb-done").textContent     = done + "/" + total;
-  $("sb-done").className       = "ival " + (done === total ? "done" : "pend");
-  $("pb-pct").textContent      = pct + "%";
-  $("pfill").style.width       = pct + "%";
+  const synced=S.vis.filter(r=>S.syncSt[r.rid]==='ok').length;
+  const pct=Math.round(done/Math.max(total,1)*100);
+  $('sb-v').textContent=vc;
+  $('sb-t').textContent=total;
+  $('sb-done').textContent=done+'/'+total;
+  $('sb-done').className='sval '+(done===total?'g':'a');
+  $('sb-sync').textContent=S.sheetUrl?synced+'/'+total:'N/A';
+  $('sb-sync').className='sval '+(synced===done&&S.sheetUrl?'g':'a');
+  $('pb-pct').textContent=pct+'%';
+  $('pfill').style.width=pct+'%';
 }
 
-// ── Render Table ──────────────────────────────────────────────
-function renderTable() {
-  var tbody = $("tbl-body");
-  var rows  = STATE.vis;
-  var html  = "";
+// ── Render table ──────────────────────────────────────────────
+function renderTable(){
+  let h='';
+  S.vis.forEach(r=>{
+    const e=S.entries[r.rid]||{}, isDk=r.type==='dakale', isV=S.role==='vao';
+    const pv=isV?(e.pV||''):(e.pS||''), hv=isV?(e.hV||''):(e.hS||'');
+    const saved=pv!=='', syn=S.syncSt[r.rid]||'';
+    const rid=esc(r.rid);
+    const cls=(isDk?'drow':'vrow')+(saved?' done':'');
+    const snoTd=isDk?'<td><span class="dk-arr">↳</span></td>':'<td><span class="sno-c">'+r.sno+'</span></td>';
+    const nmTd=isDk
+      ?'<td><div class="dk-rl"><div class="dk-dl"></div><span class="dk-nm">'+esc(r.dkName)+'</span><span class="dk-ch">DAKALE</span></div></td>'
+      :'<td><div class="vname">'+esc(r.name)+'</div>'+(r.dkNames&&r.dkNames.length?'<div class="dk-hint">'+r.dkNames.length+' dakale ↓</div>':'')+'</td>';
+    const gpTd=isV
+      ?'<td><span class="gp-ch">'+esc((r.gp||'').trim())+'</span></td>'
+      :'<td style="font-size:12px;color:#475569">'+esc(r.vao||'')+'</td>';
+    const dotH=syn?'<span class="rdot v '+(syn==='ok'?'rd-ok':'rd-err')+'" id="rd-'+rid+'"></span>'
+                   :'<span class="rdot" id="rd-'+rid+'"></span>';
+    const actH=saved
+      ?dotH+'<button class="btn-ed" onclick="editRow(\''+rid+'\')">✎ Edit</button>'
+      :dotH+'<button class="btn-sv" onclick="saveRow(\''+rid+'\')">Save</button>';
+    h+='<tr class="'+cls+'" id="tr-'+rid+'">'
+      +snoTd+'<td><span class="cm">'+r.code+'</span></td>'
+      +nmTd+gpTd
+      +'<td><input class="ni'+(pv?' ok':'')+'" type="text" inputmode="numeric" id="p-'+rid
+        +'" value="'+esc(pv)+'" placeholder="Enter" oninput="oninp(\''+rid+'\',this)"/></td>'
+      +'<td><input class="ni'+(hv?' ok':'')+'" type="text" inputmode="numeric" id="h-'+rid
+        +'" value="'+esc(hv)+'" placeholder="Enter" oninput="oninp(\''+rid+'\',this)"/></td>'
+      +'<td><div class="act" id="ac-'+rid+'">'+actH+'</div></td></tr>\n';
+  });
+  $('tbody').innerHTML=h;
+}
 
-  rows.forEach(function(row) {
-    var e    = STATE.entries[row.rid] || {};
-    var isDk = row.type === "dakale";
-    var isVao= STATE.role === "vao";
+function oninp(rid,el){
+  el.value=el.value.replace(/[^0-9]/g,'');
+  const ac=$('ac-'+rid);
+  if(ac&&!ac.querySelector('.btn-sv'))
+    ac.innerHTML='<span class="rdot" id="rd-'+rid+'"></span><button class="btn-sv" onclick="saveRow(\''+esc(rid)+'\')">Save</button>';
+}
 
-    // Saved values
-    var pVal = isVao ? (e.pV !== undefined ? e.pV : "") : (e.pS !== undefined ? e.pS : "");
-    var hVal = isVao ? (e.hV !== undefined ? e.hV : "") : (e.hS !== undefined ? e.hS : "");
-    var pSaved = pVal !== "";
-    var sv   = pSaved;
+function editRow(rid){
+  ['p-','h-'].forEach(p=>{const el=$(p+rid);if(el){el.classList.remove('ok');el.focus();}});
+  $('ac-'+rid).innerHTML='<span class="rdot" id="rd-'+rid+'"></span><button class="btn-sv" onclick="saveRow(\''+esc(rid)+'\')">Save</button>';
+}
 
-    var rowCls  = (isDk ? "drow" : "vrow") + (sv ? " sv" : "");
-    var rid_esc = escHtml(row.rid);
+function saveRow(rid){
+  const pEl=$('p-'+rid), hEl=$('h-'+rid);
+  const pv=pEl?pEl.value.replace(/[^0-9]/g,''):'';
+  const hv=hEl?hEl.value.replace(/[^0-9]/g,''):'';
+  if(pv===''&&hv===''){toast('⚠ Enter Population or House Holds first','bad');return;}
+  const e=S.entries[rid]||{}, up={...e}, now=new Date().toLocaleString('en-IN');
+  if(S.role==='vao'){if(pv)up.pV=pv;if(hv)up.hV=hv;up.byV=S.uname;up.atV=now;}
+  else{if(pv)up.pS=pv;if(hv)up.hS=hv;up.byS=S.uname;up.atS=now;}
+  S.entries[rid]=up; persist();
+  const row=S.allRows.find(r=>r.rid===rid);
+  toast('✓ Saved: '+(row?(row.type==='dakale'?row.dkName:row.name):rid));
+  const tr=$('tr-'+rid);
+  if(tr) tr.className=(row&&row.type==='dakale'?'drow':'vrow')+' done';
+  if(pEl)pEl.classList.add('ok'); if(hEl)hEl.classList.add('ok');
+  $('ac-'+rid).innerHTML='<span class="rdot" id="rd-'+rid+'"></span><button class="btn-ed" onclick="editRow(\''+esc(rid)+'\')">✎ Edit</button>';
+  updateStats();
+  if(row) syncRow(rid,row,up);
+}
 
-    // ── # cell
-    var snoCell = isDk
-      ? '<td><span class="arr">↳</span></td>'
-      : '<td><span class="sno-b">' + row.sno + '</span></td>';
+// ── JSONP Engine (confirmed real response, zero CORS) ─────────
+function jsonp(url,params,cb,timeout){
+  const cn='__c27_'+Date.now()+'_'+Math.round(Math.random()*9999);
+  let tmr=null;
+  const sc=document.createElement('script');
+  window[cn]=d=>{cleanup();cb(null,d);};
+  sc.onerror=()=>{cleanup();cb(new Error('Network error'));};
+  if(timeout) tmr=setTimeout(()=>{cleanup();cb(new Error('Timeout'));},timeout);
+  function cleanup(){if(tmr)clearTimeout(tmr);if(window[cn])delete window[cn];if(sc.parentNode)sc.parentNode.removeChild(sc);}
+  params.callback=cn;
+  sc.src=url+'?'+Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k])).join('&');
+  document.head.appendChild(sc);
+}
 
-    // ── Name cell
-    var nameCell;
-    if (isDk) {
-      nameCell = '<td><div class="dk-row"><div class="dk-dash"></div>' +
-        '<span class="dk-lbl">' + escHtml(row.dkName) + '</span>' +
-        '<span class="dk-tag">DAKALE</span></div></td>';
+function syncRow(rid,row,up){
+  if(!S.sheetUrl) return;
+  setDot(rid,'spin');
+  jsonp(S.sheetUrl,{
+    action:'upsert', rowId:rid,
+    sno:row.sno||'', code:row.code||'',
+    village:row.name||'', rowType:row.type||'',
+    dakale:row.type==='dakale'?(row.dkName||''):'',
+    vao:row.vao||'', gp:row.gp||'',
+    popVAO:up.pV!==undefined?up.pV:'', hhVAO:up.hV!==undefined?up.hV:'',
+    byVAO:up.byV||'', atVAO:up.atV||'',
+    popSec:up.pS!==undefined?up.pS:'', hhSec:up.hS!==undefined?up.hS:'',
+    bySec:up.byS||'', atSec:up.atS||''
+  },(err,data)=>{
+    if(err||!data||!data.ok){
+      S.syncSt[rid]='err'; persist(); setDot(rid,'err');
+      if(!S.failedQ.includes(rid)) S.failedQ.push(rid);
+      toast('⚠ Sync failed — saved locally, use Retry','warn');
     } else {
-      var sub = row.dkNames && row.dkNames.length > 0
-        ? '<div class="dk-sub">' + row.dkNames.length + ' dakale grama' + (row.dkNames.length>1?'s':'') + ' ↓</div>'
-        : '';
-      nameCell = '<td><div class="vname">' + escHtml(row.name) + '</div>' + sub + '</td>';
+      S.syncSt[rid]='ok'; persist(); setDot(rid,'ok');
+      S.failedQ=S.failedQ.filter(r=>r!==rid);
+      toast('✓ Synced to Google Sheets ☁');
     }
+    updateStats(); updateSyncUI();
+  },10000);
+}
 
-    // ── GP/VAO cell
-    var gpCell = isVao
-      ? '<td><span class="gp-b">' + escHtml(row.gp.trim()) + '</span></td>'
-      : '<td><span style="font-size:12px;color:#475569">' + escHtml(row.vao) + '</span></td>';
+function setDot(rid,state){
+  const d=$('rd-'+rid); if(!d) return;
+  d.className='rdot v '+(state==='ok'?'rd-ok':state==='err'?'rd-err':'rd-spin');
+}
 
-    // ── Input classes
-    var pCls = "ni" + (pSaved ? " hv" : "");
-    var hSaved = isVao ? (e.hV !== undefined && e.hV !== "") : (e.hS !== undefined && e.hS !== "");
-    var hCls = "ni" + (hSaved ? " hv" : "");
-
-    // ── Save button
-    var saveBtn = sv
-      ? '<span class="tick">✅</span>'
-      : '<button class="sv-btn dim" onclick="saveRow(\'' + rid_esc + '\')">Save</button>';
-
-    html += '<tr class="' + rowCls + '" id="tr-' + rid_esc + '">' +
-      snoCell +
-      '<td><span class="code-txt">' + row.code + '</span></td>' +
-      nameCell +
-      gpCell +
-      '<td><input class="' + pCls + '" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter" ' +
-        'value="' + escHtml(pVal) + '" ' +
-        'id="p-' + rid_esc + '" ' +
-        'oninput="onInput(\'' + rid_esc + '\',\'p\',this.value)" /></td>' +
-      '<td><input class="' + hCls + '" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter" ' +
-        'value="' + escHtml(hVal) + '" ' +
-        'id="h-' + rid_esc + '" ' +
-        'oninput="onInput(\'' + rid_esc + '\',\'h\',this.value)" /></td>' +
-      '<td><div class="sc" id="sc-' + rid_esc + '">' +
-        '<span class="dot hidden" id="dot-' + rid_esc + '"></span>' +
-        saveBtn +
-      '</div></td>' +
-    '</tr>\n';
+function retryFailed(){
+  const list=S.failedQ.slice();
+  if(!list.length){toast('No failed rows to retry','info');return;}
+  toast('Retrying '+list.length+' row(s)…','info');
+  list.forEach(rid=>{
+    const row=S.allRows.find(r=>r.rid===rid);
+    const up=S.entries[rid];
+    if(row&&up) syncRow(rid,row,up);
   });
-
-  tbody.innerHTML = html;
 }
 
-// ── Input handler ─────────────────────────────────────────────
-function onInput(rid, field, raw) {
-  var clean = raw.replace(/[^0-9]/g, "");
-  var inp = $(field + "-" + rid);
-  if (inp && inp.value !== clean) inp.value = clean;
-
-  // Update save button to active
-  var sc = $("sc-" + rid);
-  if (sc) {
-    var btn = sc.querySelector(".sv-btn");
-    if (btn) btn.className = "sv-btn";
-  }
-  // Update input border
-  if (inp) {
-    var e = STATE.entries[rid] || {};
-    var isVao = STATE.role === "vao";
-    var existingVal = field === "p"
-      ? (isVao ? e.pV : e.pS)
-      : (isVao ? e.hV : e.hS);
-    inp.className = "ni" + (clean !== "" || existingVal ? " hv" : "");
-  }
+// ── Admin dashboard ───────────────────────────────────────────
+function showAdminTab(n){
+  for(let i=0;i<4;i++){$('at-'+i).className='atab';$('ap-'+i).className='apanel hidden';}
+  $('at-'+n).className='atab on'; $('ap-'+n).className='apanel';
 }
 
-// ── Save row ──────────────────────────────────────────────────
-function saveRow(rid) {
-  var pInp = $("p-" + rid);
-  var hInp = $("h-" + rid);
-  if (!pInp) return;
+function buildAdmin(){
+  const allRows=buildRows(S.raw);
+  const villages=allRows.filter(r=>r.type==='village');
+  const total=villages.length;
+  const vDone=villages.filter(r=>(S.entries[r.rid]||{}).pV!==undefined&&(S.entries[r.rid]||{}).pV!=='').length;
+  const sDone=villages.filter(r=>(S.entries[r.rid]||{}).pS!==undefined&&(S.entries[r.rid]||{}).pS!=='').length;
+  const synced=allRows.filter(r=>S.syncSt[r.rid]==='ok').length;
+  const vPct=Math.round(vDone/Math.max(total,1)*100);
+  const sPct=Math.round(sDone/Math.max(total,1)*100);
 
-  var pVal = pInp.value.replace(/[^0-9]/g,"");
-  var hVal = hInp ? hInp.value.replace(/[^0-9]/g,"") : "";
+  // Stat cards
+  $('admin-cards').innerHTML=`
+    <div class="stat-card"><div class="sc-ico">🏘</div><div class="sc-val">${total}</div><div class="sc-lbl">Total Villages</div><div class="sc-bar"><div class="sc-fill" style="width:100%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">👤</div><div class="sc-val">${vDone}</div><div class="sc-lbl">VAO Completed (${vPct}%)</div><div class="sc-bar"><div class="sc-fill" style="width:${vPct}%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">🏢</div><div class="sc-val">${sDone}</div><div class="sc-lbl">Secretary Verified (${sPct}%)</div><div class="sc-bar"><div class="sc-fill" style="width:${sPct}%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">☁</div><div class="sc-val">${synced}</div><div class="sc-lbl">Rows Synced to Sheet</div><div class="sc-bar"><div class="sc-fill" style="width:${Math.round(synced/Math.max(allRows.length,1)*100)}%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">${S.sheetUrl?'🟢':'🔴'}</div><div class="sc-val">${S.sheetUrl?'ON':'OFF'}</div><div class="sc-lbl">Google Sheets Connection</div></div>
+  `;
 
-  if (pVal === "" && hVal === "") {
-    flash("⚠ Please enter Population or House Holds before saving", "err");
-    return;
-  }
+  // VAO-wise table
+  const vaos=getVAOs(S.raw);
+  let vaoHtml='';
+  vaos.forEach((vao,i)=>{
+    const vRows=allRows.filter(r=>r.vao===vao&&r.type==='village');
+    const cnt=vRows.length;
+    const vC=vRows.filter(r=>{const e=S.entries[r.rid]||{};return e.pV!==undefined&&e.pV!=='';}).length;
+    const sC=vRows.filter(r=>{const e=S.entries[r.rid]||{};return e.pS!==undefined&&e.pS!=='';}).length;
+    const pct=Math.round(vC/Math.max(cnt,1)*100);
+    const badgeCls=vC===cnt?'b-done':vC>0?'b-part':'b-none';
+    const badgeTxt=vC===cnt?'Complete':vC>0?'In Progress':'Not Started';
+    vaoHtml+=`<tr>
+      <td>${i+1}</td><td><strong>${esc(vao)}</strong></td><td>${cnt}</td>
+      <td>${vC}/${cnt}</td><td>${sC}/${cnt}</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">${pct}%</span></td>
+      <td><span class="badge ${badgeCls}">${badgeTxt}</span></td>
+    </tr>`;
+  });
+  $('vao-tbody').innerHTML=vaoHtml;
 
-  var e   = STATE.entries[rid] || {};
-  var up  = Object.assign({}, e);
-  var now = new Date().toLocaleString("en-IN");
+  // Village detail table
+  let vilHtml='';
+  villages.forEach((r,i)=>{
+    const e=S.entries[r.rid]||{}, syn=S.syncSt[r.rid]||'';
+    const dot=syn==='ok'?'🟢':syn==='err'?'🔴':'⚪';
+    vilHtml+=`<tr>
+      <td>${i+1}</td>
+      <td><span class="cm">${r.code}</span></td>
+      <td><strong>${esc(r.name)}</strong>${r.dkNames&&r.dkNames.length?'<br><span style="font-size:10px;color:#a78bfa">+'+r.dkNames.length+' dakale</span>':''}</td>
+      <td style="font-size:12px">${esc(r.vao||'')}</td>
+      <td><span class="gp-ch">${esc((r.gp||'').trim())}</span></td>
+      <td style="text-align:right">${e.pV||'—'}</td>
+      <td style="text-align:right">${e.hV||'—'}</td>
+      <td style="text-align:right">${e.pS||'—'}</td>
+      <td style="text-align:right">${e.hS||'—'}</td>
+      <td style="text-align:center">${dot}</td>
+    </tr>`;
+  });
+  $('vil-tbody').innerHTML=vilHtml;
+}
 
-  if (STATE.role === "vao") {
-    if (pVal !== "") up.pV = pVal;
-    if (hVal !== "") up.hV = hVal;
-    up.byV = STATE.uname; up.atV = now;
+// ── Sheets Setup ──────────────────────────────────────────────
+$('script-box').textContent = APPS_SCRIPT_CODE;
+$('csv-sample').textContent = CSV_SAMPLE;
+
+function copyScript(){
+  const btn=$('cp-btn');
+  const done=()=>{btn.textContent='Copied ✓';btn.className='cp-btn done';setTimeout(()=>{btn.textContent='Copy';btn.className='cp-btn';},2500);};
+  if(navigator.clipboard){navigator.clipboard.writeText(APPS_SCRIPT_CODE).then(done).catch(done);}
+  else{const ta=document.createElement('textarea');ta.value=APPS_SCRIPT_CODE;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}
+}
+
+function saveUrl(){
+  const v=$('url-inp').value.trim();
+  if(!v||!v.startsWith('https://')){toast('Enter a valid URL starting with https://','bad');return;}
+  S.sheetUrl=v; localStorage.setItem('c27_url',v);
+  $('url-inp').className='url-inp ok';
+  $('url-saved-msg').classList.remove('hidden');
+  toast('✓ Google Sheets URL saved successfully');
+  updateSyncUI();
+}
+
+function testConn(){
+  const url=$('url-inp').value.trim()||S.sheetUrl;
+  if(!url){toast('Enter URL first','bad');return;}
+  const res=$('test-res');
+  res.className=''; res.textContent='⏳ Testing connection…'; res.classList.remove('hidden');
+  jsonp(url,{action:'ping'},(err,data)=>{
+    if(err||!data||!data.ok){
+      res.className='test-err';
+      res.textContent='✗ Connection failed. Check: (1) URL is correct, (2) "Who has access" is set to Anyone, (3) Deployment is not expired.';
+    } else {
+      res.className='test-ok';
+      res.textContent='✓ '+( data.msg||'Connected successfully! Sheet is ready to receive data.');
+    }
+  },8000);
+}
+
+// ── Upload CSV/Excel ──────────────────────────────────────────
+function handleDrop(e){
+  e.preventDefault();
+  $('drop-zone').classList.remove('drag');
+  const f=e.dataTransfer.files[0];
+  if(f) processFile(f);
+}
+function handleFile(inp){
+  const f=inp.files[0]; if(!f) return;
+  processFile(f); inp.value='';
+}
+
+function processFile(file){
+  const ext=file.name.split('.').pop().toLowerCase();
+  if(ext==='csv'){
+    const reader=new FileReader();
+    reader.onload=e=>parseCSV(e.target.result);
+    reader.readAsText(file);
+  } else if(ext==='xlsx'||ext==='xls'){
+    toast('For Excel files: File → Save As → CSV, then upload the CSV','info');
   } else {
-    if (pVal !== "") up.pS = pVal;
-    if (hVal !== "") up.hS = hVal;
-    up.byS = STATE.uname; up.atS = now;
+    toast('Please upload a .csv file','bad');
   }
-
-  STATE.entries[rid] = up;
-  lsSet("c27_entries", STATE.entries);
-
-  // Find row data for label + push
-  var row = ALL_ROWS.find(function(r){ return r.rid === rid; });
-  var label = row ? (row.type === "dakale" ? row.dkName : row.name) : rid;
-  flash("✓ Saved: " + label);
-
-  // Update row UI
-  var tr = $("tr-" + rid);
-  if (tr) {
-    tr.className = (row && row.type==="dakale" ? "drow" : "vrow") + " sv";
-  }
-  // Inputs go green
-  if (pInp) pInp.className = "ni hv";
-  if (hInp) hInp.className = "ni hv";
-  // Replace button with tick
-  var sc = $("sc-" + rid);
-  if (sc) sc.innerHTML = '<span class="dot hidden" id="dot-'+rid+'"></span><span class="tick">✅</span>';
-
-  updateProgress();
-
-  // Push to Google Sheets
-  if (row) pushToSheet(rid, row, up);
 }
 
-// ── Push to Sheets ────────────────────────────────────────────
-function pushToSheet(rid, row, up) {
-  if (!SHEET_READY) return;
-  var dotEl = $("dot-" + rid);
-  if (dotEl) { dotEl.className = "dot dot-spin"; dotEl.classList.remove("hidden"); }
+function parseCSV(text){
+  const lines=text.trim().split(/\r?\n/);
+  if(lines.length<2){toast('CSV appears empty','bad');return;}
+  const headers=lines[0].split(',').map(h=>h.trim().toLowerCase().replace(/[^a-z0-9]/g,''));
+  const colMap={
+    sno:       headers.findIndex(h=>h.includes('sno')||h.includes('serial')),
+    code:      headers.findIndex(h=>h.includes('code')),
+    name:      headers.findIndex(h=>h.includes('name')&&!h.includes('vao')&&!h.includes('gp')),
+    dk:        headers.findIndex(h=>h.includes('dakale')||h.includes('dk')),
+    vao:       headers.findIndex(h=>h.includes('vao')),
+    gp:        headers.findIndex(h=>h.includes('gp')||h.includes('panchayat')),
+  };
+  if(colMap.name<0||colMap.vao<0||colMap.gp<0){
+    toast('Missing required columns: Village Name, VAO Name, GP Name','bad');return;
+  }
+  // Parse CSV rows (handle quoted fields)
+  function parseRow(line){
+    const cols=[]; let cur='', inQ=false;
+    for(let i=0;i<line.length;i++){
+      const c=line[i];
+      if(c==='"'){inQ=!inQ;}
+      else if(c===','&&!inQ){cols.push(cur.trim());cur='';}
+      else cur+=c;
+    }
+    cols.push(cur.trim()); return cols;
+  }
+  const data=[];
+  for(let i=1;i<Math.min(lines.length,1001);i++){
+    if(!lines[i].trim()) continue;
+    const cols=parseRow(lines[i]);
+    const row={
+      sno:  colMap.sno>=0?parseInt(cols[colMap.sno])||i:i,
+      code: colMap.code>=0?parseInt(cols[colMap.code])||Date.now()+i:Date.now()+i,
+      name: (cols[colMap.name]||'').trim(),
+      dk:   colMap.dk>=0?(cols[colMap.dk]||'').trim():'',
+      vao:  (cols[colMap.vao]||'').trim().toUpperCase(),
+      gp:   (cols[colMap.gp]||'').trim(),
+    };
+    if(row.name) data.push(row);
+  }
+  if(!data.length){toast('No valid village rows found in CSV','bad');return;}
+  S.pendingUpload=data;
+  showPreview(data, lines[0].split(','));
+}
 
-  var payload = JSON.stringify({
-    action:      "upsertRow",
-    rowId:       rid,
-    code:        row.code,
-    villageName: row.name,
-    rowType:     row.type,
-    dakaleGrama: row.type === "dakale" ? row.dkName : "",
-    vao:         row.vao,
-    gp:          row.gp,
-    popVAO:      up.pV  !== undefined ? up.pV  : "",
-    hhVAO:       up.hV  !== undefined ? up.hV  : "",
-    savedByVAO:  up.byV || "",
-    vaoAt:       up.atV || "",
-    popSec:      up.pS  !== undefined ? up.pS  : "",
-    hhSec:       up.hS  !== undefined ? up.hS  : "",
-    savedBySec:  up.byS || "",
-    secAt:       up.atS || ""
+function showPreview(data,headers){
+  const sample=data.slice(0,5);
+  let h='<thead><tr>'+headers.map(h=>'<th>'+esc(h.trim())+'</th>').join('')+'</tr></thead><tbody>';
+  sample.forEach(r=>{
+    h+=`<tr><td>${r.sno}</td><td>${r.code}</td><td>${esc(r.name)}</td><td>${esc(r.dk)}</td><td>${esc(r.vao)}</td><td>${esc(r.gp)}</td></tr>`;
   });
+  h+='</tbody>';
+  $('prev-tbl').innerHTML=h;
+  show('upload-preview');
+  toast(data.length+' village rows found — preview shown below','info');
+}
 
-  fetch(SHEET_URL, {
-    method:  "POST",
-    mode:    "no-cors",
-    headers: {"Content-Type":"application/json"},
-    body:    payload
-  }).then(function() {
-    var d = $("dot-" + rid);
-    if (d) { d.className = "dot dot-ok"; }
-  }).catch(function() {
-    var d = $("dot-" + rid);
-    if (d) { d.className = "dot dot-err"; }
-    flash("⚠ Sheet sync failed — data saved locally", "err");
-  });
+function applyUpload(){
+  if(!S.pendingUpload){toast('No data to apply','bad');return;}
+  S.raw=S.pendingUpload; S.pendingUpload=null;
+  localStorage.setItem('c27_raw',JSON.stringify(S.raw));
+  hide('upload-preview');
+  toast('✓ '+S.raw.length+' villages loaded — VAO/Secretary logins will use this data');
+  buildAdmin();
+}
+
+function cancelUpload(){
+  S.pendingUpload=null; hide('upload-preview');
+  toast('Upload cancelled','info');
+}
+
+function resetToDefault(){
+  if(!confirm('Reset to built-in 202 villages? Entered population data is NOT affected.')) return;
+  S.raw=DEFAULT_RAW;
+  localStorage.removeItem('c27_raw');
+  toast('✓ Reset to default 202 villages');
+  buildAdmin();
+}
+
+// ── Download self ─────────────────────────────────────────────
+function downloadSelf(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='census2027.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('✓ census2027.html downloaded');
 }
 
 // ── Init ──────────────────────────────────────────────────────
-// Populate VAO dropdown on load
-switchTab("vao");
+setTab('vao');
+// pre-fill URL field in setup tab if already saved
+if(S.sheetUrl){
+  $('url-inp').value=S.sheetUrl;
+  $('url-inp').className='url-inp ok';
+  $('url-saved-msg').classList.remove('hidden');
+}
 </script>
 </body>
 </html>
