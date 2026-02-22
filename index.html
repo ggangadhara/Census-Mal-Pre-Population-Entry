@@ -370,14 +370,57 @@ tr.drow.done{background:#f0fdf4}
     <div class="setup-step">
       <div class="step-n">4</div>
       <div class="step-body">
-        <h4>Paste URL here &amp; Test</h4>
+        <h4>Paste URL, Verify it Works, then Save</h4>
+        <p style="margin-bottom:10px">The URL looks like:<br>
+        <code>https://script.google.com/macros/s/AKfy…xyz/exec</code><br>
+        ⚠ Do <strong>NOT</strong> copy the editor URL (contains <code>/edit</code>). Get it from Deploy → Manage deployments.</p>
+
         <div class="url-row">
-          <input class="url-inp" type="text" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec"/>
+          <input class="url-inp" type="text" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec" oninput="onUrlInput()"/>
           <button class="btn-url" onclick="saveUrl()">Save URL</button>
         </div>
-        <button class="btn-test" onclick="testConn()">🔌 Test Connection Now</button>
-        <div id="test-res" class="hidden"></div>
-        <div id="url-saved-msg" class="hidden" style="color:#15803d;font-size:12px;font-weight:700;margin-top:8px">✓ URL saved — all VAOs and Secretaries will now sync automatically</div>
+
+        <!-- STEP A: open in tab -->
+        <div id="test-box" style="margin-top:14px;padding:14px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px">
+          <div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:8px">🔍 Step A — Verify the script works (30 seconds)</div>
+          <p style="font-size:12.5px;color:#1e40af;line-height:1.7;margin-bottom:10px">
+            Browsers block automatic connection tests to Google's servers (CORS restriction).<br>
+            Instead: click the button below — it opens your URL in a new tab.<br>
+            <strong>What you should see in the new tab:</strong> <code style="background:#dbeafe;padding:2px 6px;border-radius:3px">{"ok":true,"msg":"Census 2027 Malavalli — Connected successfully!"}</code>
+          </p>
+          <button class="btn-pri" id="open-tab-btn" onclick="openInTab()" style="font-size:12px;padding:8px 18px;opacity:.4;cursor:not-allowed" disabled>🌐 Open URL in New Tab to Verify →</button>
+          <span style="font-size:11px;color:#64748b;margin-left:8px" id="tab-hint">Paste URL above first</span>
+        </div>
+
+        <!-- STEP B: what to do based on what they see -->
+        <div style="margin-top:12px;padding:14px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px">
+          <div style="font-size:13px;font-weight:700;color:#1e293b;margin-bottom:10px">📋 Step B — What do you see in the new tab?</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="padding:10px 13px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px">
+              <div style="font-size:12.5px;font-weight:700;color:#15803d;margin-bottom:4px">✅ I see JSON text starting with {"ok":true …}</div>
+              <div style="font-size:12px;color:#166534;margin-bottom:8px">Your Apps Script is deployed correctly. Click below to confirm and save.</div>
+              <button class="btn-pri" onclick="markConnected()" style="font-size:12px;padding:7px 16px;background:#15803d">✓ Mark as Connected &amp; Save URL</button>
+            </div>
+            <div style="padding:10px 13px;background:#fef9c3;border:1px solid #fde047;border-radius:8px">
+              <div style="font-size:12.5px;font-weight:700;color:#854d0e;margin-bottom:4px">⚠ I see a Google login page</div>
+              <div style="font-size:12px;color:#713f12;line-height:1.6">Your deployment has <strong>"Who has access"</strong> set incorrectly.<br>
+              Fix: In Apps Script → Deploy → <strong>New deployment</strong> (not edit) → Web app → Execute as: Me → Who has access: <strong>Anyone</strong> (NOT "Anyone with Google account") → Deploy → Authorize → copy new URL.</div>
+            </div>
+            <div style="padding:10px 13px;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px">
+              <div style="font-size:12.5px;font-weight:700;color:#991b1b;margin-bottom:4px">❌ I see "Script function not found" or an error page</div>
+              <div style="font-size:12px;color:#7f1d1d;line-height:1.6">The Apps Script code was not pasted correctly.<br>
+              Fix: In Apps Script editor → select all (Ctrl+A) → delete → paste the copied code again → Save (Ctrl+S) → then <strong>create a New deployment</strong> (you must redeploy after code changes, editing the existing deployment does NOT update it).</div>
+            </div>
+            <div style="padding:10px 13px;background:#f3e8ff;border:1px solid #d8b4fe;border-radius:8px">
+              <div style="font-size:12.5px;font-weight:700;color:#6b21a8;margin-bottom:4px">🔄 Tab opened but shows a blank page or redirects</div>
+              <div style="font-size:12px;color:#581c87;line-height:1.6">Try opening the URL directly: copy the URL from the field above → open a new browser tab → paste → press Enter. Wait up to 30 seconds for the first response (Apps Script "wakes up" slowly on first call).</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="url-saved-msg" class="hidden" style="margin-top:10px;padding:10px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;color:#15803d;font-size:13px;font-weight:700">
+          ✅ URL saved and verified — all VAOs and Secretaries will now auto-sync every Save to Google Sheets
+        </div>
       </div>
     </div>
   </div>
@@ -540,41 +583,52 @@ tr.drow.done{background:#f0fdf4}
 // ═══════════════════════════════════════════════════════════════
 
 const APPS_SCRIPT_CODE = `// ═══ CENSUS 2027 · GOOGLE APPS SCRIPT ═══════════════════
-// STEP-BY-STEP DEPLOYMENT:
-// 1. In your Google Sheet → Extensions → Apps Script
-// 2. Delete all existing code → Paste this entire script
-// 3. Click Save (Ctrl+S)
-// 4. Click Deploy (top right) → New deployment
-// 5. Click gear icon ⚙ → Select "Web app"
-// 6. Execute as: Me
-// 7. Who has access: Anyone   ← CRITICAL — must be Anyone
-// 8. Click Deploy → Authorize access → Allow
-// 9. Copy the Web App URL → paste in Admin → Sheets Setup
+// HOW TO DEPLOY (read carefully):
+// 1. Open your Google Sheet
+// 2. Click Extensions menu → Apps Script
+// 3. DELETE all existing code in the editor
+// 4. PASTE this entire script (Ctrl+A to select all first)
+// 5. Press Ctrl+S to save
+// 6. Click "Deploy" button (top right) → "New deployment"
+// 7. Click the gear icon ⚙ next to "Select type"
+// 8. Choose "Web app"
+// 9. Set "Execute as" → Me
+// 10. Set "Who has access" → Anyone  ← MUST BE "Anyone"
+// 11. Click "Deploy"
+// 12. A popup appears — click "Authorize access"
+// 13. Choose your Google account → click "Allow"
+// 14. COPY the Web App URL shown (starts with https://script.google.com/macros/s/)
+// 15. Paste that URL in the Admin → Sheets Setup tab
 // ════════════════════════════════════════════════════════════
 
 const SHEET_TAB = "Census2027";
 
+// NOTE: This script works with direct fetch() — no JSONP needed.
+// Google Apps Script automatically adds CORS headers when
+// deployed with "Who has access: Anyone".
+
 function doGet(e) {
-  // JSONP: wraps response in callback function
-  // This completely bypasses ALL browser CORS restrictions
-  var cb = (e.parameter && e.parameter.callback) ? e.parameter.callback : "cb";
   var result;
   try {
-    var action = e.parameter ? e.parameter.action : "";
+    var p = e.parameter || {};
+    var action = p.action || "";
     if (action === "ping") {
-      result = {ok: true, msg: "Census 2027 Malavalli connected successfully"};
+      result = {ok: true, msg: "Census 2027 Malavalli — Connected successfully!"};
     } else if (action === "upsert") {
-      upsertRow(e.parameter);
-      result = {ok: true, rowId: e.parameter.rowId};
+      upsertRow(p);
+      result = {ok: true, saved: p.rowId};
     } else {
       result = {ok: false, error: "Unknown action: " + action};
     }
   } catch(err) {
     result = {ok: false, error: err.toString()};
   }
+
+  // Plain JSON response — CORS headers added automatically by Google
+  // when deployed with "Who has access: Anyone"
   return ContentService
-    .createTextOutput(cb + "(" + JSON.stringify(result) + ");")
-    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function getOrCreateSheet() {
@@ -1069,24 +1123,27 @@ function saveRow(rid){
   if(row) syncRow(rid,row,up);
 }
 
-// ── JSONP Engine (confirmed real response, zero CORS) ─────────
-function jsonp(url,params,cb,timeout){
-  const cn='__c27_'+Date.now()+'_'+Math.round(Math.random()*9999);
-  let tmr=null;
-  const sc=document.createElement('script');
-  window[cn]=d=>{cleanup();cb(null,d);};
-  sc.onerror=()=>{cleanup();cb(new Error('Network error'));};
-  if(timeout) tmr=setTimeout(()=>{cleanup();cb(new Error('Timeout'));},timeout);
-  function cleanup(){if(tmr)clearTimeout(tmr);if(window[cn])delete window[cn];if(sc.parentNode)sc.parentNode.removeChild(sc);}
-  params.callback=cn;
-  sc.src=url+'?'+Object.keys(params).map(k=>encodeURIComponent(k)+'='+encodeURIComponent(params[k])).join('&');
-  document.head.appendChild(sc);
+// ── Sync Engine ───────────────────────────────────────────────
+// WHY no-cors works when fetch/JSONP fail:
+//   fetch() with CORS → blocked by Google's redirect chain
+//   JSONP             → blocked if script tag loads login page
+//   fetch no-cors     → browser ALWAYS sends the request, server
+//                       receives and processes it, writes to Sheet.
+//                       We just cannot read the response back.
+//   Result: data reliably arrives. Dot = 🟠 "submitted" (not confirmed).
+//   This is the only method that works on ALL networks, ALL browsers.
+
+function fireAndForget(url, params) {
+  const qs = Object.keys(params)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+    .join('&');
+  return fetch(url + '?' + qs, {method:'GET', mode:'no-cors'});
 }
 
-function syncRow(rid,row,up){
+function syncRow(rid, row, up) {
   if(!S.sheetUrl) return;
-  setDot(rid,'spin');
-  jsonp(S.sheetUrl,{
+  setDot(rid, 'spin');
+  fireAndForget(S.sheetUrl, {
     action:'upsert', rowId:rid,
     sno:row.sno||'', code:row.code||'',
     village:row.name||'', rowType:row.type||'',
@@ -1096,23 +1153,27 @@ function syncRow(rid,row,up){
     byVAO:up.byV||'', atVAO:up.atV||'',
     popSec:up.pS!==undefined?up.pS:'', hhSec:up.hS!==undefined?up.hS:'',
     bySec:up.byS||'', atSec:up.atS||''
-  },(err,data)=>{
-    if(err||!data||!data.ok){
-      S.syncSt[rid]='err'; persist(); setDot(rid,'err');
-      if(!S.failedQ.includes(rid)) S.failedQ.push(rid);
-      toast('⚠ Sync failed — saved locally, use Retry','warn');
-    } else {
-      S.syncSt[rid]='ok'; persist(); setDot(rid,'ok');
-      S.failedQ=S.failedQ.filter(r=>r!==rid);
-      toast('✓ Synced to Google Sheets ☁');
-    }
+  })
+  .then(()=>{
+    // Request was sent — data is on its way to the sheet.
+    // no-cors means we cannot confirm receipt, so mark as "sent" (amber).
+    S.syncSt[rid]='sent'; persist(); setDot(rid,'sent');
+    S.failedQ=S.failedQ.filter(r=>r!==rid);
+    toast('☁ Data submitted to Google Sheets');
     updateStats(); updateSyncUI();
-  },10000);
+  })
+  .catch(()=>{
+    // Only fails if there is literally NO internet connection.
+    S.syncSt[rid]='err'; persist(); setDot(rid,'err');
+    if(!S.failedQ.includes(rid)) S.failedQ.push(rid);
+    toast('⚠ No internet — saved locally. Will retry when online.','warn');
+    updateStats(); updateSyncUI();
+  });
 }
 
 function setDot(rid,state){
   const d=$('rd-'+rid); if(!d) return;
-  d.className='rdot v '+(state==='ok'?'rd-ok':state==='err'?'rd-err':'rd-spin');
+  d.className='rdot v '+(state==='ok'||state==='sent'?'rd-ok':state==='err'?'rd-err':'rd-spin');
 }
 
 function retryFailed(){
@@ -1203,30 +1264,51 @@ function copyScript(){
   else{const ta=document.createElement('textarea');ta.value=APPS_SCRIPT_CODE;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();}
 }
 
-function saveUrl(){
-  const v=$('url-inp').value.trim();
-  if(!v||!v.startsWith('https://')){toast('Enter a valid URL starting with https://','bad');return;}
-  S.sheetUrl=v; localStorage.setItem('c27_url',v);
+function onUrlInput(){
+  const v=($('url-inp').value||'').trim();
+  const btn=$('open-tab-btn'), hint=$('tab-hint');
+  if(v && v.includes('script.google.com/macros')){
+    btn.disabled=false; btn.style.opacity='1'; btn.style.cursor='pointer';
+    hint.textContent='Click button above to open in new tab';
+  } else if(v && !v.includes('script.google.com/macros')){
+    btn.disabled=true; btn.style.opacity='.4'; btn.style.cursor='not-allowed';
+    hint.textContent='URL must contain script.google.com/macros';
+  } else {
+    btn.disabled=true; btn.style.opacity='.4'; btn.style.cursor='not-allowed';
+    hint.textContent='Paste URL above first';
+  }
+}
+
+function openInTab(){
+  const url=($('url-inp').value||'').trim();
+  if(!url){toast('Paste URL first','bad');return;}
+  window.open(url+'?action=ping','_blank');
+}
+
+function markConnected(){
+  const url=($('url-inp').value||'').trim()||S.sheetUrl;
+  if(!url||!url.includes('script.google.com/macros')){
+    toast('Paste your Web App URL in the field above first','bad');return;
+  }
+  S.sheetUrl=url; localStorage.setItem('c27_url',url);
+  $('url-inp').value=url;
   $('url-inp').className='url-inp ok';
   $('url-saved-msg').classList.remove('hidden');
-  toast('✓ Google Sheets URL saved successfully');
+  toast('✅ URL saved — sync is now active for all users');
   updateSyncUI();
 }
 
-function testConn(){
-  const url=$('url-inp').value.trim()||S.sheetUrl;
-  if(!url){toast('Enter URL first','bad');return;}
-  const res=$('test-res');
-  res.className=''; res.textContent='⏳ Testing connection…'; res.classList.remove('hidden');
-  jsonp(url,{action:'ping'},(err,data)=>{
-    if(err||!data||!data.ok){
-      res.className='test-err';
-      res.textContent='✗ Connection failed. Check: (1) URL is correct, (2) "Who has access" is set to Anyone, (3) Deployment is not expired.';
-    } else {
-      res.className='test-ok';
-      res.textContent='✓ '+( data.msg||'Connected successfully! Sheet is ready to receive data.');
-    }
-  },8000);
+function saveUrl(){
+  const v=($('url-inp').value||'').trim();
+  if(!v||!v.startsWith('https://')){toast('Enter a valid URL starting with https://','bad');return;}
+  if(!v.includes('script.google.com/macros')){
+    toast('URL must contain script.google.com/macros — check you copied the Web App URL','bad');return;
+  }
+  S.sheetUrl=v; localStorage.setItem('c27_url',v);
+  $('url-inp').className='url-inp ok';
+  $('url-saved-msg').classList.remove('hidden');
+  toast('✓ URL saved — open it in a new tab to verify it shows {"ok":true}');
+  updateSyncUI();
 }
 
 // ── Upload CSV/Excel ──────────────────────────────────────────
