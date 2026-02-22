@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Census 2027 · Malavalli Taluk</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Serif:wght@700&family=Noto+Sans+Kannada:wght@400;600;700&display=swap');
@@ -270,16 +268,16 @@ tr.drow.done{background:#f0fdf4}
       <p>Malavalli Taluk · Mandya District · Karnataka Government</p>
     </div>
     <div class="hdr-right">
-      <div id="hdr-sess" style="display:none;align-items:center;gap:8px">
-        <span id="hdr-chip" class="hdr-chip chip-vao"></span>
-        <span id="hdr-nm" class="hdr-uname"></span>
+      <div id="hdr-sess" style="display: flex; align-items: center; gap: 8px;">
+        <span id="hdr-chip" class="hdr-chip chip-adm">⚙ Admin</span>
+        <span id="hdr-nm" class="hdr-uname">Administrator</span>
       </div>
     </div>
   </div>
 </header>
 
 <!-- LOGIN PAGE -->
-<div class="page" id="pg-login">
+<div class="page hidden" id="pg-login">
   <div class="login-wrap">
     <div class="login-card">
       <div class="login-top">
@@ -289,19 +287,19 @@ tr.drow.done{background:#f0fdf4}
       </div>
       <div class="login-body">
         <div class="rtabs">
-          <button class="rtab on" id="tab-vao" onclick="setTab('vao')">👤 VAO</button>
+          <button class="rtab" id="tab-vao" onclick="setTab('vao')">👤 VAO</button>
           <button class="rtab" id="tab-sec" onclick="setTab('secretary')">🏢 Secretary</button>
-          <button class="rtab" id="tab-adm" onclick="setTab('admin')">⚙ Admin</button>
+          <button class="rtab on" id="tab-adm" onclick="setTab('admin')">⚙ Admin</button>
         </div>
         <div class="err-msg hidden" id="login-err"></div>
-        <div class="fgrp" id="name-grp">
+        <div class="fgrp hidden" id="name-grp">
           <label class="flbl" id="name-lbl">VAO Name</label>
-          <select class="fsel" id="name-sel"><option value="">-- Select --</option></select>
+          <select class="fsel" id="name-sel"><option value="">-- Select --</option><option value="ABHIJITH N L">ABHIJITH N L</option><option value="AKSHAY KUMAR">AKSHAY KUMAR</option><option value="ANIL JAMAKHANDI">ANIL JAMAKHANDI</option><option value="BHASKAR S">BHASKAR S</option><option value="CHAITHRA K">CHAITHRA K</option><option value="GURURAJ">GURURAJ</option><option value="HANAMANTARAYA BOGONDI">HANAMANTARAYA BOGONDI</option><option value="JAYANTH B N">JAYANTH B N</option><option value="KAVADI DHANANJAYA">KAVADI DHANANJAYA</option><option value="KAVYA">KAVYA</option><option value="KENCHAPPA KODLIWWAD">KENCHAPPA KODLIWWAD</option><option value="LANKESH H S">LANKESH H S</option><option value="LATHA G">LATHA G</option><option value="LAVANYA">LAVANYA</option><option value="MADEVI J">MADEVI J</option><option value="MADHU M">MADHU M</option><option value="MALLESH KP">MALLESH KP</option><option value="MANJUNATH M V">MANJUNATH M V</option><option value="NANDEESH">NANDEESH</option><option value="NARASAPPA">NARASAPPA</option><option value="NATARAJ B">NATARAJ B</option><option value="PRAKASHA">PRAKASHA</option><option value="PRATHIMA SM">PRATHIMA SM</option><option value="PRAVEEN KUMAR M">PRAVEEN KUMAR M</option><option value="PRAVEEN T K">PRAVEEN T K</option><option value="PUNEETH KUMAR N">PUNEETH KUMAR N</option><option value="RAVEESH M">RAVEESH M</option><option value="RUKSAR FARHEEN">RUKSAR FARHEEN</option><option value="SANJAY K">SANJAY K</option><option value="SHAFI">SHAFI</option><option value="SHIVAPPA DAMANALA">SHIVAPPA DAMANALA</option><option value="SHIVASHANKAR B JAMAKANDI">SHIVASHANKAR B JAMAKANDI</option><option value="SHRIKANTH KOTYAL">SHRIKANTH KOTYAL</option><option value="SIDDARAYAMALI">SIDDARAYAMALI</option><option value="SIDRAMAPPA">SIDRAMAPPA</option><option value="SOMANNA">SOMANNA</option><option value="SOMASHEKAR P">SOMASHEKAR P</option><option value="SRINIVASAMURTHY">SRINIVASAMURTHY</option><option value="SRINIVASMURTHY">SRINIVASMURTHY</option><option value="SUBHASH">SUBHASH</option><option value="SUDARSHAN KUMAR PS">SUDARSHAN KUMAR PS</option><option value="SUDEEP KUMAR V">SUDEEP KUMAR V</option><option value="USMAN BHASHA">USMAN BHASHA</option></select>
         </div>
         <div class="fgrp">
           <label class="flbl">ಗುಪ್ತಪದ / Password</label>
           <div class="pwd-wrap">
-            <input class="finp" type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+            <input class="finp" type="password" id="pwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
             <button class="eye-btn" type="button" onclick="togglePwd()" id="eye-btn" title="Show/Hide password">👁</button>
           </div>
         </div>
@@ -359,7 +357,7 @@ tr.drow.done{background:#f0fdf4}
           <strong>⚠ Google Sheets sync not configured on this device.</strong><br>
           Enter the Web App URL provided by your Admin to enable automatic sync:
           <div class="url-banner-inp">
-            <input type="text" id="banner-url-inp" placeholder="https://script.google.com/macros/s/…/exec"/>
+            <input type="text" id="banner-url-inp" placeholder="https://script.google.com/macros/s/…/exec">
             <button onclick="saveBannerUrl()">Save &amp; Enable Sync</button>
           </div>
         </div>
@@ -371,7 +369,7 @@ tr.drow.done{background:#f0fdf4}
         <span class="spill sp-ok hidden" id="pill-ok">✓ Connected — every Save auto-syncs to Google Sheets</span>
         <span class="spill sp-warn hidden" id="pill-warn">⚠ Some rows failed to sync — use Retry in sidebar</span>
       </div>
-      
+      async function fetchFromSheet(user){
   const url = resolveSheetURL();
   if(!url) return;
 
@@ -389,7 +387,7 @@ tr.drow.done{background:#f0fdf4}
 
     if(json.success){
       S.rows = {};
-      json.rows.forEach(r=>{
+      json.rows.forEach(r=&gt;{
         S.rows[r["Row ID"]] = {
           rowId:r["Row ID"],
           popVAO:r["Population (VAO)"] || '',
@@ -427,30 +425,2473 @@ tr.drow.done{background:#f0fdf4}
 </div>
 
 <!-- ADMIN PAGE -->
-<div class="page hidden" id="pg-admin">
+<div class="page" id="pg-admin">
   <div class="admin-tabs" style="display:flex;align-items:stretch">
-    <button class="atab on" id="at-0" onclick="showAdminTab(0)">📊 Progress</button>
+    <button class="atab" id="at-0" onclick="showAdminTab(0)">📊 Progress</button>
     <button class="atab" id="at-1" onclick="showAdminTab(1)">☁ Sheets</button>
     <button class="atab" id="at-2" onclick="showAdminTab(2)">📤 Upload</button>
-    <button class="atab" id="at-3" onclick="showAdminTab(3)">🚀 Hosting</button>
+    <button class="atab on" id="at-3" onclick="showAdminTab(3)">🚀 Hosting</button>
     <button onclick="doLogout()" style="background:#fee2e2;color:#991b1b;border:none;border-left:1px solid #fca5a5;padding:10px 16px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;border-radius:0 14px 0 0">← Logout</button>
   </div>
 
   <!-- TAB 0: PROGRESS -->
-  <div class="apanel" id="ap-0">
-    <div class="admin-grid" id="admin-cards"></div>
+  <div class="apanel hidden" id="ap-0">
+    <div class="admin-grid" id="admin-cards">
+    <div class="stat-card"><div class="sc-ico">🏘</div><div class="sc-val">202</div><div class="sc-lbl">Total Villages</div><div class="sc-bar"><div class="sc-fill" style="width:100%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">👤</div><div class="sc-val">2</div><div class="sc-lbl">VAO Completed (1%)</div><div class="sc-bar"><div class="sc-fill" style="width:1%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">🏢</div><div class="sc-val">1</div><div class="sc-lbl">Secretary Verified (0%)</div><div class="sc-bar"><div class="sc-fill" style="width:0%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">☁</div><div class="sc-val">0</div><div class="sc-lbl">Rows Synced to Sheet</div><div class="sc-bar"><div class="sc-fill" style="width:0%"></div></div></div>
+    <div class="stat-card"><div class="sc-ico">🟢</div><div class="sc-val">ON</div><div class="sc-lbl">Google Sheets Connection</div></div>
+  </div>
     <div class="sec-title">📋 VAO-wise Completion Status</div>
     <div style="overflow:auto;margin-bottom:22px">
       <table class="prog-table">
         <thead><tr><th>#</th><th>VAO Name</th><th>Villages</th><th>VAO Completed</th><th>Sec Verified</th><th>Progress</th><th>Status</th></tr></thead>
-        <tbody id="vao-tbody"></tbody>
+        <tbody id="vao-tbody"><tr>
+      <td>1</td><td><strong>ABHIJITH N L</strong></td><td>5</td>
+      <td>2/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:40%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">40%</span></td>
+      <td><span class="badge b-part">In Progress</span></td>
+    </tr><tr>
+      <td>2</td><td><strong>AKSHAY KUMAR</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>3</td><td><strong>ANIL JAMAKHANDI</strong></td><td>6</td>
+      <td>0/6</td><td>0/6</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>4</td><td><strong>BHASKAR S</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>5</td><td><strong>CHAITHRA K</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>6</td><td><strong>GURURAJ</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>7</td><td><strong>HANAMANTARAYA BOGONDI</strong></td><td>6</td>
+      <td>0/6</td><td>0/6</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>8</td><td><strong>JAYANTH B N</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>9</td><td><strong>KAVADI DHANANJAYA</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>10</td><td><strong>KAVYA</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>11</td><td><strong>KENCHAPPA KODLIWWAD</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>12</td><td><strong>LANKESH H S</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>13</td><td><strong>LATHA G</strong></td><td>13</td>
+      <td>0/13</td><td>0/13</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>14</td><td><strong>LAVANYA</strong></td><td>2</td>
+      <td>0/2</td><td>0/2</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>15</td><td><strong>MADEVI J</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>16</td><td><strong>MADHU M</strong></td><td>10</td>
+      <td>0/10</td><td>0/10</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>17</td><td><strong>MALLESH KP</strong></td><td>1</td>
+      <td>0/1</td><td>0/1</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>18</td><td><strong>MANJUNATH M V</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>19</td><td><strong>NANDEESH</strong></td><td>1</td>
+      <td>0/1</td><td>0/1</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>20</td><td><strong>NARASAPPA</strong></td><td>15</td>
+      <td>0/15</td><td>0/15</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>21</td><td><strong>NATARAJ B</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>22</td><td><strong>PRAKASHA</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>23</td><td><strong>PRATHIMA SM</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>24</td><td><strong>PRAVEEN KUMAR M</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>25</td><td><strong>PRAVEEN T K</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>26</td><td><strong>PUNEETH KUMAR N</strong></td><td>9</td>
+      <td>0/9</td><td>0/9</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>27</td><td><strong>RAVEESH M</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>28</td><td><strong>RUKSAR FARHEEN</strong></td><td>2</td>
+      <td>0/2</td><td>0/2</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>29</td><td><strong>SANJAY K</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>30</td><td><strong>SHAFI</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>31</td><td><strong>SHIVAPPA DAMANALA</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>32</td><td><strong>SHIVASHANKAR B JAMAKANDI</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>33</td><td><strong>SHRIKANTH KOTYAL</strong></td><td>9</td>
+      <td>0/9</td><td>0/9</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>34</td><td><strong>SIDDARAYAMALI</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>35</td><td><strong>SIDRAMAPPA</strong></td><td>4</td>
+      <td>0/4</td><td>1/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>36</td><td><strong>SOMANNA</strong></td><td>5</td>
+      <td>0/5</td><td>0/5</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>37</td><td><strong>SOMASHEKAR P</strong></td><td>9</td>
+      <td>0/9</td><td>0/9</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>38</td><td><strong>SRINIVASAMURTHY</strong></td><td>7</td>
+      <td>0/7</td><td>0/7</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>39</td><td><strong>SRINIVASMURTHY</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>40</td><td><strong>SUBHASH</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>41</td><td><strong>SUDARSHAN KUMAR PS</strong></td><td>4</td>
+      <td>0/4</td><td>0/4</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>42</td><td><strong>SUDEEP KUMAR V</strong></td><td>1</td>
+      <td>0/1</td><td>0/1</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr><tr>
+      <td>43</td><td><strong>USMAN BHASHA</strong></td><td>3</td>
+      <td>0/3</td><td>0/3</td>
+      <td><div class="mini-bar"><div class="mini-fill" style="width:0%"></div></div><span style="font-size:11px;color:#475569;margin-left:6px">0%</span></td>
+      <td><span class="badge b-none">Not Started</span></td>
+    </tr></tbody>
       </table>
     </div>
     <div class="sec-title">🏘 Village-level Detail</div>
     <div style="overflow:auto;max-height:360px">
       <table class="prog-table">
         <thead><tr><th>#</th><th>Code</th><th>Village</th><th>VAO</th><th>GP</th><th>Pop (VAO)</th><th>HH (VAO)</th><th>Pop (Sec)</th><th>HH (Sec)</th><th>Sync</th></tr></thead>
-        <tbody id="vil-tbody"></tbody>
+        <tbody id="vil-tbody"><tr>
+      <td>1</td>
+      <td><span class="cm">614654</span></td>
+      <td><strong>Chikkamulagudu</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SHAFI</td>
+      <td><span class="gp-ch">Chikkamulagudu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>2</td>
+      <td><span class="cm">649474</span></td>
+      <td><strong>Kurubanapura</strong></td>
+      <td style="font-size:12px">SHAFI</td>
+      <td><span class="gp-ch">Chikkamulagudu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>3</td>
+      <td><span class="cm">614655</span></td>
+      <td><strong>Veerajipura</strong></td>
+      <td style="font-size:12px">MANJUNATH M V</td>
+      <td><span class="gp-ch">Mikkere</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>4</td>
+      <td><span class="cm">614656</span></td>
+      <td><strong>Maganahalli</strong></td>
+      <td style="font-size:12px">KAVYA</td>
+      <td><span class="gp-ch">Mikkere</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>5</td>
+      <td><span class="cm">614657</span></td>
+      <td><strong>Mikkere</strong></td>
+      <td style="font-size:12px">MANJUNATH M V</td>
+      <td><span class="gp-ch">Mikkere</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>6</td>
+      <td><span class="cm">614658</span></td>
+      <td><strong>Ramandur</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">MANJUNATH M V</td>
+      <td><span class="gp-ch">Mikkere</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>7</td>
+      <td><span class="cm">614659</span></td>
+      <td><strong>Anasale</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SHAFI</td>
+      <td><span class="gp-ch">Chikkamulagudu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>8</td>
+      <td><span class="cm">649529</span></td>
+      <td><strong>Halladakoppalu</strong></td>
+      <td style="font-size:12px">SHAFI</td>
+      <td><span class="gp-ch">Chikkamulagudu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>9</td>
+      <td><span class="cm">614660</span></td>
+      <td><strong>Bheemanahalli</strong></td>
+      <td style="font-size:12px">GURURAJ</td>
+      <td><span class="gp-ch">Chikkamulagudu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>10</td>
+      <td><span class="cm">614661</span></td>
+      <td><strong>Hittanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">GURURAJ</td>
+      <td><span class="gp-ch">Hittanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>11</td>
+      <td><span class="cm">614662</span></td>
+      <td><strong>Dugganahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">KAVADI DHANANJAYA</td>
+      <td><span class="gp-ch">Dugganahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>12</td>
+      <td><span class="cm">614663</span></td>
+      <td><strong>Devipura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">PRAKASHA</td>
+      <td><span class="gp-ch">Talagavadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>13</td>
+      <td><span class="cm">614664</span></td>
+      <td><strong>Thalagavadi</strong></td>
+      <td style="font-size:12px">PRAKASHA</td>
+      <td><span class="gp-ch">Talagavadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>14</td>
+      <td><span class="cm">614665</span></td>
+      <td><strong>Kagepura</strong></td>
+      <td style="font-size:12px">PRAKASHA</td>
+      <td><span class="gp-ch">Talagavadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>15</td>
+      <td><span class="cm">614666</span></td>
+      <td><strong>Koregala</strong></td>
+      <td style="font-size:12px">AKSHAY KUMAR</td>
+      <td><span class="gp-ch">Settihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>16</td>
+      <td><span class="cm">614667</span></td>
+      <td><strong>Maganur</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">AKSHAY KUMAR</td>
+      <td><span class="gp-ch">Settihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>17</td>
+      <td><span class="cm">614668</span></td>
+      <td><strong>Settahalli</strong></td>
+      <td style="font-size:12px">AKSHAY KUMAR</td>
+      <td><span class="gp-ch">Settihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>18</td>
+      <td><span class="cm">614669</span></td>
+      <td><strong>Muganakoppalu</strong></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>19</td>
+      <td><span class="cm">614670</span></td>
+      <td><strong>Ganiganapura</strong></td>
+      <td style="font-size:12px">JAYANTH B N</td>
+      <td><span class="gp-ch">Bandur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>20</td>
+      <td><span class="cm">614671</span></td>
+      <td><strong>Sasiyalapura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">JAYANTH B N</td>
+      <td><span class="gp-ch">Bandur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>21</td>
+      <td><span class="cm">614672</span></td>
+      <td><strong>Madahalli</strong></td>
+      <td style="font-size:12px">KAVADI DHANANJAYA</td>
+      <td><span class="gp-ch">Dugganahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>22</td>
+      <td><span class="cm">614673</span></td>
+      <td><strong>Hullegala</strong></td>
+      <td style="font-size:12px">KAVADI DHANANJAYA</td>
+      <td><span class="gp-ch">Dugganahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>23</td>
+      <td><span class="cm">614674</span></td>
+      <td><strong>Bandurukaval</strong></td>
+      <td style="font-size:12px">AKSHAY KUMAR</td>
+      <td><span class="gp-ch">Settihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>24</td>
+      <td><span class="cm">614675</span></td>
+      <td><strong>Banduru</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">JAYANTH B N</td>
+      <td><span class="gp-ch">Bandur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>25</td>
+      <td><span class="cm">614676</span></td>
+      <td><strong>Kallarepura</strong></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Bandur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>26</td>
+      <td><span class="cm">614677</span></td>
+      <td><strong>Nenanuru</strong></td>
+      <td style="font-size:12px">PRATHIMA SM</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>27</td>
+      <td><span class="cm">614678</span></td>
+      <td><strong>Markalu</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">PRATHIMA SM</td>
+      <td><span class="gp-ch">Hittanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>28</td>
+      <td><span class="cm">651553</span></td>
+      <td><strong>Jadaganapura</strong></td>
+      <td style="font-size:12px">PRATHIMA SM</td>
+      <td><span class="gp-ch">Hittanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>29</td>
+      <td><span class="cm">614679</span></td>
+      <td><strong>Doranahalli</strong></td>
+      <td style="font-size:12px">GURURAJ</td>
+      <td><span class="gp-ch">Mikkere</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>30</td>
+      <td><span class="cm">614680</span></td>
+      <td><strong>Kirugavalu</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SHAFI</td>
+      <td><span class="gp-ch">Kirugavalu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>31</td>
+      <td><span class="cm">614681</span></td>
+      <td><strong>Deshavalli</strong></td>
+      <td style="font-size:12px">KAVYA</td>
+      <td><span class="gp-ch">Bendaravadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>32</td>
+      <td><span class="cm">614682</span></td>
+      <td><strong>Bendaravadi</strong></td>
+      <td style="font-size:12px">KAVYA</td>
+      <td><span class="gp-ch">Bendaravadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>33</td>
+      <td><span class="cm">614683</span></td>
+      <td><strong>Honaganahalli</strong></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Kalkuni</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>34</td>
+      <td><span class="cm">614684</span></td>
+      <td><strong>Kalkuni</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Kalkuni</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>35</td>
+      <td><span class="cm">651353</span></td>
+      <td><strong>Doddegowdanakoppalu</strong></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Kalkuni</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>36</td>
+      <td><span class="cm">614685</span></td>
+      <td><strong>Huvinakoppalu</strong></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>37</td>
+      <td><span class="cm">614686</span></td>
+      <td><strong>Sujjalur</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>38</td>
+      <td><span class="cm">651447</span></td>
+      <td><strong>Samshettipura</strong></td>
+      <td style="font-size:12px">ANIL JAMAKHANDI</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>39</td>
+      <td><span class="cm">614687</span></td>
+      <td><strong>Uppanahalli</strong></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Settihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>40</td>
+      <td><span class="cm">614688</span></td>
+      <td><strong>Yamadurukaval</strong></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>41</td>
+      <td><span class="cm">614689</span></td>
+      <td><strong>Yamaduru</strong></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>42</td>
+      <td><span class="cm">614690</span></td>
+      <td><strong>Ragibommanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">HANAMANTARAYA BOGONDI</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>43</td>
+      <td><span class="cm">614691</span></td>
+      <td><strong>Ganaganuru</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>44</td>
+      <td><span class="cm">614692</span></td>
+      <td><strong>Hangrapura</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>45</td>
+      <td><span class="cm">614693</span></td>
+      <td><strong>Avverahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Ragibommanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>46</td>
+      <td><span class="cm">614694</span></td>
+      <td><strong>Kebbepura</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>47</td>
+      <td><span class="cm">614695</span></td>
+      <td><strong>Maliyur</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>48</td>
+      <td><span class="cm">651355</span></td>
+      <td><strong>Nelligere</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>49</td>
+      <td><span class="cm">614696</span></td>
+      <td><strong>Hanakola</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Sujjalur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>50</td>
+      <td><span class="cm">614697</span></td>
+      <td><strong>Basavana Halli</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>51</td>
+      <td><span class="cm">614698</span></td>
+      <td><strong>Surakahalli</strong></td>
+      <td style="font-size:12px">PUNEETH KUMAR N</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>52</td>
+      <td><span class="cm">614699</span></td>
+      <td><strong>Nelamakanahalli</strong></td>
+      <td style="font-size:12px">CHAITHRA K</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>53</td>
+      <td><span class="cm">654905</span></td>
+      <td><strong>Hombegowdanadoddi</strong></td>
+      <td style="font-size:12px">CHAITHRA K</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>54</td>
+      <td><span class="cm">654906</span></td>
+      <td><strong>Bhugathagahalli</strong></td>
+      <td style="font-size:12px">CHAITHRA K</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>55</td>
+      <td><span class="cm">614700</span></td>
+      <td><strong>Appugowdana Halli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">CHAITHRA K</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>56</td>
+      <td><span class="cm">651356</span></td>
+      <td><strong>Nelluru</strong></td>
+      <td style="font-size:12px">CHAITHRA K</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>57</td>
+      <td><span class="cm">614701</span></td>
+      <td><strong>Kaluveeranahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">USMAN BHASHA</td>
+      <td><span class="gp-ch">Kandegala</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>58</td>
+      <td><span class="cm">614702</span></td>
+      <td><strong>Kandegala</strong></td>
+      <td style="font-size:12px">USMAN BHASHA</td>
+      <td><span class="gp-ch">Kandegala</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>59</td>
+      <td><span class="cm">614703</span></td>
+      <td><strong>Gulagatta</strong></td>
+      <td style="font-size:12px">USMAN BHASHA</td>
+      <td><span class="gp-ch">Nelamakanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>60</td>
+      <td><span class="cm">614704</span></td>
+      <td><strong>Malavalli(Rural)</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">NANDEESH</td>
+      <td><span class="gp-ch">Marehalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>61</td>
+      <td><span class="cm">614705</span></td>
+      <td><strong>Nidaghatta</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">MADEVI J</td>
+      <td><span class="gp-ch">Nidaghatta</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>62</td>
+      <td><span class="cm">651360</span></td>
+      <td><strong>Cholanahalli</strong></td>
+      <td style="font-size:12px">MADEVI J</td>
+      <td><span class="gp-ch">Nidaghatta</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>63</td>
+      <td><span class="cm">614706</span></td>
+      <td><strong>Ankanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">NATARAJ B</td>
+      <td><span class="gp-ch">Kandegala</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>64</td>
+      <td><span class="cm">614707</span></td>
+      <td><strong>Gowdagere</strong></td>
+      <td style="font-size:12px">SIDRAMAPPA</td>
+      <td><span class="gp-ch">Nidaghatta</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>65</td>
+      <td><span class="cm">614708</span></td>
+      <td><strong>Amrutheswaranahalli</strong></td>
+      <td style="font-size:12px">SIDRAMAPPA</td>
+      <td><span class="gp-ch">Kandegala</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>66</td>
+      <td><span class="cm">614709</span></td>
+      <td><strong>Kembuthagere</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SIDRAMAPPA</td>
+      <td><span class="gp-ch">Agasnapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">250</td>
+      <td style="text-align:right">80</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>67</td>
+      <td><span class="cm">614710</span></td>
+      <td><strong>Sahalli</strong></td>
+      <td style="font-size:12px">SIDRAMAPPA</td>
+      <td><span class="gp-ch">Agasnapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>68</td>
+      <td><span class="cm">614711</span></td>
+      <td><strong>Hadli</strong></td>
+      <td style="font-size:12px">RAVEESH M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>69</td>
+      <td><span class="cm">614712</span></td>
+      <td><strong>Kodipura</strong></td>
+      <td style="font-size:12px">RAVEESH M</td>
+      <td><span class="gp-ch">Agasnapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>70</td>
+      <td><span class="cm">614713</span></td>
+      <td><strong>Koonanapura</strong></td>
+      <td style="font-size:12px">RAVEESH M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>71</td>
+      <td><span class="cm">614714</span></td>
+      <td><strong>Jogipura</strong></td>
+      <td style="font-size:12px">SHIVAPPA DAMANALA</td>
+      <td><span class="gp-ch">Agasnapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>72</td>
+      <td><span class="cm">614715</span></td>
+      <td><strong>Agasanapura</strong></td>
+      <td style="font-size:12px">SHIVAPPA DAMANALA</td>
+      <td><span class="gp-ch">Agasnapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>73</td>
+      <td><span class="cm">614716</span></td>
+      <td><strong>Banagahalli</strong></td>
+      <td style="font-size:12px">SHIVASHANKAR B JAMAKANDI</td>
+      <td><span class="gp-ch">Huskur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>74</td>
+      <td><span class="cm">614717</span></td>
+      <td><strong>Chandupura</strong></td>
+      <td style="font-size:12px">SHIVASHANKAR B JAMAKANDI</td>
+      <td><span class="gp-ch">Huskur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>75</td>
+      <td><span class="cm">614718</span></td>
+      <td><strong>M.Shivapura</strong></td>
+      <td style="font-size:12px">ABHIJITH N L</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">1000</td>
+      <td style="text-align:right">0</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>76</td>
+      <td><span class="cm">614719</span></td>
+      <td><strong>Huskur</strong><br><span style="font-size:10px;color:#a78bfa">+4 dakale</span></td>
+      <td style="font-size:12px">SHIVASHANKAR B JAMAKANDI</td>
+      <td><span class="gp-ch">Huskur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>77</td>
+      <td><span class="cm">614720</span></td>
+      <td><strong>Kaladevanahalli</strong></td>
+      <td style="font-size:12px">KENCHAPPA KODLIWWAD</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>78</td>
+      <td><span class="cm">614721</span></td>
+      <td><strong>Hosapura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">ABHIJITH N L</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">40</td>
+      <td style="text-align:right">10</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>79</td>
+      <td><span class="cm">614722</span></td>
+      <td><strong>Aslishivapura</strong></td>
+      <td style="font-size:12px">ABHIJITH N L</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>80</td>
+      <td><span class="cm">614723</span></td>
+      <td><strong>Belathur</strong></td>
+      <td style="font-size:12px">ABHIJITH N L</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>81</td>
+      <td><span class="cm">614724</span></td>
+      <td><strong>Yethambadi</strong></td>
+      <td style="font-size:12px">ABHIJITH N L</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>82</td>
+      <td><span class="cm">614725</span></td>
+      <td><strong>Antharavalli</strong></td>
+      <td style="font-size:12px">KENCHAPPA KODLIWWAD</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>83</td>
+      <td><span class="cm">614726</span></td>
+      <td><strong>Hullahalli</strong></td>
+      <td style="font-size:12px">SHIVASHANKAR B JAMAKANDI</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>84</td>
+      <td><span class="cm">614727</span></td>
+      <td><strong>Channipura</strong></td>
+      <td style="font-size:12px">RAVEESH M</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>85</td>
+      <td><span class="cm">614728</span></td>
+      <td><strong>Hullagala</strong></td>
+      <td style="font-size:12px">SHIVASHANKAR B JAMAKANDI</td>
+      <td><span class="gp-ch">Huskur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>86</td>
+      <td><span class="cm">614729</span></td>
+      <td><strong>Dadamahalli</strong></td>
+      <td style="font-size:12px">KENCHAPPA KODLIWWAD</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>87</td>
+      <td><span class="cm">614730</span></td>
+      <td><strong>Kiragasur</strong></td>
+      <td style="font-size:12px">KENCHAPPA KODLIWWAD</td>
+      <td><span class="gp-ch">Yathambadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>88</td>
+      <td><span class="cm">614731</span></td>
+      <td><strong>Banasamudra</strong></td>
+      <td style="font-size:12px">BHASKAR S</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>89</td>
+      <td><span class="cm">614732</span></td>
+      <td><strong>Kaggalipura</strong></td>
+      <td style="font-size:12px">BHASKAR S</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>90</td>
+      <td><span class="cm">614733</span></td>
+      <td><strong>Konnapura</strong></td>
+      <td style="font-size:12px">BHASKAR S</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>91</td>
+      <td><span class="cm">614734</span></td>
+      <td><strong>Halasahalli</strong></td>
+      <td style="font-size:12px">BHASKAR S</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>92</td>
+      <td><span class="cm">614735</span></td>
+      <td><strong>Dhanagur</strong></td>
+      <td style="font-size:12px">SHIVAPPA DAMANALA</td>
+      <td><span class="gp-ch">Dhanaguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>93</td>
+      <td><span class="cm">614736</span></td>
+      <td><strong>Linganapura</strong></td>
+      <td style="font-size:12px">SUDARSHAN KUMAR PS</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>94</td>
+      <td><span class="cm">614737</span></td>
+      <td><strong>Gramadevathepura</strong></td>
+      <td style="font-size:12px">SUDARSHAN KUMAR PS</td>
+      <td><span class="gp-ch">Dhanaguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>95</td>
+      <td><span class="cm">614738</span></td>
+      <td><strong>Basavanpura</strong></td>
+      <td style="font-size:12px">RAVEESH M</td>
+      <td><span class="gp-ch">D.Halasahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>96</td>
+      <td><span class="cm">614739</span></td>
+      <td><strong>Nadakalapura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SUDARSHAN KUMAR PS</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>97</td>
+      <td><span class="cm">614740</span></td>
+      <td><strong>Megalapura</strong></td>
+      <td style="font-size:12px">PRAVEEN KUMAR M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>98</td>
+      <td><span class="cm">614741</span></td>
+      <td><strong>Kamsagara</strong></td>
+      <td style="font-size:12px">PRAVEEN KUMAR M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>99</td>
+      <td><span class="cm">614742</span></td>
+      <td><strong>Thuraganur</strong></td>
+      <td style="font-size:12px">PRAVEEN KUMAR M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>100</td>
+      <td><span class="cm">614743</span></td>
+      <td><strong>Attuvanahalli</strong></td>
+      <td style="font-size:12px">SUDARSHAN KUMAR PS</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>101</td>
+      <td><span class="cm">614744</span></td>
+      <td><strong>Alada Halli</strong></td>
+      <td style="font-size:12px">PRAVEEN KUMAR M</td>
+      <td><span class="gp-ch">Haadli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>102</td>
+      <td><span class="cm">614745</span></td>
+      <td><strong>Gajanur</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">MADEVI J</td>
+      <td><span class="gp-ch">Nidaghatta</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>103</td>
+      <td><span class="cm">614746</span></td>
+      <td><strong>Voddarahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">NATARAJ B</td>
+      <td><span class="gp-ch">Marehalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>104</td>
+      <td><span class="cm">614747</span></td>
+      <td><strong>Marehalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">NATARAJ B</td>
+      <td><span class="gp-ch">Marehalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>105</td>
+      <td><span class="cm">614748</span></td>
+      <td><strong>Ravani</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">MALLESH KP</td>
+      <td><span class="gp-ch">Kyathnahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>106</td>
+      <td><span class="cm">614749</span></td>
+      <td><strong>Devalinganapura</strong></td>
+      <td style="font-size:12px">NATARAJ B</td>
+      <td><span class="gp-ch">Marehalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>107</td>
+      <td><span class="cm">614750</span></td>
+      <td><strong>Savandipura</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>108</td>
+      <td><span class="cm">614751</span></td>
+      <td><strong>Sagyasaragur</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>109</td>
+      <td><span class="cm">614752</span></td>
+      <td><strong>Nitturhalasahalli</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>110</td>
+      <td><span class="cm">614753</span></td>
+      <td><strong>Kunthur</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>111</td>
+      <td><span class="cm">614754</span></td>
+      <td><strong>Lingapatna</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>112</td>
+      <td><span class="cm">614755</span></td>
+      <td><strong>Nittur</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">SIDDARAYAMALI</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>113</td>
+      <td><span class="cm">658634</span></td>
+      <td><strong>B Hosuru</strong></td>
+      <td style="font-size:12px">SIDDARAYAMALI</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>114</td>
+      <td><span class="cm">614756</span></td>
+      <td><strong>Ankanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SIDDARAYAMALI</td>
+      <td><span class="gp-ch">Nitturu</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>115</td>
+      <td><span class="cm">614757</span></td>
+      <td><strong>Maragowdanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">SOMANNA</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>116</td>
+      <td><span class="cm">614758</span></td>
+      <td><strong>Nitthur Kodihalli</strong></td>
+      <td style="font-size:12px">SOMANNA</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>117</td>
+      <td><span class="cm">614759</span></td>
+      <td><strong>Karadahalli</strong></td>
+      <td style="font-size:12px">SIDDARAYAMALI</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>118</td>
+      <td><span class="cm">614760</span></td>
+      <td><strong>Vodeyarabasapura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SOMANNA</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>119</td>
+      <td><span class="cm">614761</span></td>
+      <td><strong>Handanahalli</strong></td>
+      <td style="font-size:12px">SOMANNA</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>120</td>
+      <td><span class="cm">614762</span></td>
+      <td><strong>Kodipura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>121</td>
+      <td><span class="cm">614763</span></td>
+      <td><strong>Veerajithimmanadoddi</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>122</td>
+      <td><span class="cm">614764</span></td>
+      <td><strong>Juganahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Lingapatna</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>123</td>
+      <td><span class="cm">614765</span></td>
+      <td><strong>Balehonniga</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Dalavayikodihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>124</td>
+      <td><span class="cm">614766</span></td>
+      <td><strong>Dalavaikodihalli</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Dalavayikodihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>125</td>
+      <td><span class="cm">614767</span></td>
+      <td><strong>Deveerahalli</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Dalavayikodihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>126</td>
+      <td><span class="cm">614768</span></td>
+      <td><strong>Kempainadoddi</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">Dalavayikodihalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>127</td>
+      <td><span class="cm">614769</span></td>
+      <td><strong>Nandipura</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>128</td>
+      <td><span class="cm">614770</span></td>
+      <td><strong>Gundapura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>129</td>
+      <td><span class="cm">614771</span></td>
+      <td><strong>Hosapetebasavapura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>130</td>
+      <td><span class="cm">614772</span></td>
+      <td><strong>Hagadur</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>131</td>
+      <td><span class="cm">614773</span></td>
+      <td><strong>Shivanahalli</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>132</td>
+      <td><span class="cm">614774</span></td>
+      <td><strong>Gollarahalli</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>133</td>
+      <td><span class="cm">614775</span></td>
+      <td><strong>Halaguru</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">SOMANNA</td>
+      <td><span class="gp-ch">Halaguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>134</td>
+      <td><span class="cm">614776</span></td>
+      <td><strong>Halaganadoddi</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>135</td>
+      <td><span class="cm">614777</span></td>
+      <td><strong>Chillapura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>136</td>
+      <td><span class="cm">614778</span></td>
+      <td><strong>Thorekadanahalli</strong></td>
+      <td style="font-size:12px">BHASKAR S</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>137</td>
+      <td><span class="cm">614779</span></td>
+      <td><strong>Nanjapura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>138</td>
+      <td><span class="cm">614780</span></td>
+      <td><strong>Chikkayelachagere</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>139</td>
+      <td><span class="cm">614781</span></td>
+      <td><strong>Halagapura</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Thorekadanahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>140</td>
+      <td><span class="cm">614782</span></td>
+      <td><strong>Doddayelachagere</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>141</td>
+      <td><span class="cm">614783</span></td>
+      <td><strong>Madahalli</strong></td>
+      <td style="font-size:12px">LATHA G</td>
+      <td><span class="gp-ch">Dugganahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>142</td>
+      <td><span class="cm">614784</span></td>
+      <td><strong>Ganalu</strong><br><span style="font-size:10px;color:#a78bfa">+13 dakale</span></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>143</td>
+      <td><span class="cm">614785</span></td>
+      <td><strong>Bydarahalli</strong><br><span style="font-size:10px;color:#a78bfa">+3 dakale</span></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>144</td>
+      <td><span class="cm">651365</span></td>
+      <td><strong>Karalakattedoddi</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>145</td>
+      <td><span class="cm">614786</span></td>
+      <td><strong>Muthalakatte</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>146</td>
+      <td><span class="cm">614787</span></td>
+      <td><strong>Solaba</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>147</td>
+      <td><span class="cm">614788</span></td>
+      <td><strong>Basavanahalli</strong></td>
+      <td style="font-size:12px">SOMASHEKAR P</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>148</td>
+      <td><span class="cm">614789</span></td>
+      <td><strong>Basavana Betta Forest</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">H Basavapura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>149</td>
+      <td><span class="cm">614790</span></td>
+      <td><strong>Dalanakatte</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>150</td>
+      <td><span class="cm">614791</span></td>
+      <td><strong>Basavegowdanadoddi</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>151</td>
+      <td><span class="cm">614792</span></td>
+      <td><strong>Talavadi</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>152</td>
+      <td><span class="cm">614793</span></td>
+      <td><strong>Majjigemallanahatti</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>153</td>
+      <td><span class="cm">614794</span></td>
+      <td><strong>Muthathi</strong></td>
+      <td style="font-size:12px">NARASAPPA</td>
+      <td><span class="gp-ch">Bydarahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>154</td>
+      <td><span class="cm">614795</span></td>
+      <td><strong>Doddaboovalli</strong></td>
+      <td style="font-size:12px">RUKSAR FARHEEN</td>
+      <td><span class="gp-ch">Kyathnahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>155</td>
+      <td><span class="cm">614796</span></td>
+      <td><strong>Kyathanahalli</strong></td>
+      <td style="font-size:12px">RUKSAR FARHEEN</td>
+      <td><span class="gp-ch">Kyathnahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>156</td>
+      <td><span class="cm">614797</span></td>
+      <td><strong>Kundur</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>157</td>
+      <td><span class="cm">614798</span></td>
+      <td><strong>Shiramalli</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>158</td>
+      <td><span class="cm">614799</span></td>
+      <td><strong>Pandithahalli</strong></td>
+      <td style="font-size:12px">PRAVEEN T K</td>
+      <td><span class="gp-ch">Pandithahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>159</td>
+      <td><span class="cm">614800</span></td>
+      <td><strong>Bachanahalli</strong></td>
+      <td style="font-size:12px">PRAVEEN T K</td>
+      <td><span class="gp-ch">Pandithahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>160</td>
+      <td><span class="cm">614801</span></td>
+      <td><strong>Manchanapura</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>161</td>
+      <td><span class="cm">614802</span></td>
+      <td><strong>Chottanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>162</td>
+      <td><span class="cm">651318</span></td>
+      <td><strong>Kunanakoppalu</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>163</td>
+      <td><span class="cm">614803</span></td>
+      <td><strong>Chandahalli</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>164</td>
+      <td><span class="cm">651422</span></td>
+      <td><strong>Varadarajaswamydoddi</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>165</td>
+      <td><span class="cm">614804</span></td>
+      <td><strong>Dabbahalli</strong></td>
+      <td style="font-size:12px">LAVANYA</td>
+      <td><span class="gp-ch">Dhanaguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>166</td>
+      <td><span class="cm">614805</span></td>
+      <td><strong>Netkal</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">LAVANYA</td>
+      <td><span class="gp-ch">Chottenahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>167</td>
+      <td><span class="cm">614806</span></td>
+      <td><strong>Mallikyathanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">LANKESH H S</td>
+      <td><span class="gp-ch">Hosahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>168</td>
+      <td><span class="cm">614807</span></td>
+      <td><strong>Belakavadi</strong><br><span style="font-size:10px;color:#a78bfa">+2 dakale</span></td>
+      <td style="font-size:12px">LANKESH H S</td>
+      <td><span class="gp-ch">Belakavadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>169</td>
+      <td><span class="cm">651558</span></td>
+      <td><strong>Javaganahalli</strong></td>
+      <td style="font-size:12px">LANKESH H S</td>
+      <td><span class="gp-ch">Belakavadi</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>170</td>
+      <td><span class="cm">614808</span></td>
+      <td><strong>Kiragasur</strong></td>
+      <td style="font-size:12px">LANKESH H S</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>171</td>
+      <td><span class="cm">614809</span></td>
+      <td><strong>Vasuvalli</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>172</td>
+      <td><span class="cm">614810</span></td>
+      <td><strong>Hokkarahalli</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>173</td>
+      <td><span class="cm">614811</span></td>
+      <td><strong>Nanjanayanapura</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">B.G.Pura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>174</td>
+      <td><span class="cm">614812</span></td>
+      <td><strong>Dyavapatna</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">B.G.Pura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>175</td>
+      <td><span class="cm">614813</span></td>
+      <td><strong>Hosahalli</strong></td>
+      <td style="font-size:12px">PRAVEEN T K</td>
+      <td><span class="gp-ch">Hosahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>176</td>
+      <td><span class="cm">614814</span></td>
+      <td><strong>Hebbani</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Pandithahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>177</td>
+      <td><span class="cm">614815</span></td>
+      <td><strong>Manchanahalli</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Pandithahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>178</td>
+      <td><span class="cm">614816</span></td>
+      <td><strong>Dasanadoddi</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">PRAVEEN T K</td>
+      <td><span class="gp-ch">Pandithahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>179</td>
+      <td><span class="cm">614817</span></td>
+      <td><strong>Kanchugahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>180</td>
+      <td><span class="cm">614818</span></td>
+      <td><strong>Malagalali</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>181</td>
+      <td><span class="cm">614819</span></td>
+      <td><strong>Thenkahalli</strong></td>
+      <td style="font-size:12px">SHRIKANTH KOTYAL</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>182</td>
+      <td><span class="cm">614820</span></td>
+      <td><strong>Kadabahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>183</td>
+      <td><span class="cm">614821</span></td>
+      <td><strong>Mallinathapura</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Kyathnahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>184</td>
+      <td><span class="cm">614822</span></td>
+      <td><strong>Kaggala</strong></td>
+      <td style="font-size:12px">MADHU M</td>
+      <td><span class="gp-ch">Kyathnahalli</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>185</td>
+      <td><span class="cm">614823</span></td>
+      <td><strong>Kanikahalli</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>186</td>
+      <td><span class="cm">614824</span></td>
+      <td><strong>Udape Boovalli</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>187</td>
+      <td><span class="cm">614825</span></td>
+      <td><strong>Thigadahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SUBHASH</td>
+      <td><span class="gp-ch">Kundur</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>188</td>
+      <td><span class="cm">614826</span></td>
+      <td><strong>Boppagowdanapura</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SUDEEP KUMAR V</td>
+      <td><span class="gp-ch">B.G.Pura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>189</td>
+      <td><span class="cm">614827</span></td>
+      <td><strong>Muttanahalli</strong></td>
+      <td style="font-size:12px">SUBHASH</td>
+      <td><span class="gp-ch">B.G.Pura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>190</td>
+      <td><span class="cm">614828</span></td>
+      <td><strong>Saraguru</strong><br><span style="font-size:10px;color:#a78bfa">+4 dakale</span></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>191</td>
+      <td><span class="cm">614829</span></td>
+      <td><strong>Hanavadi</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>192</td>
+      <td><span class="cm">614830</span></td>
+      <td><strong>Purigali</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SANJAY K</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>193</td>
+      <td><span class="cm">614831</span></td>
+      <td><strong>Hullamballi</strong></td>
+      <td style="font-size:12px">SRINIVASMURTHY</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>194</td>
+      <td><span class="cm">614832</span></td>
+      <td><strong>Chikka Abbagilu</strong></td>
+      <td style="font-size:12px">SRINIVASMURTHY</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>195</td>
+      <td><span class="cm">614833</span></td>
+      <td><strong>Chikkabagiluhanta</strong></td>
+      <td style="font-size:12px">SANJAY K</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>196</td>
+      <td><span class="cm">614834</span></td>
+      <td><strong>Maralahalli</strong></td>
+      <td style="font-size:12px">SRINIVASMURTHY</td>
+      <td><span class="gp-ch">Purigali</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>197</td>
+      <td><span class="cm">614835</span></td>
+      <td><strong>Ballagere</strong></td>
+      <td style="font-size:12px">SANJAY K</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>198</td>
+      <td><span class="cm">614836</span></td>
+      <td><strong>Somanahalli</strong><br><span style="font-size:10px;color:#a78bfa">+1 dakale</span></td>
+      <td style="font-size:12px">SANJAY K</td>
+      <td><span class="gp-ch">Sarguru</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>199</td>
+      <td><span class="cm">614837</span></td>
+      <td><strong>Kodagahalli</strong></td>
+      <td style="font-size:12px">SUBHASH</td>
+      <td><span class="gp-ch">B.G.Pura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>200</td>
+      <td><span class="cm">614838</span></td>
+      <td><strong>Haladasanahalli</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>201</td>
+      <td><span class="cm">614839</span></td>
+      <td><strong>Kaggalipura</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr><tr>
+      <td>202</td>
+      <td><span class="cm">651342</span></td>
+      <td><strong>Honaganahalli</strong></td>
+      <td style="font-size:12px">SRINIVASAMURTHY</td>
+      <td><span class="gp-ch">Kaggalipura</span></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:center">⚪</td>
+    </tr></tbody>
       </table>
     </div>
   </div>
@@ -474,7 +2915,121 @@ tr.drow.done{background:#f0fdf4}
         <p>In the sheet → click <strong>Extensions</strong> menu → <strong>Apps Script</strong><br>
         Delete all existing code in the editor, then paste:</p>
         <div class="code-wrap">
-          <pre class="code-blk" id="script-box"></pre>
+          <pre class="code-blk" id="script-box">// ═══ CENSUS 2027 · GOOGLE APPS SCRIPT ═══════════════════
+// HOW TO DEPLOY (read carefully):
+// 1. Open your Google Sheet
+// 2. Click Extensions menu → Apps Script
+// 3. DELETE all existing code in the editor
+// 4. PASTE this entire script (Ctrl+A to select all first)
+// 5. Press Ctrl+S to save
+// 6. Click "Deploy" button (top right) → "New deployment"
+// 7. Click the gear icon ⚙ next to "Select type"
+// 8. Choose "Web app"
+// 9. Set "Execute as" → Me
+// 10. Set "Who has access" → Anyone  ← MUST BE "Anyone"
+// 11. Click "Deploy"
+// 12. A popup appears — click "Authorize access"
+// 13. Choose your Google account → click "Allow"
+// 14. COPY the Web App URL shown (starts with https://script.google.com/macros/s/)
+// 15. Paste that URL in the Admin → Sheets Setup tab
+// ════════════════════════════════════════════════════════════
+
+const SHEET_TAB = "Census2027";
+
+// NOTE: This script works with direct fetch() — no JSONP needed.
+// Google Apps Script automatically adds CORS headers when
+// deployed with "Who has access: Anyone".
+
+function doGet(e) {
+  var result;
+  try {
+    var p = e.parameter || {};
+    var action = p.action || "";
+    if (action === "ping") {
+      result = {ok: true, msg: "Census 2027 Malavalli — Connected successfully!"};
+    } else if (action === "upsert") {
+      upsertRow(p);
+      result = {ok: true, saved: p.rowId};
+    } else {
+      result = {ok: false, error: "Unknown action: " + action};
+    }
+  } catch(err) {
+    result = {ok: false, error: err.toString()};
+  }
+
+  // Plain JSON response — CORS headers added automatically by Google
+  // when deployed with "Who has access: Anyone"
+  return ContentService
+    .createTextOutput(JSON.stringify(result))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function getOrCreateSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(SHEET_TAB);
+  if (!sh) {
+    sh = ss.insertSheet(SHEET_TAB);
+    var headers = [
+      "Row ID", "S.No", "Village Code", "Village Name", "Row Type",
+      "Dakale Grama", "VAO Name", "GP Name",
+      "Population (VAO)", "House Holds (VAO)", "Saved By VAO", "VAO Saved At",
+      "Population (Secretary)", "House Holds (Secretary)",
+      "Saved By Secretary", "Secretary Saved At"
+    ];
+    var hr = sh.getRange(1, 1, 1, headers.length);
+    hr.setValues([headers]);
+    hr.setBackground("#1a3d72")
+      .setFontColor("#ffffff")
+      .setFontWeight("bold")
+      .setFontSize(10);
+    sh.setFrozenRows(1);
+    sh.setColumnWidths(1, 16, 115);
+    sh.setColumnWidth(4, 160);
+    sh.setColumnWidth(6, 160);
+  }
+  return sh;
+}
+
+function upsertRow(p) {
+  var sh = getOrCreateSheet();
+  var data = sh.getDataRange().getValues();
+  var targetRow = -1;
+  for (var i = 1; i &lt; data.length; i++) {
+    if (String(data[i][0]) === String(p.rowId)) {
+      targetRow = i + 1;
+      break;
+    }
+  }
+  // Preserve existing cell values — only overwrite if new value provided
+  var ex = targetRow &gt; 0 ? data[targetRow - 1] : new Array(16).fill("");
+  var row = [
+    p.rowId,
+    p.sno     || ex[1]  || "",
+    p.code    || ex[2]  || "",
+    p.village || ex[3]  || "",
+    p.rowType || ex[4]  || "",
+    p.dakale  || ex[5]  || "",
+    p.vao     || ex[6]  || "",
+    p.gp      || ex[7]  || "",
+    (p.popVAO !== undefined &amp;&amp; p.popVAO !== "") ? p.popVAO : (ex[8]  || ""),
+    (p.hhVAO  !== undefined &amp;&amp; p.hhVAO  !== "") ? p.hhVAO  : (ex[9]  || ""),
+    p.byVAO   || ex[10] || "",
+    p.atVAO   || ex[11] || "",
+    (p.popSec !== undefined &amp;&amp; p.popSec !== "") ? p.popSec : (ex[12] || ""),
+    (p.hhSec  !== undefined &amp;&amp; p.hhSec  !== "") ? p.hhSec  : (ex[13] || ""),
+    p.bySec   || ex[14] || "",
+    p.atSec   || ex[15] || ""
+  ];
+  if (targetRow &gt; 0) {
+    sh.getRange(targetRow, 1, 1, row.length).setValues([row]);
+  } else {
+    sh.appendRow(row);
+    targetRow = sh.getLastRow();
+  }
+  // Colour coding: dakale rows = light purple, village rows = white
+  sh.getRange(targetRow, 1, 1, row.length)
+    .setBackground(p.rowType === "dakale" ? "#f5f0ff" : "#ffffff");
+}</pre>
           <button class="cp-btn" id="cp-btn" onclick="copyScript()">Copy</button>
         </div>
       </div>
@@ -502,7 +3057,7 @@ tr.drow.done{background:#f0fdf4}
         ⚠ Do <strong>NOT</strong> copy the editor URL (contains <code>/edit</code>). Get it from Deploy → Manage deployments.</p>
 
         <div class="url-row">
-          <input class="url-inp" type="text" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec" oninput="onUrlInput()"/>
+          <input class="url-inp ok" type="text" id="url-inp" placeholder="https://script.google.com/macros/s/…/exec" oninput="onUrlInput()">
           <button class="btn-url" onclick="saveUrl()">Save URL</button>
         </div>
 
@@ -514,8 +3069,8 @@ tr.drow.done{background:#f0fdf4}
             Instead: click the button below — it opens your URL in a new tab.<br>
             <strong>What you should see in the new tab:</strong> <code style="background:#dbeafe;padding:2px 6px;border-radius:3px">{"ok":true,"msg":"Census 2027 Malavalli — Connected successfully!"}</code>
           </p>
-          <button class="btn-pri" id="open-tab-btn" onclick="openInTab()" style="font-size:12px;padding:8px 18px;opacity:.4;cursor:not-allowed" disabled>🌐 Open URL in New Tab to Verify →</button>
-          <span style="font-size:11px;color:#64748b;margin-left:8px" id="tab-hint">Paste URL above first</span>
+          <button class="btn-pri" id="open-tab-btn" onclick="openInTab()" style="font-size: 12px; padding: 8px 18px; opacity: 1; cursor: pointer;">🌐 Open URL in New Tab to Verify →</button>
+          <span style="font-size:11px;color:#64748b;margin-left:8px" id="tab-hint">Click button above to open in new tab</span>
         </div>
 
         <!-- STEP B: what to do based on what they see -->
@@ -544,7 +3099,7 @@ tr.drow.done{background:#f0fdf4}
           </div>
         </div>
 
-        <div id="url-saved-msg" class="hidden" style="margin-top:10px;padding:10px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;color:#15803d;font-size:13px;font-weight:700">
+        <div id="url-saved-msg" class="" style="margin-top:10px;padding:10px 14px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;color:#15803d;font-size:13px;font-weight:700">
           ✅ URL saved and verified — all VAOs and Secretaries will now auto-sync every Save to Google Sheets
         </div>
       </div>
@@ -557,19 +3112,18 @@ tr.drow.done{background:#f0fdf4}
     <p style="font-size:13px;color:#475569;margin-bottom:16px;line-height:1.6">
       Upload your own village list to replace the built-in 202 villages. All VAO and Secretary logins will use the new data.
     </p>
-    <div class="upload-zone" id="drop-zone"
-      onclick="document.getElementById('file-inp').click()"
-      ondragover="event.preventDefault();this.classList.add('drag')"
-      ondragleave="this.classList.remove('drag')"
-      ondrop="handleDrop(event)">
+    <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-inp').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
       <div class="upload-ico">📂</div>
       <h3>Click to select file or drag &amp; drop</h3>
       <p>Supported: <strong>.csv</strong> (recommended) or <strong>.xlsx / .xls</strong><br>Maximum: 1000 villages</p>
     </div>
-    <input type="file" id="file-inp" accept=".csv,.xlsx,.xls" onchange="handleFile(this)" style="display:none"/>
+    <input type="file" id="file-inp" accept=".csv,.xlsx,.xls" onchange="handleFile(this)" style="display:none">
     <div class="csv-fmt">
       <h4>Required Column Format (first row = headers)</h4>
-      <code id="csv-sample"></code>
+      <code id="csv-sample">S.No,Village Code,Village Name,Dakale Grama,VAO Name,GP Name
+1,614654,Chikkamulagudu,Vaddara Kaloni,SHAFI,Chikkamulagudu
+2,649474,Kurubanapura,,SHAFI,Chikkamulagudu
+10,614661,Hittanahalli,"1)Hittanahalli Koppalu 2)Budukegowdanadoddi",GURURAJ,Hittanahalli</code>
       <p style="font-size:11.5px;color:#64748b;margin-top:8px">
         💡 <strong>Tip:</strong> Open your Excel file → File → Save As → CSV (Comma delimited) → Upload that CSV file here.<br>
         For multiple Dakale Gramas use format: <code>1)Name1 2)Name2 3)Name3</code> — single name or leave blank is also fine.
@@ -589,7 +3143,7 @@ tr.drow.done{background:#f0fdf4}
   </div>
 
   <!-- TAB 3: HOSTING GUIDE -->
-  <div class="apanel hidden" id="ap-3">
+  <div class="apanel" id="ap-3">
     <div class="sec-title">🚀 Host on GitHub Pages — Free, No Commands Needed</div>
     <div class="info-box">
       <strong>What you get after following these steps:</strong> A live website working on any phone/computer, handling 100+ users at once, costs ₹0/month, always online, no server, no maintenance.
@@ -703,7 +3257,7 @@ tr.drow.done{background:#f0fdf4}
   </div>
 </div>
 
-<div id="toast"></div>
+<div id="toast" class="">✅ Downloading with Google Sheets URL baked in — re-host this file for all users</div>
 <script>
 // ═══════════════════════════════════════════════════════════════
 //  CENSUS 2027 · MALAVALLI TALUK
@@ -1051,7 +3605,7 @@ async function sha256(str){
 // ── Sheet URL baked at deploy time (Admin: Download Updated App) ──
 // Replace __SHEET_URL__ with your actual URL and re-host the file.
 // Users on new devices will get sync automatically without any setup.
-const BAKED_URL = 'https://script.google.com/macros/s/AKfycbyOfHddzGH3Ob9p0IDLgUcur3W2JHn-IMXbao8-mTYPEC6jHV5_YKBD2MSq7JSOQ8rI/exec';
+const BAKED_URL = 'https://script.google.com/macros/s/AKfycbwn3HTMQSaId_LucXRxLt4dCb8bfsfiqsWmFdeg_s1R-kQnM4skB5G8FD3zCtUG-omH/exec';
 
 // ── State ─────────────────────────────────────────────────────
 const S = {
@@ -1132,7 +3686,7 @@ async function doLogin(){
   // VAO / SECRETARY
   if(!nm){showErr('ನಿಮ್ಮ ಹೆಸರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ / Select your name.');return;}
   if(hash!==USER_HASH){showErr('ತಪ್ಪಾದ ಗುಪ್ತಪದ / Incorrect password.');return;}
-  fetchFromSheet(nm);
+  fetchFromSheet(userName);
   S.role=S.loginRole; S.uname=nm;
   S.allRows=buildRows(S.raw);
   S.vis = S.role==='vao'
@@ -1161,7 +3715,7 @@ async function doLogin(){
   hide('pg-login'); show('pg-entry');
   // Show URL setup banner if no sheet configured on this device
   const banner=$('url-setup-banner');
-  if(banner){   S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwn3HTMQSaId_LucXRxLt4dCb8bfsfiqsWmFdeg_s1R-kQnM4skB5G8FD3zCtUG-omH/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';   banner.classList.toggle('hidden', !!S.sheetUrl); }
+  if(banner){   S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';   banner.classList.toggle('hidden', !!S.sheetUrl); }
 }
 
 function showErr(msg){$('login-err').textContent=msg;show('login-err');}
@@ -1311,137 +3865,116 @@ function saveRow(rid){
   updateStats();
   if(row) syncRow(rid,row,up);
 }
-  async function fetchFromSheet(user){
-  if(!S.sheetUrl) return;
 
-  try{
-    const res = await fetch(S.sheetUrl + '?action=getUserData&user=' + encodeURIComponent(user));
-    const json = await res.json();
+// ── Sync Engine ─────────────────────────────────────// ========== PRODUCTION SYNC ENGINE ==========
 
-    if(json.success){
-      json.rows.forEach(r=>{
-        const rid = r["Row ID"];
-        if(!rid) return;
+let isSyncing = false;
+let retryTimer = null;
 
-        if(!S.entries[rid]) S.entries[rid] = {};
-
-        S.entries[rid].pV = r["Population (VAO)"] || '';
-        S.entries[rid].hV = r["House Holds (VAO)"] || '';
-        S.entries[rid].pS = r["Population (Secretary)"] || '';
-        S.entries[rid].hS = r["House Holds (Secretary)"] || '';
-
-        S.syncSt[rid] = 'ok';
-      });
-
-      persist();
-      renderTable();
-      updateStats();
-      updateSyncUI();
-    }
-
-  }catch(err){
-    console.warn("Sheet fetch failed", err);
-  }
+// Robust sheet URL resolver
+function resolveSheetURL(){
+  return (typeof BAKED_URL !== 'undefined' && 
+         BAKED_URL && 
+         BAKED_URL !== '__SHEET_URL__')
+         ? BAKED_URL
+         : localStorage.getItem('c27_url') || '';
 }
 
-// ─────────────────────────────────────────────
-//  TWO-WAY GOOGLE SHEETS SYNC (FINAL VERSION)
-// ─────────────────────────────────────────────
-
-// Pull data from Sheet on login (multi-device consistency)
-async function fetchFromSheet(user){
-  const url = S.sheetUrl;
-  if(!url) return;
+// Sync single row (safe, idempotent)
+async function syncRow(row){
+  const url = resolveSheetURL();
+  if(!url) return false;
 
   try{
-    const res = await fetch(url + '?action=getUserData&user=' + encodeURIComponent(user));
-    const json = await res.json();
-    if(!json.success) return;
-
-    json.rows.forEach(r=>{
-      const rid = r["Row ID"];
-      if(!rid) return;
-
-      const entry = S.entries[rid] || {};
-
-      // VAO data
-      if(r["Population (VAO)"] !== "" && r["Population (VAO)"] != null)
-        entry.pV = r["Population (VAO)"];
-      if(r["House Holds (VAO)"] !== "" && r["House Holds (VAO)"] != null)
-        entry.hV = r["House Holds (VAO)"];
-
-      // Secretary data
-      if(r["Population (Secretary)"] !== "" && r["Population (Secretary)"] != null)
-        entry.pS = r["Population (Secretary)"];
-      if(r["House Holds (Secretary)"] !== "" && r["House Holds (Secretary)"] != null)
-        entry.hS = r["House Holds (Secretary)"];
-
-      S.entries[rid] = entry;
-      S.syncSt[rid] = 'ok';
+    const res = await fetch(url,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        action:'upsertRow',
+        data:row
+      })
     });
 
-    persist();
-    renderTable();
-    updateStats();
-    updateSyncUI();
-
+    const json = await res.json();
+    if(json.success){
+      S.syncSt[row.rowId]='ok';
+      saveState();
+      return true;
+    }
   }catch(e){
-    console.warn("Sheet fetch failed", e);
+    console.warn('Sync failed:',e);
   }
+
+  S.syncSt[row.rowId]='pending';
+  saveState();
+  return false;
 }
 
-// Push single row to Sheet (compatible with your structure)
-async function syncRow(rid,row,entry){
-  if(!S.sheetUrl) return;
+// Sync all pending rows
+async function syncAll(){
+  if(isSyncing) return;
+  isSyncing = true;
 
-  const params = new URLSearchParams({
-    action: 'upsert',
-    rowId: rid,
-    sno: row.sno,
-    code: row.code,
-    village: row.name,
-    rowType: row.type,
-    dakale: row.dkName || '',
-    vao: row.vao,
-    gp: row.gp,
-    popVAO: entry.pV || '',
-    hhVAO: entry.hV || '',
-    byVAO: entry.byV || '',
-    atVAO: entry.atV || '',
-    popSec: entry.pS || '',
-    hhSec: entry.hS || '',
-    bySec: entry.byS || '',
-    atSec: entry.atS || ''
-  });
+  updateSyncUI();
 
-  const dot = $('rd-'+rid);
-  if(dot) dot.className='rdot v rd-spin';
-
-  try{
-    await fetch(S.sheetUrl + '?' + params.toString(), {mode:'no-cors'});
-    S.syncSt[rid]='ok';
-    persist();
-    if(dot) dot.className='rdot v rd-ok';
-  }catch(e){
-    S.syncSt[rid]='err';
-    S.failedQ.push(rid);
-    persist();
-    if(dot) dot.className='rdot v rd-err';
+  const rows = Object.values(S.rows || {});
+  for(const r of rows){
+    if(S.syncSt[r.rowId] !== 'ok'){
+      await syncRow(r);
+    }
   }
 
+  isSyncing = false;
   updateSyncUI();
 }
 
-// Retry failed rows
-function retryFailed(){
-  if(!S.sheetUrl) return;
-  const failed = [...S.failedQ];
-  S.failedQ=[];
-  failed.forEach(rid=>{
-    const row = S.allRows.find(r=>r.rid===rid);
-    if(row) syncRow(rid,row,S.entries[rid]);
-  });
+// Auto retry engine
+function startAutoRetry(){
+  if(retryTimer) clearInterval(retryTimer);
+
+  retryTimer = setInterval(()=>{
+    if(navigator.onLine){
+      syncAll();
+    }
+  },15000); // retry every 15 seconds
 }
+
+// Online/offline detection
+window.addEventListener('online', ()=>{
+  toast('Internet restored — syncing...');
+  syncAll();
+});
+
+window.addEventListener('offline', ()=>{
+  toast('You are offline — data saved locally','warn');
+});
+
+// Improved Sync UI
+function updateSyncUI(){
+  const statusDot = document.getElementById('syncDot');
+  const statusText = document.getElementById('syncText');
+
+  const url = resolveSheetURL();
+
+  if(!url){
+    statusDot?.classList.remove('green');
+    statusText && (statusText.textContent='No Sync');
+    return;
+  }
+
+  const pending = Object.values(S.syncSt || {}).filter(s=>s!=='ok').length;
+
+  if(pending === 0){
+    statusDot?.classList.add('green');
+    statusText && (statusText.textContent='Synced');
+  }else{
+    statusDot?.classList.remove('green');
+    statusText && (statusText.textContent='Syncing...');
+  }
+}
+
+// Call once at app start
+startAutoRetry();
 
 // ── Admin dashboard ───────────────────────────────────────────
 function showAdminTab(n){
@@ -1565,7 +4098,7 @@ function saveUrl(){
   $('url-inp').className='url-inp ok';
   $('url-saved-msg').classList.remove('hidden');
   toast('✓ URL saved — open it in a new tab to verify it shows {"ok":true}');
-
+  updateSyncUI();
 }
 
 // ── Upload CSV/Excel ──────────────────────────────────────────
@@ -1697,7 +4230,7 @@ function downloadSelf(){
 // ── Init ──────────────────────────────────────────────────────
 setTab('vao');
 // Resolve sheetUrl on every page load from BAKED_URL or localStorage
-S.sheetUrl = (BAKED_URL && BAKED_URL !== 'https://script.google.com/macros/s/AKfycbwn3HTMQSaId_LucXRxLt4dCb8bfsfiqsWmFdeg_s1R-kQnM4skB5G8FD3zCtUG-omH/exec' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
+S.sheetUrl = (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '';
 if(S.sheetUrl){
   if($('url-inp')){
     $('url-inp').value=S.sheetUrl;
@@ -1706,5 +4239,6 @@ if(S.sheetUrl){
   if($('url-saved-msg')) $('url-saved-msg').classList.remove('hidden');
 }
 </script>
-</body>
-</html>
+
+
+</body></html>
