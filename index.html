@@ -1015,7 +1015,7 @@ async function sha256(str){
 // ── Sheet URL baked at deploy time (Admin: Download Updated App) ──
 // Replace __SHEET_URL__ with your actual URL and re-host the file.
 // Users on new devices will get sync automatically without any setup.
-const BAKED_URL = '__SHEET_URL__';
+const BAKED_URL = 'https://script.google.com/macros/s/AKfycbyOfHddzGH3Ob9p0IDLgUcur3W2JHn-IMXbao8-mTYPEC6jHV5_YKBD2MSq7JSOQ8rI/exec';
 
 // ── State ─────────────────────────────────────────────────────
 const S = {
@@ -1023,7 +1023,7 @@ const S = {
   raw: JSON.parse(localStorage.getItem('c27_raw')||'null') || DEFAULT_RAW,
   entries:  JSON.parse(localStorage.getItem('c27_e') ||'{}'),
   syncSt:   JSON.parse(localStorage.getItem('c27_ss')||'{}'),
-  sheetUrl: (BAKED_URL && BAKED_URL !== '__SHEET_URL__' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '',
+  sheetUrl: (BAKED_URL && BAKED_URL !== '' ? BAKED_URL : '') || localStorage.getItem('c27_url') || '',
   failedQ:[], toastTmr:null, pendingUpload:null
 };
 function persist(){
